@@ -32,7 +32,12 @@ public class AlbumDAO implements IAlbumDAO {
         this.coleccionAlbumes = ConexionBD.crearConexion().getCollection("albumes", Albumes.class);
     }
 
- 
+    /**
+     *
+     * @param album
+     * @throws PersistenciaException
+     */
+    @Override
     public void insertarAlbum(Albumes album) throws PersistenciaException {
         try {
             if (album == null || album.getNombre() == null || album.getFechaLanzamiento() == null) {
@@ -44,7 +49,13 @@ public class AlbumDAO implements IAlbumDAO {
         }
     }
 
-   
+    /**
+     *
+     * @param nombre
+     * @return
+     * @throws PersistenciaException
+     */
+    @Override
     public List<Albumes> buscarPorNombre(String nombre) throws PersistenciaException {
         try {
             return coleccionAlbumes.find(Filters.regex("nombre", Pattern.compile(nombre, Pattern.CASE_INSENSITIVE)))
@@ -54,7 +65,13 @@ public class AlbumDAO implements IAlbumDAO {
         }
     }
 
-   
+    /**
+     *
+     * @param genero
+     * @return
+     * @throws PersistenciaException
+     */
+    @Override
     public List<Albumes> buscarPorGenero(String genero) throws PersistenciaException {
         try {
             return coleccionAlbumes.find(Filters.in("genero", genero)).into(new ArrayList<>());
@@ -63,7 +80,14 @@ public class AlbumDAO implements IAlbumDAO {
         }
     }
 
-
+    /**
+     *
+     * @param fechaInicio
+     * @param fechaFin
+     * @return
+     * @throws PersistenciaException
+     */
+    @Override
     public List<Albumes> buscarPorFechaLanzamiento(Date fechaInicio, Date fechaFin) throws PersistenciaException {
         try {
             return coleccionAlbumes.find(Filters.and(
@@ -75,7 +99,13 @@ public class AlbumDAO implements IAlbumDAO {
         }
     }
 
- 
+    /**
+     *
+     * @param artistaId
+     * @return
+     * @throws PersistenciaException
+     */
+    @Override
     public List<Albumes> buscarPorArtista(ObjectId artistaId) throws PersistenciaException {
         try {
             return coleccionAlbumes.find(Filters.eq("artistaId", artistaId)).into(new ArrayList<>());
@@ -84,7 +114,13 @@ public class AlbumDAO implements IAlbumDAO {
         }
     }
 
-
+    /**
+     *
+     * @param album
+     * @return
+     * @throws PersistenciaException
+     */
+    @Override
     public boolean actualizarAlbum(Albumes album) throws PersistenciaException {
         try {
             if (album.getId() == null) {
@@ -97,7 +133,13 @@ public class AlbumDAO implements IAlbumDAO {
         }
     }
 
-   
+    /**
+     *
+     * @param albumId
+     * @return
+     * @throws PersistenciaException
+     */
+    @Override
     public boolean eliminarAlbum(ObjectId albumId) throws PersistenciaException {
         try {
             if (albumId == null) {
@@ -110,7 +152,13 @@ public class AlbumDAO implements IAlbumDAO {
         }
     }
 
-    
+    /**
+     *
+     * @param albumId
+     * @return
+     * @throws PersistenciaException
+     */
+    @Override
     public List<DetallesCancion> obtenerCancionesDeAlbum(ObjectId albumId) throws PersistenciaException {
         try {
             Albumes album = coleccionAlbumes.find(Filters.eq("_id", albumId)).first();
