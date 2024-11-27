@@ -1,8 +1,14 @@
 datos\IntegrantesDAO.class
 interfaces\IArtistaDAO.class
+datos\UsuarioDAO.class
+objetos\Favorito.class
+datos\ArtistaDAO.class
+datos\FavoritoDAO.class
 excepciones\PersistenciaException.class
+interfaces\IIntegrantesDAO.class
 objetos\Albumes.class
 objetos\Integrantes.class
+datos\DetallesCancionDAO.class
 recursos\tipoFavoritos.class
 datos\AlbumDAO.class
 interfaces\IUsuarioDAO.class
@@ -22,4 +28,8 @@ recursos\Imagen.class
 objetos\Artistas.class
 pruebas\pruebaInsercion.class
 objetos\Usuarios.class
+datos\AlbumDAO.class
+interfaces\IUsuarioDAO.class
+interfaces\IFavoritoDAO.class
+recursos\Encriptacion.class
 conexion\ConexionBD.class
