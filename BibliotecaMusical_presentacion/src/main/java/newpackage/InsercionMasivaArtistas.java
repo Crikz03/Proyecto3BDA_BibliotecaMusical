@@ -75,11 +75,11 @@ public class InsercionMasivaArtistas {
         
         // Aquí deberías crear tus objetos de artistas. Ejemplo:
         try {
-            File imagen1 = new File("C:/Users/Chris/Documents/GitHub/Proyecto3BDA_BibliotecaMusical/BibliotecaMusical_presentacion/images/yomigod.png");
+            File imagen1 = new File("C:/Users/Chris/Documents/GitHub/Proyecto3BDA_BibliotecaMusical/BibliotecaMusical_presentacion/images/papu_pipipi.png");
             Imagen imagen1Obj = GestorImagenesMongo.crearImagen("yomigod.png", imagen1);
             
             Artistas artista1 = new Artistas();
-            artista1.setNombre("Artista 1");
+            artista1.setNombre("Artista 3");
             artista1.setTipo("Tipo 1");
             artista1.setGenero("Género 1");
             artista1.setImagen(imagen1Obj);
