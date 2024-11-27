@@ -24,6 +24,13 @@ public class Artistas {
     public Artistas() {
     }
 
+    public Artistas(String nombre, String tipo, Imagen imagen, String genero) {
+        this.nombre = nombre;
+        this.tipo = tipo;
+        this.imagen = imagen;
+        this.genero = genero;
+    }
+
     public Artistas(String nombre, String tipo, Imagen imagen, String genero, List<Integrantes> integrantes) {
         this.nombre = nombre;
         this.tipo = tipo;
@@ -79,6 +86,5 @@ public class Artistas {
     public void setIntegrantes(List<Integrantes> integrantes) {
         this.integrantes = integrantes;
     }
-    
-    
+
 }

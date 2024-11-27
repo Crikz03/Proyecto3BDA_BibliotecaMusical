@@ -4,23 +4,36 @@
  */
 package objetos;
 
+import org.bson.types.ObjectId;
+import recursos.Imagen;
+
 /**
  *
  * @author Chris
  */
 public class DetallesCancion {
 
+    private ObjectId idReferenciaAlbum;
     private String titulo;
+    private Imagen fotoAlbum;
     private Integer duracion;
-    private Artistas artista;
 
     public DetallesCancion() {
     }
 
-    public DetallesCancion(String titulo, Integer duracion, Artistas artista) {
+    public DetallesCancion(ObjectId idReferenciaAlbum, String titulo, Imagen fotoAlbum, Integer duracion) {
+        this.idReferenciaAlbum = idReferenciaAlbum;
         this.titulo = titulo;
+        this.fotoAlbum = fotoAlbum;
         this.duracion = duracion;
-        this.artista = artista;
+    }
+
+    public ObjectId getIdReferenciaAlbum() {
+        return idReferenciaAlbum;
+    }
+
+    public void setIdReferenciaAlbum(ObjectId idReferenciaAlbum) {
+        this.idReferenciaAlbum = idReferenciaAlbum;
     }
 
     public String getTitulo() {
@@ -49,12 +62,12 @@ public class DetallesCancion {
         return String.format("%d:%02d", minutos, segundos);
     }
 
-    public Artistas getArtista() {
-        return artista;
+    public Imagen getFotoAlbum() {
+        return fotoAlbum;
     }
 
-    public void setArtista(Artistas artista) {
-        this.artista = artista;
+    public void setFotoAlbum(Imagen fotoAlbum) {
+        this.fotoAlbum = fotoAlbum;
     }
 
 }
