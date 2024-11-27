@@ -17,7 +17,6 @@ import org.bson.types.ObjectId;
  */
 public interface IAlbumDAO {
 
-    boolean actualizarAlbum(Albumes album) throws PersistenciaException;
 
     List<Albumes> buscarPorArtista(ObjectId artistaId) throws PersistenciaException;
 
@@ -26,8 +25,6 @@ public interface IAlbumDAO {
     List<Albumes> buscarPorGenero(String genero) throws PersistenciaException;
 
     List<Albumes> buscarPorNombre(String nombre) throws PersistenciaException;
-
-    boolean eliminarAlbum(ObjectId albumId) throws PersistenciaException;
 
     void insertarAlbum(Albumes album) throws PersistenciaException;
 

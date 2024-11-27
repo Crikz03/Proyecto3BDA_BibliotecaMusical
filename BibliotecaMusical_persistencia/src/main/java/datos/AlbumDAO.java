@@ -114,43 +114,8 @@ public class AlbumDAO implements IAlbumDAO {
         }
     }
 
-    /**
-     *
-     * @param album
-     * @return
-     * @throws PersistenciaException
-     */
-    @Override
-    public boolean actualizarAlbum(Albumes album) throws PersistenciaException {
-        try {
-            if (album.getId() == null) {
-                throw new PersistenciaException("El ID del álbum no puede ser nulo.");
-            }
-            UpdateResult resultado = coleccionAlbumes.replaceOne(Filters.eq("_id", album.getId()), album);
-            return resultado.getModifiedCount() > 0;
-        } catch (MongoException e) {
-            throw new PersistenciaException("Error al actualizar el álbum: " + e.getMessage());
-        }
-    }
 
-    /**
-     *
-     * @param albumId
-     * @return
-     * @throws PersistenciaException
-     */
-    @Override
-    public boolean eliminarAlbum(ObjectId albumId) throws PersistenciaException {
-        try {
-            if (albumId == null) {
-                throw new PersistenciaException("El ID del álbum no puede ser nulo.");
-            }
-            DeleteResult resultado = coleccionAlbumes.deleteOne(Filters.eq("_id", albumId));
-            return resultado.getDeletedCount() > 0;
-        } catch (MongoException e) {
-            throw new PersistenciaException("Error al eliminar el álbum: " + e.getMessage());
-        }
-    }
+
 
     /**
      *
