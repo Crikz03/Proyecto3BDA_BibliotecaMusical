@@ -86,21 +86,23 @@ public class InsercionMasivaArtistas {
         
         // Agregar el artista a la lista
         artistas.add(artista1);*/
-        artistas.add(crearArtista("Bad Bunny", "Solista", "Reggaeton", "badbunny.png", "./images/badbunny.jpg"));
-        artistas.add(crearArtista("Dua Lipa", "Solista", "Pop", "dualipa.png", "./images/dualipa.jpg"));
-        artistas.add(crearArtista("Taylor Swift", "Solista", "Pop", "taylorswift.png", "./images/taylorswift.jpg"));
-        artistas.add(crearArtista("The Weeknd", "Solista", "R&B", "theweeknd.png", "./images/theweekend.jpg"));
-        artistas.add(crearArtista("Billie Eilish", "Solista", "Alternative Pop", "billieeilish.png", "./images/billieeilish.jpg"));
-        artistas.add(crearArtista("Harry Styles", "Solista", "Pop Rock", "harrystyles.png", "./images/harrystyles.jpg"));
-        artistas.add(crearArtista("Ed Sheeran", "Solista", "Pop", "edsheeran.png", "./images/edsheeran.jpg"));
-        artistas.add(crearArtista("Adele", "Solista", "Soul", "adele.png", "./images/adele.jpg"));
-        artistas.add(crearArtista("Rosalía", "Solista", "Flamenco Pop", "rosalia.png", "./images/rosalia.jpg"));
+        artistas.add(crearArtista("Bad Bunny", "Solista", "Reggaeton", "badbunny.jpg", "./images/badbunny.jpg"));
+        artistas.add(crearArtista("Dua Lipa", "Solista", "Pop", "dualipa.jpg", "./images/dualipa.jpg"));
+        artistas.add(crearArtista("Taylor Swift", "Solista", "Pop", "taylorswift.jpg", "./images/taylorswift.jpg"));
+        artistas.add(crearArtista("The Weeknd", "Solista", "R&B", "theweeknd.jpg", "./images/theweekend.jpg"));
+        artistas.add(crearArtista("Billie Eilish", "Solista", "Alternative Pop", "billieeilish.jpg", "./images/billieeilish.jpg"));
+        artistas.add(crearArtista("Harry Styles", "Solista", "Pop Rock", "harrystyles.jpg", "./images/harrystyles.jpg"));
+        artistas.add(crearArtista("Ed Sheeran", "Solista", "Pop", "edsheeran.jpg", "./images/edsheeran.jpg"));
+        artistas.add(crearArtista("Adele", "Solista", "Soul", "adele.jpg", "./images/adele.jpg"));
+        artistas.add(crearArtista("Rosalía", "Solista", "Flamenco Pop", "rosalia.jpg", "./images/rosalia.jpg"));
         artistas.add(crearArtista("Shakira", "Solista", "Pop Latino", "shakira.png", "./images/shakira.png"));
-        artistas.add(crearArtista("Karol G", "Solista", "Reggaeton", "karolg.png", "./images/karolg.jpg"));
-        artistas.add(crearArtista("Olivia Rodrigo", "Solista", "Pop Rock", "oliviarodrigo.png", "./images/oliviarodrigo.jpg"));
-        artistas.add(crearArtista("Bruno Mars", "Solista", "Funk", "brunomars.png", "./images/brunomars.jpg"));
+        artistas.add(crearArtista("Karol G", "Solista", "Reggaeton", "karolg.jpg", "./images/karolg.jpg"));
+        artistas.add(crearArtista("Olivia Rodrigo", "Solista", "Pop Rock", "oliviarodrigo.jpg", "./images/oliviarodrigo.jpg"));
+        artistas.add(crearArtista("Bruno Mars", "Solista", "Funk", "brunomars.jpg", "./images/brunomars.jpg"));
         artistas.add(crearArtista("Ariana Grande", "Solista", "Pop", "arianagrande.png", "./images/arianagrande.png"));
-        artistas.add(crearArtista("J Balvin", "Solista", "Reggaeton", "jbalvin.png", "./images/jbalvin.jpg"));
+        artistas.add(crearArtista("J Balvin", "Solista", "Reggaeton", "jbalvin.jpg", "./images/jbalvin.jpg"));
+
+
 
         // Imprimir información de los artistas creados
         artistas.forEach(artista -> System.out.println("Artista: " + artista.getNombre() + " | Tipo: " + artista.getTipo() + " | Género: " + artista.getGenero()));
