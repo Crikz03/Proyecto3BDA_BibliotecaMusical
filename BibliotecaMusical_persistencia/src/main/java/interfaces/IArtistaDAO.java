@@ -30,9 +30,5 @@ public interface IArtistaDAO {
 
     public List<Artistas> obtenerArtistasFavoritos(ObjectId usuarioId) throws PersistenciaException;
 
-    public void actualizarArtista(Artistas artista) throws PersistenciaException;
-
-    public void eliminarArtista(ObjectId artistaId) throws PersistenciaException;
-
     public boolean verificarArtistaConGenero(ObjectId artistaId, List<String> generosNoDeseados) throws PersistenciaException;
 }
