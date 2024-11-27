@@ -6,12 +6,20 @@ package datos;
 
 import com.mongodb.MongoException;
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.model.Filters;
+import com.mongodb.client.model.Updates;
+import com.mongodb.client.result.DeleteResult;
+import com.mongodb.client.result.UpdateResult;
 import conexion.ConexionBD;
 import excepciones.PersistenciaException;
 import interfaces.IArtistaDAO;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 import objetos.Artistas;
 import objetos.Integrantes;
+import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
 
 /**
@@ -54,47 +62,82 @@ public class ArtistaDAO implements IArtistaDAO {
 
     @Override
     public List<Artistas> buscarArtistasPorNombre(String nombre) throws PersistenciaException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            return coleccionArtistas.find(Filters.regex("nombre", Pattern.compile(nombre, Pattern.CASE_INSENSITIVE)))
+                    .into(new ArrayList<>());
+        } catch (Exception e) {
+            throw new PersistenciaException("Error al buscar artistas por nombre: " + e.getMessage());
+        }
     }
 
     @Override
     public List<Artistas> buscarArtistasPorGenero(String genero) throws PersistenciaException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            return coleccionArtistas.find(Filters.eq("genero", genero)).into(new ArrayList<>());
+        } catch (Exception e) {
+            throw new PersistenciaException("Error al buscar artistas por género: " + e.getMessage());
+        }
     }
 
     @Override
     public List<Integrantes> obtenerIntegrantesActivos(ObjectId artistaId) throws PersistenciaException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            Artistas artista = coleccionArtistas.find(Filters.eq("_id", artistaId)).first();
+            if (artista == null) {
+                throw new PersistenciaException("No se encontró el artista con ID: " + artistaId);
+            }
+            return artista.getIntegrantes().stream().filter(Integrantes::isActivo).collect(Collectors.toList());
+        } catch (Exception e) {
+            throw new PersistenciaException("Error al obtener integrantes activos: " + e.getMessage());
+        }
     }
 
     @Override
     public List<Integrantes> obtenerIntegrantesInactivos(ObjectId artistaId) throws PersistenciaException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            Artistas artista = coleccionArtistas.find(Filters.eq("_id", artistaId)).first();
+            if (artista == null) {
+                throw new PersistenciaException("No se encontró el artista con ID: " + artistaId);
+            }
+            return artista.getIntegrantes().stream().filter(i -> !i.isActivo()).collect(Collectors.toList());
+        } catch (Exception e) {
+            throw new PersistenciaException("Error al obtener integrantes inactivos: " + e.getMessage());
+        }
     }
 
     @Override
     public void agregarAFavoritos(ObjectId usuarioId, ObjectId artistaId) throws PersistenciaException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            Bson filtroUsuario = Filters.eq("_id", usuarioId);
+            Bson updateFavorito = Updates.push("favoritos.artistas", artistaId);
+            coleccionArtistas.updateOne(filtroUsuario, updateFavorito);
+        } catch (Exception e) {
+            throw new PersistenciaException("Error al agregar el artista a favoritos: " + e.getMessage());
+        }
     }
 
     @Override
     public List<Artistas> obtenerArtistasFavoritos(ObjectId usuarioId) throws PersistenciaException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            return coleccionArtistas.find(Filters.in("_id", usuarioId)).into(new ArrayList<>());
+        } catch (Exception e) {
+            throw new PersistenciaException("Error al obtener artistas favoritos: " + e.getMessage());
+        }
     }
 
-    @Override
-    public void actualizarArtista(Artistas artista) throws PersistenciaException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 
-    @Override
-    public void eliminarArtista(ObjectId artistaId) throws PersistenciaException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+
 
     @Override
     public boolean verificarArtistaConGenero(ObjectId artistaId, List<String> generosNoDeseados) throws PersistenciaException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            Artistas artista = coleccionArtistas.find(Filters.eq("_id", artistaId)).first();
+            if (artista == null) {
+                throw new PersistenciaException("No se encontró el artista con ID: " + artistaId);
+            }
+            return generosNoDeseados.contains(artista.getGenero());
+        } catch (Exception e) {
+            throw new PersistenciaException("Error al verificar el género del artista: " + e.getMessage());
+        }
     }
-
 }
