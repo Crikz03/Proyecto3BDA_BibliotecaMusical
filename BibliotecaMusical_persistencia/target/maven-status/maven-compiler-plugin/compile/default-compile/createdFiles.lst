@@ -10,6 +10,17 @@ objetos\Albumes.class
 objetos\Integrantes.class
 datos\DetallesCancionDAO.class
 recursos\tipoFavoritos.class
+datos\AlbumDAO.class
+interfaces\IUsuarioDAO.class
+datos\ImagenDAO.class
+interfaces\IFavoritoDAO.class
+recursos\Encriptacion.class
+datos\UsuarioDAO.class
+objetos\Favorito.class
+datos\ArtistaDAO.class
+datos\FavoritoDAO.class
+interfaces\IIntegrantesDAO.class
+datos\DetallesCancionDAO.class
 interfaces\IAlbumDAO.class
 interfaces\IDetallesCancionDAO.class
 objetos\DetallesCancion.class

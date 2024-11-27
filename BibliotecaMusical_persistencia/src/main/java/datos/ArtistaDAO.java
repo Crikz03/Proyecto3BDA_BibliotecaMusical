@@ -8,8 +8,7 @@ import com.mongodb.MongoException;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Updates;
-import com.mongodb.client.result.DeleteResult;
-import com.mongodb.client.result.UpdateResult;
+
 import conexion.ConexionBD;
 import excepciones.PersistenciaException;
 import interfaces.IArtistaDAO;
@@ -69,6 +68,18 @@ public class ArtistaDAO implements IArtistaDAO {
             throw new PersistenciaException("Error al buscar artistas por nombre: " + e.getMessage());
         }
     }
+    
+    @Override
+public List<Artistas> obtenerSeisArtistas() throws PersistenciaException {
+    try {
+        // Consulta para obtener 6 artistas
+        return coleccionArtistas.find()
+                .limit(6) // Limita el resultado a 6 documentos
+                .into(new ArrayList<>());
+    } catch (Exception e) {
+        throw new PersistenciaException("Error al obtener 6 artistas: " + e.getMessage());
+    }
+}
 
     @Override
     public List<Artistas> buscarArtistasPorGenero(String genero) throws PersistenciaException {
