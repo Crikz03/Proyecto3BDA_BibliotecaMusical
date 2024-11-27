@@ -15,6 +15,10 @@ import org.bson.types.ObjectId;
 public class Imagen {
 
     /**
+     * Id de la Imagen.
+     */
+    private ObjectId id;
+    /**
      * Nombre del archivo.
      */
     private String fileName;
@@ -27,6 +31,24 @@ public class Imagen {
      * Constructor vacío.
      */
     public Imagen() {
+    }
+
+    /**
+     * Obtiene la id de la imágen.
+     *
+     * @return id de la imagen.
+     */
+    public ObjectId getId() {
+        return id;
+    }
+
+    /**
+     * Establece la id de la imágen.
+     *
+     * @param id
+     */
+    public void setId(final ObjectId id) {
+        this.id = id;
     }
 
     /**
@@ -63,6 +85,28 @@ public class Imagen {
      */
     public void setImageData(final Binary imageData) {
         this.imageData = imageData;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(final Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Imagen other = (Imagen) obj;
+        return Objects.equals(this.id, other.id);
     }
 
     @Override
