@@ -38,7 +38,7 @@ public class DetallesCancionDAO implements IDetallesCancionDAO {
     @Override
     public void insertarCancion(DetallesCancion cancion) throws PersistenciaException {
         try {
-            if (cancion == null || cancion.getTitulo() == null || cancion.getDuracion() == null || cancion.getArtista() == null) {
+            if (cancion == null || cancion.getTitulo() == null || cancion.getDuracion() == null) {
                 throw new PersistenciaException("Los datos de la canción no pueden estar incompletos.");
             }
             coleccionCanciones.insertOne(cancion);

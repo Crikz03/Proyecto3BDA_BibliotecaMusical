@@ -30,4 +30,8 @@ public interface IAlbumDAO {
 
     List<DetallesCancion> obtenerCancionesDeAlbum(ObjectId albumId) throws PersistenciaException;
     
+    List<Albumes> obtenerSeisAlbumes() throws PersistenciaException;
+    
+    List<DetallesCancion> obtenerCancionesDeAlbumes() throws PersistenciaException;
+    
 }

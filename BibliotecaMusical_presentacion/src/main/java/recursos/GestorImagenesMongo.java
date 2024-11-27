@@ -48,11 +48,11 @@ public final class GestorImagenesMongo {
     /**
      * Ancho para imagen mediana.
      */
-    private static final int MEDIUM_WIDTH = 350;
+    private static final int MEDIUM_WIDTH = 150;
     /**
      * Largo para imagen mediana.
      */
-    private static final int MEDIUM_HEIGHT = 350;
+    private static final int MEDIUM_HEIGHT = 150;
 
     /**
      * Ancho para imagen grande.

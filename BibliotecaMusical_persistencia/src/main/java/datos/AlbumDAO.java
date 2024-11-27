@@ -59,7 +59,7 @@ public class AlbumDAO implements IAlbumDAO {
     public List<Albumes> buscarPorNombre(String nombre) throws PersistenciaException {
         try {
             return coleccionAlbumes.find(Filters.regex("nombre", Pattern.compile(nombre, Pattern.CASE_INSENSITIVE)))
-                                   .into(new ArrayList<>());
+                    .into(new ArrayList<>());
         } catch (MongoException e) {
             throw new PersistenciaException("Error al buscar álbumes por nombre: " + e.getMessage());
         }
@@ -91,8 +91,8 @@ public class AlbumDAO implements IAlbumDAO {
     public List<Albumes> buscarPorFechaLanzamiento(Date fechaInicio, Date fechaFin) throws PersistenciaException {
         try {
             return coleccionAlbumes.find(Filters.and(
-                Filters.gte("fechaLanzamiento", fechaInicio),
-                Filters.lte("fechaLanzamiento", fechaFin)
+                    Filters.gte("fechaLanzamiento", fechaInicio),
+                    Filters.lte("fechaLanzamiento", fechaFin)
             )).into(new ArrayList<>());
         } catch (MongoException e) {
             throw new PersistenciaException("Error al buscar álbumes por rango de fechas: " + e.getMessage());
@@ -114,9 +114,6 @@ public class AlbumDAO implements IAlbumDAO {
         }
     }
 
-
-
-
     /**
      *
      * @param albumId
@@ -133,6 +130,44 @@ public class AlbumDAO implements IAlbumDAO {
             return album.getDetallesCanciones();
         } catch (MongoException e) {
             throw new PersistenciaException("Error al obtener canciones del álbum: " + e.getMessage());
+        }
+    }
+
+    @Override
+    public List<Albumes> obtenerSeisAlbumes() throws PersistenciaException {
+        try {
+            // Consulta para obtener 6 artistas
+            return this.coleccionAlbumes.find()
+                    .limit(1) // Limita el resultado a 6 documentos
+                    .into(new ArrayList<>());
+        } catch (Exception e) {
+            throw new PersistenciaException("Error al obtener 6 artistas: " + e.getMessage());
+        }
+    }
+
+    @Override
+    public List<DetallesCancion> obtenerCancionesDeAlbumes() throws PersistenciaException {
+        try {
+            // Consulta para obtener los álbumes
+            List<Albumes> albumes = this.coleccionAlbumes.find()
+                    .into(new ArrayList<>());
+
+            // Lista para almacenar las canciones
+            List<DetallesCancion> canciones = new ArrayList<>();
+
+            // Itera sobre cada álbum y agrega las canciones a la lista
+            for (Albumes album : albumes) {
+                List<DetallesCancion> detallesCanciones = album.getDetallesCanciones();
+                if (detallesCanciones != null) {
+                    canciones.addAll(detallesCanciones);
+                }
+            }
+
+            // Devuelve la lista de todas las canciones
+            return canciones;
+
+        } catch (Exception e) {
+            throw new PersistenciaException("Error al obtener las canciones de los álbumes: " + e.getMessage());
         }
     }
 }

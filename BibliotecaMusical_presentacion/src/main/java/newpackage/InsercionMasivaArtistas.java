@@ -79,7 +79,7 @@ public class InsercionMasivaArtistas {
             Imagen imagen1Obj = GestorImagenesMongo.crearImagen("yomigod.png", imagen1);
             
             Artistas artista1 = new Artistas();
-            artista1.setNombre("Artista 1");
+            artista1.setNombre("Artista 3");
             artista1.setTipo("Tipo 1");
             artista1.setGenero("Género 1");
             artista1.setImagen(imagen1Obj);
