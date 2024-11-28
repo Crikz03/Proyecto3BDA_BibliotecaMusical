@@ -30,14 +30,14 @@ public class UsuarioBO implements IUsuarioBO{
         this.usuarioDAO = new UsuarioDAO(); 
     }
 
-   /* public boolean registrarUsuario(UsuarioDTO usuarioDTO) throws NegocioException, PersistenciaException {
+   public boolean registrarUsuario(UsuarioDTO usuarioDTO) throws NegocioException, PersistenciaException {
         try {
             if (usuarioDTO == null || usuarioDTO.getNombreUsuario() == null || usuarioDTO.getCorreo() == null) {
                 throw new NegocioException("El usuario, nombre de usuario o correo no pueden ser nulos.");
             }
 
             // Validar correo único
-            List<UsuarioDTO> usuarios = obtenerTodosLosUsuarios();////////////////////////////////////////////////////////////
+            List<Usuarios> usuarios = usuarioDAO.consultarTodos();////////////////////////////////////////////////////////////
             if (usuarios.stream().anyMatch(u -> u.getCorreo().equalsIgnoreCase(usuarioDTO.getCorreo()))) {
                 throw new NegocioException("Ya existe un usuario registrado con este correo.");
             }
@@ -48,7 +48,7 @@ public class UsuarioBO implements IUsuarioBO{
         } catch (PersistenciaException e) {
             throw new NegocioException("Error al registrar el usuario: " + e.getMessage(), e);
         }
-    }*/
+    }
 
     public boolean actualizarUsuario(UsuarioDTO usuarioDTO) throws NegocioException {
         try {
@@ -63,8 +63,8 @@ public class UsuarioBO implements IUsuarioBO{
             throw new NegocioException("Error al actualizar el usuario: " + e.getMessage(), e);
         }
     }
-
-   /* public UsuarioDTO obtenerUsuarioPorId(ObjectId idUsuario) throws NegocioException {
+/*
+    public UsuarioDTO obtenerUsuarioPorId(ObjectId idUsuario) throws NegocioException {
         try {
             Usuarios usuario = usuarioDAO.consultar(new Usuarios(idUsuario));//////////////////////////////////////////////////////////
             if (usuario == null) {
@@ -76,7 +76,7 @@ public class UsuarioBO implements IUsuarioBO{
         } catch (PersistenciaException e) {
             throw new NegocioException("Error al obtener el usuario por ID: " + e.getMessage(), e);
         }
-    }
+    }*/
 
     public List<UsuarioDTO> obtenerTodosLosUsuarios() throws NegocioException {
         try {
@@ -99,7 +99,7 @@ public class UsuarioBO implements IUsuarioBO{
         }
     }
 
-    
+    /*
     public boolean agregarGeneroNoDeseado(ObjectId idUsuario, String genero) throws NegocioException {
         try {
             return usuarioDAO.agregarGeneroNoDeseado(idUsuario, genero);//////////////////////////////////////////////////////////////
