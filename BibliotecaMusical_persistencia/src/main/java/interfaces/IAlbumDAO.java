@@ -8,6 +8,7 @@ import excepciones.PersistenciaException;
 import java.util.Date;
 import java.util.List;
 import objetos.Albumes;
+import objetos.Artistas;
 import objetos.DetallesCancion;
 import org.bson.types.ObjectId;
 
@@ -18,6 +19,8 @@ import org.bson.types.ObjectId;
 public interface IAlbumDAO {
 
 
+    List<Albumes> crearAlbumesParaArtista(Artistas artista);
+    
     List<Albumes> buscarPorArtista(ObjectId artistaId) throws PersistenciaException;
 
     List<Albumes> buscarPorFechaLanzamiento(Date fechaInicio, Date fechaFin) throws PersistenciaException;

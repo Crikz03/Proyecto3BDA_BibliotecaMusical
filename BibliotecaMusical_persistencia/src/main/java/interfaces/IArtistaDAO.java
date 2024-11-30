@@ -5,6 +5,7 @@
 package interfaces;
 
 import excepciones.PersistenciaException;
+import java.text.ParseException;
 import java.util.List;
 import objetos.Artistas;
 import objetos.Integrantes;
@@ -17,6 +18,10 @@ import org.bson.types.ObjectId;
 public interface IArtistaDAO {
 
     public void insertarArtistasMasivamente(List<Artistas> artistas) throws PersistenciaException;
+    
+    public Artistas crearArtista(String nombre, String tipo, String genero, String nombreImagen, String rutaImagen, List<Integrantes> integrantes);
+    
+    public List<Integrantes> crearIntegrantes(String... datosIntegrantes) throws ParseException;
 
     public List<Artistas> buscarArtistasPorNombre(String nombre) throws PersistenciaException;
     

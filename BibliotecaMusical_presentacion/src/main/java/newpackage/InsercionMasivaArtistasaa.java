@@ -145,8 +145,8 @@ public class InsercionMasivaArtistasaa {
         List<Albumes> albums = new ArrayList<>();
         try {
             // Crear la imagen para el álbum
-            File imagenAlbum1 = new File("C:/Users/Chris/Documents/GitHub/Proyecto3BDA_BibliotecaMusical/BibliotecaMusical_presentacion/images/yomigod.png");
-            Imagen imagenAlbumObj1 = GestorImagenesMongo.crearImagen("album1.png", imagenAlbum1);
+            File imagenAlbum1 = new File("images/albumAmerican.jpg");
+            Imagen imagenAlbumObj1 = GestorImagenesMongo.crearImagen("albumAmerican.jpg", imagenAlbum1);
 
 
             // Crear las canciones

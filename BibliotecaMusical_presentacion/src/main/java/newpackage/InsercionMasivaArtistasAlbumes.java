@@ -61,7 +61,7 @@ public class InsercionMasivaArtistasAlbumes {
         List<Document> documentos = new ArrayList<>();
             
             // Agregar Green Day
-            File imagenGreenDay = new File("C:/Users/Chris/Documents/GitHub/Proyecto3BDA_BibliotecaMusical/BibliotecaMusical_presentacion/images/fotoGreenday.jpg");  // Modifica la ruta aquí
+            File imagenGreenDay = new File("images/fotoGreenday.jpg");  // Modifica la ruta aquí
             Imagen imagenGreenDayObj = GestorImagenesMongo.crearImagen("green_day.png", imagenGreenDay);
             Artistas greenDay = new Artistas();
             greenDay.setNombre("Green Day");
@@ -70,7 +70,7 @@ public class InsercionMasivaArtistasAlbumes {
             greenDay.setImagen(imagenGreenDayObj);
             
             // Agregar Twenty One Pilots
-            File imagenTwentyOnePilots = new File("C:/Users/Chris/Documents/GitHub/Proyecto3BDA_BibliotecaMusical/BibliotecaMusical_presentacion/images/fotoTop.jpg");  // Modifica la ruta aquí
+            File imagenTwentyOnePilots = new File("images/fotoTop.jpg");  // Modifica la ruta aquí
             Imagen imagenTOPObj = GestorImagenesMongo.crearImagen("twenty_one_pilots.png", imagenTwentyOnePilots);
             Artistas twentyOnePilots = new Artistas();
             twentyOnePilots.setNombre("Twenty One Pilots");
@@ -79,7 +79,7 @@ public class InsercionMasivaArtistasAlbumes {
             twentyOnePilots.setImagen(imagenTOPObj);
             
             // Agregar The Beatles
-            File imagenBeatles = new File("C:/Users/Chris/Documents/GitHub/Proyecto3BDA_BibliotecaMusical/BibliotecaMusical_presentacion/images/fotoBeatle.jpg");  // Modifica la ruta aquí
+            File imagenBeatles = new File("images/fotoBeatle.jpg");  // Modifica la ruta aquí
             Imagen imagenBeatlesObj = GestorImagenesMongo.crearImagen("the_beatles.png", imagenBeatles);
             Artistas beatles = new Artistas();
             beatles.setNombre("The Beatles");
@@ -132,7 +132,7 @@ public class InsercionMasivaArtistasAlbumes {
             try {
                 String nombreAlbum = "Álbum " + i + " del Artista " + artistaId;
                 
-                File imagenAlbum = new File("C:/Users/Chris/Documents/GitHub/Proyecto3BDA_BibliotecaMusical/BibliotecaMusical_presentacion/images/albumAmerican.jpg");  // Modifica la ruta aquí
+                File imagenAlbum = new File("images/albumAmerican.jpg");  // Modifica la ruta aquí
                 Imagen imagenAlbumObj = GestorImagenesMongo.crearImagen("albumAmerican.jpg", imagenAlbum);
                 
                 List<Document> canciones = generarCanciones(nombreAlbum, random, imagenAlbumObj);
