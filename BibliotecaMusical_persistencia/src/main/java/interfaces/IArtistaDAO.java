@@ -25,7 +25,7 @@ public interface IArtistaDAO {
 
     public List<Artistas> buscarArtistasPorNombre(String nombre) throws PersistenciaException;
     
-    public List<Artistas> obtenerSeisArtistas() throws PersistenciaException;
+    public List<Artistas> obtenerCincoArtistas() throws PersistenciaException;
 
     public List<Artistas> buscarArtistasPorGenero(String genero) throws PersistenciaException;
 

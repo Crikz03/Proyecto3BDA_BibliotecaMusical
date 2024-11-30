@@ -15,14 +15,21 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.RenderingHints;
+import java.awt.event.ActionListener;
 import java.awt.geom.Ellipse2D;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.Icon;
@@ -35,6 +42,7 @@ import javax.swing.border.LineBorder;
 import objetos.Albumes;
 import objetos.Artistas;
 import objetos.DetallesCancion;
+import recursos.Forms;
 import recursos.GestorImagenesMongo;
 import recursos.Imagen;
 
@@ -72,7 +80,7 @@ public class FrmInicio extends javax.swing.JFrame {
 
     private void configuraFrame() {
         setTitle("Mi Aplicación");  // Establecer título de la ventana        
-        setSize(1860, 900);  // Establecer el tamaño de la ventana
+        setSize(1830, 1000);  // Establecer el tamaño de la ventana
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);  // Centrar la ventana
     }
@@ -97,7 +105,7 @@ public class FrmInicio extends javax.swing.JFrame {
         bAlbumes2 = new javax.swing.JButton();
         bAlbumes3 = new javax.swing.JButton();
         bAlbumes4 = new javax.swing.JButton();
-        bAlbumes5 = new javax.swing.JButton();
+        bCerrarSesion = new javax.swing.JButton();
         panelArtistas = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         panelFotoUser = new javax.swing.JPanel();
@@ -143,6 +151,7 @@ public class FrmInicio extends javax.swing.JFrame {
         jLabel1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(204, 0, 153)));
 
         bHome.setBackground(new java.awt.Color(0, 0, 0));
+        bHome.setFont(new java.awt.Font("Georgia", 3, 18)); // NOI18N
         bHome.setForeground(new java.awt.Color(255, 255, 255));
         bHome.setText("Home");
         bHome.setContentAreaFilled(false);
@@ -153,6 +162,7 @@ public class FrmInicio extends javax.swing.JFrame {
         });
 
         bAlbumes.setBackground(new java.awt.Color(0, 0, 0));
+        bAlbumes.setFont(new java.awt.Font("Georgia", 3, 18)); // NOI18N
         bAlbumes.setForeground(new java.awt.Color(255, 255, 255));
         bAlbumes.setText("Albumes");
         bAlbumes.setContentAreaFilled(false);
@@ -163,6 +173,7 @@ public class FrmInicio extends javax.swing.JFrame {
         });
 
         bAlbumes1.setBackground(new java.awt.Color(0, 0, 0));
+        bAlbumes1.setFont(new java.awt.Font("Georgia", 3, 18)); // NOI18N
         bAlbumes1.setForeground(new java.awt.Color(255, 255, 255));
         bAlbumes1.setText("Artistas");
         bAlbumes1.setContentAreaFilled(false);
@@ -173,6 +184,7 @@ public class FrmInicio extends javax.swing.JFrame {
         });
 
         bAlbumes2.setBackground(new java.awt.Color(0, 0, 0));
+        bAlbumes2.setFont(new java.awt.Font("Georgia", 3, 18)); // NOI18N
         bAlbumes2.setForeground(new java.awt.Color(255, 255, 255));
         bAlbumes2.setText("Favoritos");
         bAlbumes2.setContentAreaFilled(false);
@@ -183,6 +195,7 @@ public class FrmInicio extends javax.swing.JFrame {
         });
 
         bAlbumes3.setBackground(new java.awt.Color(0, 0, 0));
+        bAlbumes3.setFont(new java.awt.Font("Georgia", 3, 18)); // NOI18N
         bAlbumes3.setForeground(new java.awt.Color(255, 255, 255));
         bAlbumes3.setText("Canciones");
         bAlbumes3.setContentAreaFilled(false);
@@ -193,6 +206,7 @@ public class FrmInicio extends javax.swing.JFrame {
         });
 
         bAlbumes4.setBackground(new java.awt.Color(0, 0, 0));
+        bAlbumes4.setFont(new java.awt.Font("Georgia", 3, 18)); // NOI18N
         bAlbumes4.setForeground(new java.awt.Color(255, 255, 255));
         bAlbumes4.setText("Perfil de usuario");
         bAlbumes4.setContentAreaFilled(false);
@@ -202,13 +216,14 @@ public class FrmInicio extends javax.swing.JFrame {
             }
         });
 
-        bAlbumes5.setBackground(new java.awt.Color(0, 0, 0));
-        bAlbumes5.setForeground(new java.awt.Color(204, 0, 204));
-        bAlbumes5.setText("Cerrar Sesion");
-        bAlbumes5.setContentAreaFilled(false);
-        bAlbumes5.addActionListener(new java.awt.event.ActionListener() {
+        bCerrarSesion.setBackground(new java.awt.Color(0, 0, 0));
+        bCerrarSesion.setFont(new java.awt.Font("Georgia", 3, 18)); // NOI18N
+        bCerrarSesion.setForeground(new java.awt.Color(204, 0, 204));
+        bCerrarSesion.setText("Cerrar Sesion");
+        bCerrarSesion.setContentAreaFilled(false);
+        bCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bAlbumes5ActionPerformed(evt);
+                bCerrarSesionActionPerformed(evt);
             }
         });
 
@@ -217,17 +232,20 @@ public class FrmInicio extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(55, 55, 55)
+                .addGap(22, 22, 22)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(bAlbumes5, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bAlbumes4, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(bAlbumes3, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(bAlbumes2, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(bAlbumes1, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(bAlbumes, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(bHome, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(66, Short.MAX_VALUE))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bCerrarSesion))
+                .addContainerGap(21, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(bAlbumes4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -247,7 +265,7 @@ public class FrmInicio extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(bAlbumes4)
                 .addGap(18, 18, 18)
-                .addComponent(bAlbumes5)
+                .addComponent(bCerrarSesion)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -257,7 +275,7 @@ public class FrmInicio extends javax.swing.JFrame {
         panelArtistas.setLayout(panelArtistasLayout);
         panelArtistasLayout.setHorizontalGroup(
             panelArtistasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 316, Short.MAX_VALUE)
+            .addGap(0, 578, Short.MAX_VALUE)
         );
         panelArtistasLayout.setVerticalGroup(
             panelArtistasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -325,20 +343,19 @@ public class FrmInicio extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 951, Short.MAX_VALUE)
+                        .addGap(0, 804, Short.MAX_VALUE)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(141, 141, 141)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(panelArtistas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(panelAlbumes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(panelCanciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(panelArtistas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(panelAlbumes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(panelCanciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addContainerGap())))
         );
         jPanel1Layout.setVerticalGroup(
@@ -399,9 +416,9 @@ public class FrmInicio extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_bAlbumes4ActionPerformed
 
-    private void bAlbumes5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAlbumes5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_bAlbumes5ActionPerformed
+    private void bCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCerrarSesionActionPerformed
+//        Forms.cargarForm(candao, this);
+    }//GEN-LAST:event_bCerrarSesionActionPerformed
 
     private void SetImageLabel(JLabel labelname, String root) {
         ImageIcon image = new ImageIcon(root);
@@ -447,16 +464,32 @@ public class FrmInicio extends javax.swing.JFrame {
 
     private void obtieneArtistas() {
         try {
-            List<Artistas> artistas = this.adao.obtenerSeisArtistas();
+            // Obtener la lista de artistas
+            List<Artistas> artistas = this.adao.obtenerCincoArtistas();
             Collections.shuffle(artistas);
 
-            panelArtistas.setLayout(new GridLayout(1, artistas.size(), 20, 0));
+            // Configurar el layout con espacio adicional para el botón
+            panelArtistas.setLayout(new GridLayout(1, artistas.size(), 1, 0));
             panelArtistas.setBackground(new Color(18, 18, 18));
 
+            // Crear los paneles redondos para los artistas
             for (Artistas artista : artistas) {
                 JPanel panelArtista = creaPanelRedondo(artista.getNombre(), artista.getImagen());
                 panelArtistas.add(panelArtista);
             }
+
+            // Crear y agregar el botón "Ver Todos" al final
+            JButton btnVerTodos = crearBotonVerTodos("Ver todos los artistas", e -> {
+                System.out.println("Botón 'Ver Todos' presionado.");
+                // Acción al presionar "Ver Todos" (como abrir otra ventana)
+            });
+            JPanel panelBoton = new JPanel();
+            panelBoton.setBackground(new Color(18, 18, 18));
+            panelBoton.setLayout(new GridBagLayout());
+            panelBoton.add(btnVerTodos);
+
+            panelArtistas.add(panelBoton);
+
             panelArtistas.revalidate();
             panelArtistas.repaint();
         } catch (PersistenciaException e) {
@@ -466,16 +499,29 @@ public class FrmInicio extends javax.swing.JFrame {
 
     private void obtieneAlbumes() {
         try {
-            List<Albumes> albumes = this.albumdao.obtenerSeisAlbumes();
+            List<Albumes> albumes = this.albumdao.obtenerCincoAlbumes();
             Collections.shuffle(albumes);
 
-            panelAlbumes.setLayout(new GridLayout(1, albumes.size(), 20, 0));
+            panelAlbumes.setLayout(new GridLayout(1, albumes.size(), 1, 0));
             panelAlbumes.setBackground(new Color(18, 18, 18));
 
             for (Albumes album : albumes) {
                 JPanel panelAlbum = creaPanel(album.getNombre(), album.getImagenPortada());
                 panelAlbumes.add(panelAlbum);
             }
+
+            // Crear y agregar el botón "Ver Todos" al final
+            JButton btnVerTodos = crearBotonVerTodos("Ver todos los artistas", e -> {
+                System.out.println("Botón 'Ver Todos' presionado.");
+                // Acción al presionar "Ver Todos" (como abrir otra ventana)
+            });
+            JPanel panelBoton = new JPanel();
+            panelBoton.setBackground(new Color(18, 18, 18));
+            panelBoton.setLayout(new GridBagLayout());
+            panelBoton.add(btnVerTodos);
+
+            panelAlbumes.add(panelBoton);
+
             panelAlbumes.revalidate();
             panelAlbumes.repaint();
         } catch (PersistenciaException e) {
@@ -486,17 +532,33 @@ public class FrmInicio extends javax.swing.JFrame {
     private void obtieneCanciones() {
         try {
             List<DetallesCancion> canciones = this.albumdao.obtenerCancionesDeAlbumes();
-            Collections.shuffle(canciones);
+            
+            Set<DetallesCancion> cancionesUnicas = new HashSet<>(canciones);
+            List<DetallesCancion> cancionesSinDuplicados = new ArrayList<>(cancionesUnicas);
 
-            List<DetallesCancion> cancionesAMostrar = canciones.subList(0, Math.min(6, canciones.size()));
+            Collections.shuffle(cancionesSinDuplicados);
 
-            panelCanciones.setLayout(new GridLayout(1, cancionesAMostrar.size(), 20, 0));
+            List<DetallesCancion> cancionesAMostrar = cancionesSinDuplicados.subList(0, Math.min(5, cancionesSinDuplicados.size()));
+
+            panelCanciones.setLayout(new GridLayout(1, cancionesAMostrar.size(), 1, 0));
             panelCanciones.setBackground(new Color(18, 18, 18));
 
             for (DetallesCancion cancion : cancionesAMostrar) {
                 JPanel panelArtista = creaPanel(cancion.getTitulo(), cancion.getFotoAlbum());
                 panelCanciones.add(panelArtista);
             }
+
+            // Crear y agregar el botón "Ver Todos" al final
+            JButton btnVerTodos = crearBotonVerTodos("Ver todos los artistas", e -> {
+                System.out.println("Botón 'Ver Todos' presionado.");
+                // Acción al presionar "Ver Todos" (como abrir otra ventana)
+            });
+            JPanel panelBoton = new JPanel();
+            panelBoton.setBackground(new Color(18, 18, 18));
+            panelBoton.setLayout(new GridBagLayout());
+            panelBoton.add(btnVerTodos);
+
+            panelCanciones.add(panelBoton);
 
             panelCanciones.revalidate();
             panelCanciones.repaint();
@@ -512,7 +574,7 @@ public class FrmInicio extends javax.swing.JFrame {
         panel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         JButton btnFoto = new JButton(); // Cambiado a JButton
-        btnFoto.setPreferredSize(new Dimension(130, 130));
+        btnFoto.setPreferredSize(new Dimension(80, 140));
         btnFoto.setOpaque(true);
         btnFoto.setContentAreaFilled(false); // Elimina el fondo por defecto
         btnFoto.setBorder(new LineBorder(new Color(18, 18, 18), 5, true));
@@ -532,6 +594,7 @@ public class FrmInicio extends javax.swing.JFrame {
 
         // Añadir un ActionListener al botón para manejar clics
         btnFoto.addActionListener(e -> {
+            System.out.println("Nocausa");
         });
 
         JLabel lblNombre = new JLabel(nombre);
@@ -540,7 +603,7 @@ public class FrmInicio extends javax.swing.JFrame {
         lblNombre.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         panel.add(btnFoto);
-        panel.add(Box.createVerticalStrut(10)); // Espaciado
+        panel.add(Box.createVerticalStrut(5)); // Espaciado
         panel.add(lblNombre);
 
         return panel;
@@ -553,7 +616,7 @@ public class FrmInicio extends javax.swing.JFrame {
         panel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         JButton btnFoto = new JButton();
-        btnFoto.setPreferredSize(new Dimension(130, 130));
+        btnFoto.setPreferredSize(new Dimension(80, 140));
         btnFoto.setOpaque(false);
         btnFoto.setContentAreaFilled(false);
         btnFoto.setBorder(null);
@@ -570,6 +633,10 @@ public class FrmInicio extends javax.swing.JFrame {
         } else {
             btnFoto.setBackground(Color.BLUE);
         }
+
+        btnFoto.addActionListener(e -> {
+            System.out.println("Nocausa");
+        });
 
         JLabel lblNombre = new JLabel(nombre);
         lblNombre.setFont(new Font("Arial", Font.PLAIN, 14));
@@ -598,13 +665,55 @@ public class FrmInicio extends javax.swing.JFrame {
         return roundedImage;
     }
 
+    private JButton crearBotonVerTodos(String tooltip, ActionListener actionListener) {
+        JButton btnVerTodos = new JButton("+") {
+            @Override
+            protected void paintComponent(Graphics g) {
+                // Hacer que el botón sea redondo al dibujar un óvalo relleno
+                Graphics2D g2 = (Graphics2D) g;
+                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+                g2.setColor(getBackground());
+                g2.fillOval(0, 0, getWidth(), getHeight());
+                super.paintComponent(g2);
+            }
+
+            @Override
+            protected void paintBorder(Graphics g) {
+                // Dibujar el borde redondeado
+                Graphics2D g2 = (Graphics2D) g;
+                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+                g2.setColor(getForeground());
+                g2.drawOval(0, 0, getWidth() - 1, getHeight() - 1);
+            }
+
+            @Override
+            public Dimension getPreferredSize() {
+                // Asegurar que el botón tenga un tamaño igual en ancho y alto
+                return new Dimension(60, 60);
+            }
+        };
+
+        btnVerTodos.setFont(new Font("Arial", Font.BOLD, 24));
+        btnVerTodos.setForeground(Color.WHITE); // Texto blanco
+        btnVerTodos.setBackground(new Color(36, 36, 36)); // Fondo oscuro
+        btnVerTodos.setFocusPainted(false); // Sin borde al hacer clic
+        btnVerTodos.setContentAreaFilled(false); // Evitar relleno estándar
+        btnVerTodos.setToolTipText(tooltip);
+
+        // Añadir acción personalizada
+        btnVerTodos.addActionListener(actionListener);
+
+        return btnVerTodos;
+    }
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bAlbumes;
     private javax.swing.JButton bAlbumes1;
     private javax.swing.JButton bAlbumes2;
     private javax.swing.JButton bAlbumes3;
     private javax.swing.JButton bAlbumes4;
-    private javax.swing.JButton bAlbumes5;
+    private javax.swing.JButton bCerrarSesion;
     private javax.swing.JButton bHome;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

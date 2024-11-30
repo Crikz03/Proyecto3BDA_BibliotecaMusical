@@ -142,11 +142,11 @@ public class AlbumDAO implements IAlbumDAO {
     }
 
     @Override
-    public List<Albumes> obtenerSeisAlbumes() throws PersistenciaException {
+    public List<Albumes> obtenerCincoAlbumes() throws PersistenciaException {
         try {
             // Consulta para obtener 6 artistas
             return this.coleccionAlbumes.find()
-                    .limit(6) // Limita el resultado a 6 documentos
+                    .limit(5) // Limita el resultado a 6 documentos
                     .into(new ArrayList<>());
         } catch (Exception e) {
             throw new PersistenciaException("Error al obtener 6 artistas: " + e.getMessage());

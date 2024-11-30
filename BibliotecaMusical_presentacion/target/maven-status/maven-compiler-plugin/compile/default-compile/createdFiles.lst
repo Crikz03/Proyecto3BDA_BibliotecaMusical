@@ -3,9 +3,9 @@ com\mycompany\bibliotecamusical_presentacion\BibliotecaMusical_presentacion.clas
 frames\FrmInicio$6.class
 frames\FrmInicio$5.class
 frames\FrmInicio$1.class
-newpackage\InsercionMasivaArtistasaa.class
 newpackage\InsercionMasivaArtistasAlbumes.class
 recursos\GestorImagenesMongo$SizeImage.class
+frames\FrmInicio$9.class
 frames\FrmInicio.class
 recursos\GestorImagenesMongo.class
 frames\FrmInicio$4.class

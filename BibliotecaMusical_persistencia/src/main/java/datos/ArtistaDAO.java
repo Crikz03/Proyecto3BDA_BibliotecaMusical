@@ -127,10 +127,10 @@ public class ArtistaDAO implements IArtistaDAO {
     }
 
     @Override
-    public List<Artistas> obtenerSeisArtistas() throws PersistenciaException {
+    public List<Artistas> obtenerCincoArtistas() throws PersistenciaException {
         try {
             return coleccionArtistas.find()
-                    .limit(6) // Limita el resultado a 6 documentos
+                    .limit(5) // Limita el resultado a 6 documentos
                     .into(new ArrayList<>());
         } catch (Exception e) {
             throw new PersistenciaException("Error al obtener 6 artistas: " + e.getMessage());
