@@ -38,6 +38,10 @@ public class Usuarios {
         this.generosNoDeseados = generosNoDeseados;
     }
 
+    public Usuarios(String correo) {
+        this.correo = correo;
+    }
+
     public ObjectId getId() {
         return id;
     }

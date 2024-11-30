@@ -7,6 +7,7 @@ package frames;
 import datos.AlbumDAO;
 import datos.ArtistaDAO;
 import datos.DetallesCancionDAO;
+import dto.UsuarioDTO;
 import excepciones.PersistenciaException;
 import interfaces.IAlbumDAO;
 import interfaces.IArtistaDAO;
@@ -55,34 +56,31 @@ public class FrmInicio extends javax.swing.JFrame {
     private IArtistaDAO adao;
     private IAlbumDAO albumdao;
     private IDetallesCancionDAO candao;
+    private UsuarioDTO usuarioLoggeado;
 
     /**
      * Creates new form FrmHome
+     * @param usuarioLoggeado
      */
-    public FrmInicio() {
+    public FrmInicio(UsuarioDTO usuarioLoggeado) {
         initComponents();
         this.SetImageLabel(jLabel1, "images/logo.png");
         this.adao = new ArtistaDAO();
         this.albumdao = new AlbumDAO();
         this.candao = new DetallesCancionDAO();
-
-        this.obtieneArtistas();
-        this.obtieneAlbumes();
-        this.obtieneCanciones();
+        this.usuarioLoggeado = usuarioLoggeado;
 
         this.configuraFrame();
-//        setTitle("Mi Aplicación");  // Establecer título de la ventana
-
-//        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  // Cerrar el programa al cerrar la ventana
-//        setLocationRelativeTo(null);  // Centrar la ventana
-//        setVisible(true);  // Hacer la ventana visible
     }
 
     private void configuraFrame() {
-        setTitle("Mi Aplicación");  // Establecer título de la ventana        
-        setSize(1830, 1000);  // Establecer el tamaño de la ventana
+        setSize(1830, 1000);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);  // Centrar la ventana
+        setLocationRelativeTo(null);
+        this.obtieneArtistas();
+        this.obtieneAlbumes();
+        this.obtieneCanciones();
+        this.cargarDatosUsuario();
     }
 
     /**
@@ -108,8 +106,8 @@ public class FrmInicio extends javax.swing.JFrame {
         bCerrarSesion = new javax.swing.JButton();
         panelArtistas = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
-        panelFotoUser = new javax.swing.JPanel();
         lblNameUser = new javax.swing.JLabel();
+        lblFoto = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -285,41 +283,32 @@ public class FrmInicio extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(0, 0, 0));
         jPanel3.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(204, 0, 153)));
 
-        javax.swing.GroupLayout panelFotoUserLayout = new javax.swing.GroupLayout(panelFotoUser);
-        panelFotoUser.setLayout(panelFotoUserLayout);
-        panelFotoUserLayout.setHorizontalGroup(
-            panelFotoUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 55, Short.MAX_VALUE)
-        );
-        panelFotoUserLayout.setVerticalGroup(
-            panelFotoUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 55, Short.MAX_VALUE)
-        );
-
+        lblNameUser.setBackground(new java.awt.Color(0, 0, 0));
+        lblNameUser.setFont(new java.awt.Font("Georgia", 3, 18)); // NOI18N
+        lblNameUser.setForeground(new java.awt.Color(255, 255, 255));
         lblNameUser.setText("name");
+
+        lblFoto.setText("jLabel5");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(panelFotoUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(lblNameUser, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(lblFoto, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblNameUser, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(panelFotoUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addComponent(lblNameUser)))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addGap(12, 12, 12)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblNameUser))
+                .addContainerGap())
         );
 
         jLabel2.setBackground(new java.awt.Color(0, 0, 0));
@@ -346,9 +335,6 @@ public class FrmInicio extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 804, Short.MAX_VALUE)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -356,14 +342,17 @@ public class FrmInicio extends javax.swing.JFrame {
                             .addComponent(panelArtistas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(panelAlbumes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(panelCanciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap())))
+                        .addContainerGap(486, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelArtistas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -417,7 +406,7 @@ public class FrmInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_bAlbumes4ActionPerformed
 
     private void bCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCerrarSesionActionPerformed
-//        Forms.cargarForm(candao, this);
+        Forms.cargarForm(new FrmInicioSesion(), this);
     }//GEN-LAST:event_bCerrarSesionActionPerformed
 
     private void SetImageLabel(JLabel labelname, String root) {
@@ -427,39 +416,17 @@ public class FrmInicio extends javax.swing.JFrame {
         this.repaint();
     }
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmInicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmInicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmInicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmInicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    private void cargarDatosUsuario() {
+        if (usuarioLoggeado != null) {
+            lblNameUser.setText(usuarioLoggeado.getNombreUsuario());
+            ImageIcon imageIcon
+                    = GestorImagenesMongo
+                            .getImageIcon(
+                                    usuarioLoggeado.getFotoPerfil(),
+                                    GestorImagenesMongo.SizeImage.SMALL
+                            );
+            lblFoto.setIcon(imageIcon);
         }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FrmInicio().setVisible(true);
-            }
-        });
     }
 
     private void obtieneArtistas() {
@@ -532,7 +499,7 @@ public class FrmInicio extends javax.swing.JFrame {
     private void obtieneCanciones() {
         try {
             List<DetallesCancion> canciones = this.albumdao.obtenerCancionesDeAlbumes();
-            
+
             Set<DetallesCancion> cancionesUnicas = new HashSet<>(canciones);
             List<DetallesCancion> cancionesSinDuplicados = new ArrayList<>(cancionesUnicas);
 
@@ -722,10 +689,10 @@ public class FrmInicio extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JLabel lblFoto;
     private javax.swing.JLabel lblNameUser;
     private javax.swing.JPanel panelAlbumes;
     private javax.swing.JPanel panelArtistas;
     private javax.swing.JPanel panelCanciones;
-    private javax.swing.JPanel panelFotoUser;
     // End of variables declaration//GEN-END:variables
 }

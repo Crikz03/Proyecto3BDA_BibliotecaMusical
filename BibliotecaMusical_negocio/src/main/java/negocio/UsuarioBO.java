@@ -16,21 +16,22 @@ import interfaces.IUsuarioDAO;
 import objetos.Favorito;
 import objetos.Usuarios;
 import org.bson.types.ObjectId;
+import recursos.Encriptacion;
 import recursos.tipoFavoritos;
 
 /**
  *
  * @author pauli
  */
-public class UsuarioBO implements IUsuarioBO{
+public class UsuarioBO implements IUsuarioBO {
 
     private final IUsuarioDAO usuarioDAO;
 
     public UsuarioBO() {
-        this.usuarioDAO = new UsuarioDAO(); 
+        this.usuarioDAO = new UsuarioDAO();
     }
 
-   public boolean registrarUsuario(UsuarioDTO usuarioDTO) throws NegocioException, PersistenciaException {
+    public boolean registrarUsuario(UsuarioDTO usuarioDTO) throws NegocioException {
         try {
             if (usuarioDTO == null || usuarioDTO.getNombreUsuario() == null || usuarioDTO.getCorreo() == null) {
                 throw new NegocioException("El usuario, nombre de usuario o correo no pueden ser nulos.");
@@ -44,6 +45,7 @@ public class UsuarioBO implements IUsuarioBO{
 
             // Convertir DTO a entidad usando ConvertidorGeneral
             Usuarios usuario = ConvertidorGeneral.convertidorEntidad(usuarioDTO, Usuarios.class);
+            Encriptacion.encriptar(usuario.getContrasena());
             return usuarioDAO.agregar(usuario);
         } catch (PersistenciaException e) {
             throw new NegocioException("Error al registrar el usuario: " + e.getMessage(), e);
@@ -63,7 +65,8 @@ public class UsuarioBO implements IUsuarioBO{
             throw new NegocioException("Error al actualizar el usuario: " + e.getMessage(), e);
         }
     }
-/*
+
+    /*
     public UsuarioDTO obtenerUsuarioPorId(ObjectId idUsuario) throws NegocioException {
         try {
             Usuarios usuario = usuarioDAO.consultar(new Usuarios(idUsuario));//////////////////////////////////////////////////////////
@@ -77,6 +80,25 @@ public class UsuarioBO implements IUsuarioBO{
             throw new NegocioException("Error al obtener el usuario por ID: " + e.getMessage(), e);
         }
     }*/
+    public UsuarioDTO consultarUsuarioCorreo(String correo) throws NegocioException {
+        if (correo == null || correo.isEmpty()) {
+            throw new NegocioException("El correo del usuario es requerido para realizar la consulta.");
+        }
+
+        try {
+            // Llama al DAO para obtener la entidad Usuarios
+            Usuarios usuario = usuarioDAO.consultarCorreo(correo);
+
+            if (usuario == null) {
+                throw new NegocioException("No se encontró un usuario con el correo: " + correo);
+            }
+
+            // Convierte la entidad Usuarios a DTO usando el ConvertidorGeneral
+            return ConvertidorGeneral.convertidoraDTO(usuario, UsuarioDTO.class);
+        } catch (PersistenciaException e) {
+            throw new NegocioException("Error al obtener el usuario por correo: " + e.getMessage(), e);
+        }
+    }
 
     public List<UsuarioDTO> obtenerTodosLosUsuarios() throws NegocioException {
         try {

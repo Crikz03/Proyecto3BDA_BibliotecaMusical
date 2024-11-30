@@ -24,6 +24,8 @@ public interface IUsuarioDAO {
 
     public List<Usuarios> consultarTodos() throws PersistenciaException;
 
+    Usuarios consultarCorreo(String correo) throws PersistenciaException;
+
     boolean agregarAFavoritos(ObjectId idUsuario, Favorito favorito) throws PersistenciaException;
 
     boolean agregarAFavoritos(ObjectId idUsuario, List<Favorito> favoritos) throws PersistenciaException;

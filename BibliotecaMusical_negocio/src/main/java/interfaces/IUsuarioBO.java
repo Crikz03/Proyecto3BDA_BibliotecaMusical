@@ -60,6 +60,8 @@ public interface IUsuarioBO {
     }
     }*/
 
-    boolean registrarUsuario(UsuarioDTO usuarioDTO) throws NegocioException, PersistenciaException;
+    boolean registrarUsuario(UsuarioDTO usuarioDTO) throws NegocioException;
+    
+    UsuarioDTO consultarUsuarioCorreo(String correo) throws NegocioException;
     
 }
