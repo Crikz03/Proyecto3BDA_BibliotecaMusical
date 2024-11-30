@@ -12,14 +12,22 @@ import com.mongodb.client.model.Updates;
 import conexion.ConexionBD;
 import excepciones.PersistenciaException;
 import interfaces.IArtistaDAO;
+import java.io.File;
+import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import objetos.Artistas;
 import objetos.Integrantes;
 import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
+import recursos.GestorImagenesMongo;
+import recursos.Imagen;
 
 /**
  *
@@ -31,6 +39,55 @@ public class ArtistaDAO implements IArtistaDAO {
 
     public ArtistaDAO() {
         this.coleccionArtistas = ConexionBD.crearConexion().getCollection("artistas", Artistas.class);
+    }
+
+    @Override
+    public Artistas crearArtista(String nombre, String tipo, String genero, String nombreImagen, String rutaImagen, List<Integrantes> integrantes) {
+        try {
+            File imagenFile = new File(rutaImagen);
+            Imagen imagenObj = GestorImagenesMongo.crearImagen(nombreImagen, imagenFile);
+
+            Artistas artista = new Artistas();
+            artista.setNombre(nombre);
+            artista.setTipo(tipo);
+            artista.setGenero(genero);
+            artista.setImagen(imagenObj);
+
+            if (tipo.equals("Banda") && integrantes != null && !integrantes.isEmpty()) {
+                artista.setIntegrantes(integrantes);
+            }
+
+            return artista;
+        } catch (IOException ex) {
+            Logger.getLogger(ArtistaDAO.class.getName()).log(Level.SEVERE, "Error al crear artista: " + nombre, ex);
+            return null;
+        }
+    }
+
+    @Override
+    public List<Integrantes> crearIntegrantes(String... datosIntegrantes) throws ParseException {
+        List<Integrantes> integrantes = new ArrayList<>();
+
+        for (int i = 0; i < datosIntegrantes.length; i += 5) {
+            try {
+                Integrantes integrante = new Integrantes();
+                integrante.setNombreCompleto(datosIntegrantes[i]);
+                integrante.setRol(datosIntegrantes[i + 1]);
+
+                // Parsear fechas si no son nulas
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                integrante.setFechaIngreso(datosIntegrantes[i + 2].equals("null") ? null : sdf.parse(datosIntegrantes[i + 2]));
+                integrante.setFechaSalida(datosIntegrantes[i + 3].equals("null") ? null : sdf.parse(datosIntegrantes[i + 3]));
+
+                integrante.setActivo(Boolean.parseBoolean(datosIntegrantes[i + 4]));
+
+                integrantes.add(integrante);
+            } catch (MongoException ex) {
+                Logger.getLogger(ArtistaDAO.class.getName()).log(Level.SEVERE, "Error al crear integrante", ex);
+            }
+        }
+
+        return integrantes;
     }
 
     @Override
@@ -55,7 +112,7 @@ public class ArtistaDAO implements IArtistaDAO {
             this.coleccionArtistas.insertMany(artistas);
 
         } catch (MongoException e) {
-            throw new PersistenciaException("No se ha podido realizar la inserción masiva de artistas: " +e);
+            throw new PersistenciaException("No se ha podido realizar la inserción masiva de artistas: " + e);
         }
     }
 
@@ -68,17 +125,17 @@ public class ArtistaDAO implements IArtistaDAO {
             throw new PersistenciaException("Error al buscar artistas por nombre: " + e.getMessage());
         }
     }
-    
+
     @Override
-public List<Artistas> obtenerSeisArtistas() throws PersistenciaException {
-    try {
-        return coleccionArtistas.find()
-                .limit(6) // Limita el resultado a 6 documentos
-                .into(new ArrayList<>());
-    } catch (Exception e) {
-        throw new PersistenciaException("Error al obtener 6 artistas: " + e.getMessage());
+    public List<Artistas> obtenerCincoArtistas() throws PersistenciaException {
+        try {
+            return coleccionArtistas.find()
+                    .limit(5) // Limita el resultado a 6 documentos
+                    .into(new ArrayList<>());
+        } catch (Exception e) {
+            throw new PersistenciaException("Error al obtener 6 artistas: " + e.getMessage());
+        }
     }
-}
 
     @Override
     public List<Artistas> buscarArtistasPorGenero(String genero) throws PersistenciaException {
@@ -134,9 +191,6 @@ public List<Artistas> obtenerSeisArtistas() throws PersistenciaException {
             throw new PersistenciaException("Error al obtener artistas favoritos: " + e.getMessage());
         }
     }
-
-
-
 
     @Override
     public boolean verificarArtistaConGenero(ObjectId artistaId, List<String> generosNoDeseados) throws PersistenciaException {

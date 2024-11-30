@@ -39,7 +39,8 @@ public class UsuarioDAO implements IUsuarioDAO {
     @Override
     public boolean agregar(Usuarios u) throws PersistenciaException {
         try {
-            Encriptacion.encriptar(u.getContrasena());
+            String hashedPassword = Encriptacion.encriptar(u.getContrasena());
+            u.setContrasena(hashedPassword);
             this.coleccionUsuarios.insertOne(u);
             return true;
         } catch (MongoException e) {
@@ -162,6 +163,27 @@ public class UsuarioDAO implements IUsuarioDAO {
             throw new PersistenciaException("No se pudo encontrar el usuario: " + u.getId());
         }
     }
+
+    @Override
+public Usuarios consultarCorreo(String correo) throws PersistenciaException {
+    if (correo == null || correo.isEmpty()) {
+        throw new PersistenciaException("El correo proporcionado es inválido.");
+    }
+
+    try {
+        // Busca el usuario por correo electrónico
+        Usuarios result = this.coleccionUsuarios.find(eq("correo", correo)).first();
+        if (result == null) {
+            System.out.println("No se encontró ningún usuario con el correo: " + correo);
+        }
+        return result;
+
+    } catch (MongoException e) {
+        e.printStackTrace();
+        throw new PersistenciaException("Error al buscar el usuario por correo: " + correo);
+    }
+}
+
 
     @Override
     public List<Usuarios> consultarTodos() throws PersistenciaException {

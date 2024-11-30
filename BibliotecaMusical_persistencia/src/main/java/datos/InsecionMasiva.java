@@ -8,9 +8,14 @@ import com.mongodb.MongoException;
 import com.mongodb.client.MongoCollection;
 import conexion.ConexionBD;
 import excepciones.PersistenciaException;
+import interfaces.IAlbumDAO;
+import interfaces.IArtistaDAO;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import objetos.Albumes;
 import objetos.Artistas;
 import objetos.DetallesCancion;
@@ -22,103 +27,140 @@ import org.bson.Document;
  */
 public class InsecionMasiva {
 
-    private final MongoCollection<Document> coleccionArtistas;
-    private final MongoCollection<Document> coleccionAlbumes;
+    private final MongoCollection<Artistas> coleccionArtistas;
+    private final MongoCollection<Albumes> coleccionAlbumes;
+    private IArtistaDAO artistadao;
+    private IAlbumDAO albumdao;
 
     public InsecionMasiva() {
-        this.coleccionArtistas = ConexionBD.crearConexion().getCollection("artistas");
-        this.coleccionAlbumes = ConexionBD.crearConexion().getCollection("albumes");
+        this.coleccionArtistas = ConexionBD.crearConexion().getCollection("artistas", Artistas.class);
+        this.coleccionAlbumes = ConexionBD.crearConexion().getCollection("albumes", Albumes.class);
+        this.artistadao = new ArtistaDAO();
+        this.albumdao = new AlbumDAO();
     }
 
-    public void insertarArtistasYAlbumes() throws PersistenciaException {
+    public void insertarArtistasMasivos() {
         try {
-            // Green Day
-            Document greenDay = new Document("nombre", "Green Day")
-                    .append("tipo", "Banda")
-                    .append("genero", "Punk Rock");
+            List<Artistas> artistas = obtenerArtistasConImagenes();
 
-            Document americanIdiot = new Document("nombre", "American Idiot")
-                    .append("artista", "Green Day") // Nombre del artista para referencia
-                    .append("fechaLanzamiento", new Date(110, 8, 21)) // Septiembre 21, 2004
-                    .append("canciones", List.of(
-                            new Document("titulo", "American Idiot").append("duracion", 182),
-                            new Document("titulo", "Boulevard of Broken Dreams").append("duracion", 261)
-                    ));
+            if (!artistas.isEmpty()) {
+                coleccionArtistas.insertMany(artistas);
+                System.out.println("Inserción masiva de artistas completada. Total de artistas insertados: " + artistas.size());
+            } else {
+                System.out.println("No hay artistas para insertar.");
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error en la inserción masiva de artistas", ex);
+        }
+    }
+    
+    public void insertarAlbumesMasivos() {
+        try {
+            // Encontrar todos los artistas insertados
+            List<Artistas> artistas = coleccionArtistas.find().into(new ArrayList<>());
 
-            Document dookie = new Document("nombre", "Dookie")
-                    .append("artista", "Green Day")
-                    .append("fechaLanzamiento", new Date(94, 1, 1)) // Febrero 1, 1994
-                    .append("canciones", List.of(
-                            new Document("titulo", "Basket Case").append("duracion", 183),
-                            new Document("titulo", "When I Come Around").append("duracion", 177)
-                    ));
+            // Lista para almacenar los álbumes a insertar
+            List<Albumes> albumesAInsertar = new ArrayList<>();
 
-            // Relacionar los álbumes con el artista Green Day
-            greenDay.append("albumes", List.of(americanIdiot.get("_id"), dookie.get("_id")));
+            // Iterar sobre los artistas para crear álbumes
+            for (Artistas artista : artistas) {
+                // Crear álbumes según el artista
+                albumesAInsertar.addAll(this.albumdao.crearAlbumesParaArtista(artista));
+            }
 
-            // Insertar los documentos de Green Day, los álbumes y las canciones en las colecciones respectivas
-            coleccionArtistas.insertOne(greenDay);
-            coleccionAlbumes.insertMany(List.of(americanIdiot, dookie));
+            // Insertar álbumes en la base de datos
+            if (!albumesAInsertar.isEmpty()) {
+                coleccionAlbumes.insertMany(albumesAInsertar);
+                System.out.println("Inserción masiva de álbumes completada. Total de álbumes insertados: " + albumesAInsertar.size());
+            } else {
+                System.out.println("No hay álbumes para insertar.");
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error en la inserción masiva de álbumes", ex);
+        }
+    }
 
-            // The Weeknd
-            Document theWeeknd = new Document("nombre", "The Weeknd")
-                    .append("tipo", "Solista")
-                    .append("genero", "R&B");
+    private List<Artistas> obtenerArtistasConImagenes() {
+        try {
+            List<Artistas> artistas = new ArrayList<>();
 
-            Document afterHours = new Document("nombre", "After Hours")
-                    .append("artista", "The Weeknd")
-                    .append("fechaLanzamiento", new Date(120, 2, 20)) // Marzo 20, 2020
-                    .append("canciones", List.of(
-                            new Document("titulo", "Blinding Lights").append("duracion", 200),
-                            new Document("titulo", "Save Your Tears").append("duracion", 215)
-                    ));
+            // Ejemplo de banda con integrantes
+            artistas.add(artistadao.crearArtista(
+                    "Coldplay",
+                    "Banda",
+                    "Rock Alternativo",
+                    "coldplay.jpg",
+                    "./images/jbalvin.jpg",
+                    artistadao.crearIntegrantes(
+                            "Chris Martin", "Vocalista", "1996-01-01", "null", "true",
+                            "Jonny Buckland", "Guitarrista", "1996-01-01", "null", "true",
+                            "Guy Berryman", "Bajista", "1996-01-01", "null", "true",
+                            "Will Champion", "Baterista", "1996-01-01", "null", "true"
+                    )
+            ));
 
-            Document starboy = new Document("nombre", "Starboy")
-                    .append("artista", "The Weeknd")
-                    .append("fechaLanzamiento", new Date(116, 10, 25)) // Noviembre 25, 2016
-                    .append("canciones", List.of(
-                            new Document("titulo", "Starboy").append("duracion", 230),
-                            new Document("titulo", "I Feel It Coming").append("duracion", 270)
-                    ));
+            artistas.add(artistadao.crearArtista(
+                    "Arctic Monkeys",
+                    "Banda",
+                    "Rock Indie",
+                    "arcticmonkeys.jpg",
+                    "./images/jbalvin.jpg",
+                    artistadao.crearIntegrantes(
+                            "Alex Turner", "Vocalista", "2002-01-01", "null", "true",
+                            "Matt Helders", "Baterista", "2002-01-01", "null", "true",
+                            "Jamie Cook", "Guitarrista", "2002-01-01", "null", "true",
+                            "Nick O'Malley", "Bajista", "2006-01-01", "null", "true"
+                    )
+            ));
 
-            // Relacionar los álbumes con The Weeknd
-            theWeeknd.append("albumes", List.of(afterHours.get("_id"), starboy.get("_id")));
+            artistas.add(artistadao.crearArtista(
+                    "The Beatles",
+                    "Banda",
+                    "Rock",
+                    "beatles.jpg",
+                    "./images/beatle.jpg",
+                    artistadao.crearIntegrantes(
+                            "John Lennon", "Vocalista/Guitarrista", "1960-01-01", "1980-12-08", "false",
+                            "Paul McCartney", "Vocalista/Bajista", "1960-01-01", "null", "true",
+                            "George Harrison", "Guitarrista", "1960-01-01", "2001-11-29", "false",
+                            "Ringo Starr", "Baterista", "1962-01-01", "null", "true"
+                    )
+            ));
 
-            // Insertar los documentos de The Weeknd y los álbumes en las colecciones respectivas
-            coleccionArtistas.insertOne(theWeeknd);
-            coleccionAlbumes.insertMany(List.of(afterHours, starboy));
+            artistas.add(artistadao.crearArtista(
+                    "Green Day",
+                    "Banda",
+                    "Punk Rock",
+                    "greenday.jpg",
+                    "./images/greenday.jpg",
+                    artistadao.crearIntegrantes(
+                            "Billie Joe Armstrong", "Vocalista/Guitarrista", "1987-01-01", "null", "true",
+                            "Mike Dirnt", "Bajista", "1987-01-01", "null", "true",
+                            "Tré Cool", "Baterista", "1990-01-01", "null", "true"
+                    )
+            ));
 
-            // Twenty One Pilots
-            Document twentyOnePilots = new Document("nombre", "Twenty One Pilots")
-                    .append("tipo", "Banda")
-                    .append("genero", "Alternative Rock");
+            artistas.add(artistadao.crearArtista(
+                    "Twenty One Pilots",
+                    "Banda",
+                    "Alternative Rock",
+                    "twentyonepilots.jpg",
+                    "./images/top.jpg",
+                    artistadao.crearIntegrantes(
+                            "Tyler Joseph", "Vocalista/Teclados", "2009-01-01", "null", "true",
+                            "Josh Dun", "Baterista", "2011-01-01", "null", "true"
+                    )
+            ));
 
-            Document blurryface = new Document("nombre", "Blurryface")
-                    .append("artista", "Twenty One Pilots")
-                    .append("fechaLanzamiento", new Date(115, 4, 17)) // Mayo 17, 2015
-                    .append("canciones", List.of(
-                            new Document("titulo", "Stressed Out").append("duracion", 202),
-                            new Document("titulo", "Ride").append("duracion", 212)
-                    ));
+            // Continúa agregando más bandas con sus integrantes...
+            // Artistas solistas se mantienen igual
+            artistas.add(artistadao.crearArtista("Taylor Swift", "Solista", "Pop", "taylorswift.jpg", "./images/jbalvin.jpg", null));
+            // ... resto de artistas solistas ...
 
-            Document trench = new Document("nombre", "Trench")
-                    .append("artista", "Twenty One Pilots")
-                    .append("fechaLanzamiento", new Date(118, 9, 5)) // Octubre 5, 2018
-                    .append("canciones", List.of(
-                            new Document("titulo", "Jumpsuit").append("duracion", 240),
-                            new Document("titulo", "My Blood").append("duracion", 210)
-                    ));
-
-            // Relacionar los álbumes con Twenty One Pilots
-            twentyOnePilots.append("albumes", List.of(blurryface.get("_id"), trench.get("_id")));
-
-            // Insertar los documentos de Twenty One Pilots y los álbumes en las colecciones respectivas
-            coleccionArtistas.insertOne(twentyOnePilots);
-            coleccionAlbumes.insertMany(List.of(blurryface, trench));
-
-            System.out.println("Inserción de artistas y álbumes completada.");
-        } catch (MongoException e) {
-            throw new PersistenciaException("No se ha podido realizar la inserción masiva de artistas y álbumes: " + e);
+            return artistas;
+        } catch (ParseException ex) {
+            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, null, ex);
+            return new ArrayList<>();
         }
     }
 

@@ -19,7 +19,8 @@ public class NewMain {
     public static void main(String[] args) throws PersistenciaException {
         InsecionMasiva in = new InsecionMasiva();
         
-        in.insertarArtistasYAlbumes();
+in.insertarArtistasMasivos();
+in.insertarAlbumesMasivos();
     }
     
 }

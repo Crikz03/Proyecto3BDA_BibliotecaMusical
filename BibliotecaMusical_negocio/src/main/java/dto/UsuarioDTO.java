@@ -6,6 +6,7 @@ package dto;
 
 import java.util.List;
 import org.bson.types.ObjectId;
+import recursos.Imagen;
 
 /**
  *
@@ -16,17 +17,21 @@ public class UsuarioDTO {
     private ObjectId id;                     // ID único del usuario
     private String nombreUsuario;            // Nombre del usuario
     private String correo;                   // Correo electrónico del usuario
-    private String fotoPerfil;               // Ruta o base64 de la foto de perfil
+    private String contrasena;
+    private Imagen fotoPerfil;               // Ruta o base64 de la foto de perfil
     private List<FavoritoDTO> favoritos;     // Lista de favoritos (en formato DTO)
     private List<String> generosNoDeseados;  // Lista de géneros bloqueados
 
     public UsuarioDTO() {
     }
+    
+    
 
-    public UsuarioDTO(ObjectId id, String nombreUsuario, String correo, String fotoPerfil, List<FavoritoDTO> favoritos, List<String> generosNoDeseados) {
+    public UsuarioDTO(ObjectId id, String nombreUsuario, String correo, String contrasena, Imagen fotoPerfil, List<FavoritoDTO> favoritos, List<String> generosNoDeseados) {
         this.id = id;
         this.nombreUsuario = nombreUsuario;
         this.correo = correo;
+        this.contrasena = contrasena;
         this.fotoPerfil = fotoPerfil;
         this.favoritos = favoritos;
         this.generosNoDeseados = generosNoDeseados;
@@ -57,11 +62,19 @@ public class UsuarioDTO {
         this.correo = correo;
     }
 
-    public String getFotoPerfil() {
+    public String getContrasena() {
+        return contrasena;
+    }
+
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
+    }
+
+    public Imagen getFotoPerfil() {
         return fotoPerfil;
     }
 
-    public void setFotoPerfil(String fotoPerfil) {
+    public void setFotoPerfil(Imagen fotoPerfil) {
         this.fotoPerfil = fotoPerfil;
     }
 
@@ -83,13 +96,13 @@ public class UsuarioDTO {
 
     @Override
     public String toString() {
-        return "UsuarioDTO{" +
-                "id=" + id +
-                ", nombreUsuario='" + nombreUsuario + '\'' +
-                ", correo='" + correo + '\'' +
-                ", fotoPerfil='" + fotoPerfil + '\'' +
-                ", favoritos=" + favoritos +
-                ", generosNoDeseados=" + generosNoDeseados +
-                '}';
+        return "UsuarioDTO{"
+                + "id=" + id
+                + ", nombreUsuario='" + nombreUsuario + '\''
+                + ", correo='" + correo + '\''
+                + ", fotoPerfil='" + fotoPerfil + '\''
+                + ", favoritos=" + favoritos
+                + ", generosNoDeseados=" + generosNoDeseados
+                + '}';
     }
 }
