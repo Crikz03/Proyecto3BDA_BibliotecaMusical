@@ -10,6 +10,7 @@ import datos.IntegrantesDAO;
 import dto.IntegrantesDTO;
 import excepciones.NegocioException;
 import excepciones.PersistenciaException;
+import interfaces.IIntegrantesBO;
 import interfaces.IIntegrantesDAO;
 import java.util.List;
 import java.util.logging.Level;
@@ -21,7 +22,7 @@ import org.bson.types.ObjectId;
  *
  * @author pauli
  */
-public class IntegrantesBO {
+public class IntegrantesBO implements IIntegrantesBO{
 
     private final IIntegrantesDAO integrantesDAO;
 

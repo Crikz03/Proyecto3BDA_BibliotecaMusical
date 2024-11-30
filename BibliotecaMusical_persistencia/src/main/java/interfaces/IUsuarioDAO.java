@@ -6,7 +6,9 @@ package interfaces;
 
 import excepciones.PersistenciaException;
 import java.util.List;
+import objetos.Favorito;
 import objetos.Usuarios;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -21,4 +23,8 @@ public interface IUsuarioDAO {
     public Usuarios consultar(Usuarios u) throws PersistenciaException;
 
     public List<Usuarios> consultarTodos() throws PersistenciaException;
+
+    boolean agregarAFavoritos(ObjectId idUsuario, Favorito favorito) throws PersistenciaException;
+
+    boolean agregarAFavoritos(ObjectId idUsuario, List<Favorito> favoritos) throws PersistenciaException;
 }
