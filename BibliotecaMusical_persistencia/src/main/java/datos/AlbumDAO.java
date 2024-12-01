@@ -500,15 +500,65 @@ public class AlbumDAO implements IAlbumDAO {
                 albumes.add(crearAlbumShawnMendes2(artista));
                 albumes.add(crearAlbumShawnMendes3(artista));
                 break;
-                
+
             case "Miley Cyrus":
                 albumes.add(crearAlbumMileyCyrus1(artista));
                 albumes.add(crearAlbumMileyCyrus2(artista));
                 albumes.add(crearAlbumMileyCyrus3(artista));
                 break;
-                
-            
-                
+
+            case "Daddy Yankee":
+                albumes.add(crearAlbumDaddyYankee1(artista));
+                albumes.add(crearAlbumDaddyYankee2(artista));
+                albumes.add(crearAlbumDaddyYankee3(artista));
+                break;
+
+            case "Ozuna":
+                albumes.add(crearAlbumOzuna1(artista));
+                albumes.add(crearAlbumOzuna2(artista));
+                albumes.add(crearAlbumOzuna3(artista));
+                break;
+
+            case "Anuel AA":
+                albumes.add(crearAlbumAnuelAA1(artista));
+                albumes.add(crearAlbumAnuelAA2(artista));
+                albumes.add(crearAlbumAnuelAA3(artista));
+                break;
+
+            case "Maluma":
+                albumes.add(crearAlbumMaluma1(artista));
+                albumes.add(crearAlbumMaluma2(artista));
+                albumes.add(crearAlbumMaluma3(artista));
+                break;
+
+            case "Natti Natasha":
+                albumes.add(crearAlbumNattiNatasha1(artista));
+                albumes.add(crearAlbumNattiNatasha2(artista));
+                albumes.add(crearAlbumNattiNatasha3(artista));
+                break;
+
+            case "Becky G":
+                albumes.add(crearAlbumBeckyG1(artista));
+                albumes.add(crearAlbumBeckyG2(artista));
+                break;
+
+            case "Farruko":
+                albumes.add(crearAlbumFarruko1(artista));
+                albumes.add(crearAlbumFarruko2(artista));
+                albumes.add(crearAlbumFarruko3(artista));
+                break;
+
+            case "Sech":
+                albumes.add(crearAlbumSech1(artista));
+                albumes.add(crearAlbumSech2(artista));
+                albumes.add(crearAlbumSech3(artista));
+                break;
+
+            case "Danny Ocean":
+                albumes.add(crearAlbumDannyOcean1(artista));
+                albumes.add(crearAlbumDannyOcean2(artista));
+                break;
+
                 
 
         }
@@ -5944,6 +5994,837 @@ public class AlbumDAO implements IAlbumDAO {
             return album;
         } catch (Exception ex) {
             Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Miley Cyrus: Endless Summer Vacation", ex);
+            return null;
+        }
+    }
+
+    ////////////////////////////////////////////////////////////////////////////
+    private Albumes crearAlbumDaddyYankee1(Artistas artista) {
+        try {
+            File imagenFile = new File("./images/barriofino.jpg");
+            Imagen portada = GestorImagenesMongo.crearImagen("Barrio Fino", imagenFile);
+
+            Albumes album = new Albumes();
+            album.setNombre("Barrio Fino");
+            album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2004-07-13"));
+            album.setGenero(Arrays.asList("Reggaeton"));
+            album.setImagenPortada(portada);
+            album.setArtistaId(artista.getId());
+
+            List<DetallesCancion> canciones = this.crearCanciones(
+                    Arrays.asList(
+                            new String[]{"Gasolina", "3:12"},
+                            new String[]{"Lo Que Pasó, Pasó", "3:31"},
+                            new String[]{"King Daddy", "3:44"},
+                            new String[]{"Salud y Vida", "4:01"},
+                            new String[]{"Dale Caliente", "3:28"}
+                    ),
+                    album.getId(),
+                    portada
+            );
+            album.setDetallesCanciones(canciones);
+
+            return album;
+        } catch (Exception ex) {
+            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Daddy Yankee: Barrio Fino", ex);
+            return null;
+        }
+    }
+
+    private Albumes crearAlbumDaddyYankee2(Artistas artista) {
+        try {
+            File imagenFile = new File("./images/thebigboss.jpg");
+            Imagen portada = GestorImagenesMongo.crearImagen("El Cartel: The Big Boss", imagenFile);
+
+            Albumes album = new Albumes();
+            album.setNombre("El Cartel: The Big Boss");
+            album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2007-06-05"));
+            album.setGenero(Arrays.asList("Reggaeton", "Hip Hop"));
+            album.setImagenPortada(portada);
+            album.setArtistaId(artista.getId());
+
+            List<DetallesCancion> canciones = this.crearCanciones(
+                    Arrays.asList(
+                            new String[]{"Impacto", "3:40"},
+                            new String[]{"Ella Me Levantó", "3:39"},
+                            new String[]{"Mensaje de Estado", "3:58"},
+                            new String[]{"Papi Lover", "3:13"},
+                            new String[]{"Cambio", "3:44"}
+                    ),
+                    album.getId(),
+                    portada
+            );
+            album.setDetallesCanciones(canciones);
+
+            return album;
+        } catch (Exception ex) {
+            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Daddy Yankee: El Cartel: The Big Boss", ex);
+            return null;
+        }
+    }
+
+    private Albumes crearAlbumDaddyYankee3(Artistas artista) {
+        try {
+            File imagenFile = new File("./images/legendaddy.jpg");
+            Imagen portada = GestorImagenesMongo.crearImagen("Legendaddy", imagenFile);
+
+            Albumes album = new Albumes();
+            album.setNombre("Legendaddy");
+            album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2022-03-24"));
+            album.setGenero(Arrays.asList("Reggaeton", "Latin Urban"));
+            album.setImagenPortada(portada);
+            album.setArtistaId(artista.getId());
+
+            List<DetallesCancion> canciones = this.crearCanciones(
+                    Arrays.asList(
+                            new String[]{"Rumbatón", "3:20"},
+                            new String[]{"La Ola", "2:46"},
+                            new String[]{"Campeón", "3:15"},
+                            new String[]{"Agua", "3:35"},
+                            new String[]{"Zona del Perreo", "4:01"}
+                    ),
+                    album.getId(),
+                    portada
+            );
+            album.setDetallesCanciones(canciones);
+
+            return album;
+        } catch (Exception ex) {
+            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Daddy Yankee: Legendaddy", ex);
+            return null;
+        }
+    }
+
+    ////////////////////////////////////////////////////////////////////////////
+    private Albumes crearAlbumOzuna1(Artistas artista) {
+        try {
+            File imagenFile = new File("./images/odisea.jpg");
+            Imagen portada = GestorImagenesMongo.crearImagen("Odisea", imagenFile);
+
+            Albumes album = new Albumes();
+            album.setNombre("Odisea");
+            album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2017-08-25"));
+            album.setGenero(Arrays.asList("Reggaeton", "Latin Trap"));
+            album.setImagenPortada(portada);
+            album.setArtistaId(artista.getId());
+
+            List<DetallesCancion> canciones = this.crearCanciones(
+                    Arrays.asList(
+                            new String[]{"Dile Que Tú Me Quieres", "4:02"},
+                            new String[]{"Se Preparó", "3:38"},
+                            new String[]{"Tu Foto", "3:48"},
+                            new String[]{"El Farsante", "4:07"},
+                            new String[]{"Odisea", "4:00"}
+                    ),
+                    album.getId(),
+                    portada
+            );
+            album.setDetallesCanciones(canciones);
+
+            return album;
+        } catch (Exception ex) {
+            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Ozuna: Odisea", ex);
+            return null;
+        }
+    }
+
+    private Albumes crearAlbumOzuna2(Artistas artista) {
+        try {
+            File imagenFile = new File("./images/aura.jpg");
+            Imagen portada = GestorImagenesMongo.crearImagen("Aura", imagenFile);
+
+            Albumes album = new Albumes();
+            album.setNombre("Aura");
+            album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2018-08-24"));
+            album.setGenero(Arrays.asList("Reggaeton", "Latin Trap", "Pop Latino"));
+            album.setImagenPortada(portada);
+            album.setArtistaId(artista.getId());
+
+            List<DetallesCancion> canciones = this.crearCanciones(
+                    Arrays.asList(
+                            new String[]{"Vaina Loca", "4:07"},
+                            new String[]{"Única", "3:24"},
+                            new String[]{"Ibiza", "3:48"},
+                            new String[]{"Me Dijeron", "4:01"},
+                            new String[]{"Taki Taki", "3:52"}
+                    ),
+                    album.getId(),
+                    portada
+            );
+            album.setDetallesCanciones(canciones);
+
+            return album;
+        } catch (Exception ex) {
+            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Ozuna: Aura", ex);
+            return null;
+        }
+    }
+
+    private Albumes crearAlbumOzuna3(Artistas artista) {
+        try {
+            File imagenFile = new File("./images/enoc.jpg");
+            Imagen portada = GestorImagenesMongo.crearImagen("ENOC", imagenFile);
+
+            Albumes album = new Albumes();
+            album.setNombre("ENOC");
+            album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2020-09-04"));
+            album.setGenero(Arrays.asList("Reggaeton", "Latin Trap"));
+            album.setImagenPortada(portada);
+            album.setArtistaId(artista.getId());
+
+            List<DetallesCancion> canciones = this.crearCanciones(
+                    Arrays.asList(
+                            new String[]{"Caramelo", "3:33"},
+                            new String[]{"Despeinada", "3:23"},
+                            new String[]{"Del Mar", "3:36"},
+                            new String[]{"No Se Da Cuenta", "3:49"},
+                            new String[]{"Gistro Amarillo", "3:30"}
+                    ),
+                    album.getId(),
+                    portada
+            );
+            album.setDetallesCanciones(canciones);
+
+            return album;
+        } catch (Exception ex) {
+            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Ozuna: ENOC", ex);
+            return null;
+        }
+    }
+
+    private Albumes crearAlbumAnuelAA1(Artistas artista) {
+        try {
+            File imagenFile = new File("./images/realhastalamuerte.jpg");
+            Imagen portada = GestorImagenesMongo.crearImagen("Real Hasta La Muerte", imagenFile);
+
+            Albumes album = new Albumes();
+            album.setNombre("Real Hasta La Muerte");
+            album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2018-07-17"));
+            album.setGenero(Arrays.asList("Reggaeton", "Latin Trap"));
+            album.setImagenPortada(portada);
+            album.setArtistaId(artista.getId());
+
+            List<DetallesCancion> canciones = this.crearCanciones(
+                    Arrays.asList(
+                            new String[]{"Hipócrita", "3:49"},
+                            new String[]{"Ella Quiere Beber", "3:39"},
+                            new String[]{"Brindemos", "3:44"},
+                            new String[]{"Yeezy", "3:40"},
+                            new String[]{"Na' Nuevo", "3:56"}
+                    ),
+                    album.getId(),
+                    portada
+            );
+            album.setDetallesCanciones(canciones);
+
+            return album;
+        } catch (Exception ex) {
+            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Anuel AA: Real Hasta La Muerte", ex);
+            return null;
+        }
+    }
+
+    private Albumes crearAlbumAnuelAA2(Artistas artista) {
+        try {
+            File imagenFile = new File("./images/manuel.jpg");
+            Imagen portada = GestorImagenesMongo.crearImagen("Emmanuel", imagenFile);
+
+            Albumes album = new Albumes();
+            album.setNombre("Emmanuel");
+            album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2020-05-29"));
+            album.setGenero(Arrays.asList("Reggaeton", "Latin Trap", "Pop Latino"));
+            album.setImagenPortada(portada);
+            album.setArtistaId(artista.getId());
+
+            List<DetallesCancion> canciones = this.crearCanciones(
+                    Arrays.asList(
+                            new String[]{"Reggaetonera", "3:32"},
+                            new String[]{"Fútbol y Rumba", "4:02"},
+                            new String[]{"Keii", "4:08"},
+                            new String[]{"Hasta Que Dios Diga", "3:54"},
+                            new String[]{"Narcos", "3:31"}
+                    ),
+                    album.getId(),
+                    portada
+            );
+            album.setDetallesCanciones(canciones);
+
+            return album;
+        } catch (Exception ex) {
+            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Anuel AA: Emmanuel", ex);
+            return null;
+        }
+    }
+
+    private Albumes crearAlbumAnuelAA3(Artistas artista) {
+        try {
+            File imagenFile = new File("./images/lasleyendasnuncanmueren.jpg");
+            Imagen portada = GestorImagenesMongo.crearImagen("Las Leyendas Nunca Mueren", imagenFile);
+
+            Albumes album = new Albumes();
+            album.setNombre("Las Leyendas Nunca Mueren");
+            album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2021-11-26"));
+            album.setGenero(Arrays.asList("Reggaeton", "Latin Trap"));
+            album.setImagenPortada(portada);
+            album.setArtistaId(artista.getId());
+
+            List<DetallesCancion> canciones = this.crearCanciones(
+                    Arrays.asList(
+                            new String[]{"Dictadura", "4:01"},
+                            new String[]{"Subelo", "3:42"},
+                            new String[]{"Leyenda", "3:40"},
+                            new String[]{"Pin", "3:33"},
+                            new String[]{"Llorando en un Ferrari", "3:30"}
+                    ),
+                    album.getId(),
+                    portada
+            );
+            album.setDetallesCanciones(canciones);
+
+            return album;
+        } catch (Exception ex) {
+            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Anuel AA: Las Leyendas Nunca Mueren", ex);
+            return null;
+        }
+    }
+
+    ////////////////////////////////////////////////////////////////////////////
+    private Albumes crearAlbumMaluma1(Artistas artista) {
+        try {
+            File imagenFile = new File("./images/fame.jpg");
+            Imagen portada = GestorImagenesMongo.crearImagen("F.A.M.E.", imagenFile);
+
+            Albumes album = new Albumes();
+            album.setNombre("F.A.M.E.");
+            album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2018-05-18"));
+            album.setGenero(Arrays.asList("Reggaeton", "Latin Pop"));
+            album.setImagenPortada(portada);
+            album.setArtistaId(artista.getId());
+
+            List<DetallesCancion> canciones = this.crearCanciones(
+                    Arrays.asList(
+                            new String[]{"El Préstamo", "3:39"},
+                            new String[]{"Corazón", "3:05"},
+                            new String[]{"Felices los 4", "3:49"},
+                            new String[]{"Marinero", "4:10"},
+                            new String[]{"Hangover", "4:01"}
+                    ),
+                    album.getId(),
+                    portada
+            );
+            album.setDetallesCanciones(canciones);
+
+            return album;
+        } catch (Exception ex) {
+            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Maluma: F.A.M.E.", ex);
+            return null;
+        }
+    }
+
+    private Albumes crearAlbumMaluma2(Artistas artista) {
+        try {
+            File imagenFile = new File("./images/1111.jpg");
+            Imagen portada = GestorImagenesMongo.crearImagen("11:11", imagenFile);
+
+            Albumes album = new Albumes();
+            album.setNombre("11:11");
+            album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2019-05-17"));
+            album.setGenero(Arrays.asList("Reggaeton", "Latin Pop"));
+            album.setImagenPortada(portada);
+            album.setArtistaId(artista.getId());
+
+            List<DetallesCancion> canciones = this.crearCanciones(
+                    Arrays.asList(
+                            new String[]{"HP", "3:04"},
+                            new String[]{"11 PM", "3:42"},
+                            new String[]{"Dispuesto", "3:49"},
+                            new String[]{"No Se Me Quita", "3:39"},
+                            new String[]{"Instinto Natural", "3:52"}
+                    ),
+                    album.getId(),
+                    portada
+            );
+            album.setDetallesCanciones(canciones);
+
+            return album;
+        } catch (Exception ex) {
+            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Maluma: 11:11", ex);
+            return null;
+        }
+    }
+
+    private Albumes crearAlbumMaluma3(Artistas artista) {
+        try {
+            File imagenFile = new File("./images/papijuancho.jpg");
+            Imagen portada = GestorImagenesMongo.crearImagen("Papi Juancho", imagenFile);
+
+            Albumes album = new Albumes();
+            album.setNombre("Papi Juancho");
+            album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2020-08-21"));
+            album.setGenero(Arrays.asList("Reggaeton", "Latin Urban"));
+            album.setImagenPortada(portada);
+            album.setArtistaId(artista.getId());
+
+            List<DetallesCancion> canciones = this.crearCanciones(
+                    Arrays.asList(
+                            new String[]{"Hawái", "3:20"},
+                            new String[]{"Parce", "3:43"},
+                            new String[]{"ADMV", "3:04"},
+                            new String[]{"Vete Vete", "3:33"},
+                            new String[]{"Madrid", "3:38"}
+                    ),
+                    album.getId(),
+                    portada
+            );
+            album.setDetallesCanciones(canciones);
+
+            return album;
+        } catch (Exception ex) {
+            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Maluma: Papi Juancho", ex);
+            return null;
+        }
+    }
+
+    ////////////////////////////////////////////////////////////////////////////
+    private Albumes crearAlbumNattiNatasha1(Artistas artista) {
+        try {
+            File imagenFile = new File("./images/iluminatti.jpg");
+            Imagen portada = GestorImagenesMongo.crearImagen("Iluminatti", imagenFile);
+
+            Albumes album = new Albumes();
+            album.setNombre("Iluminatti");
+            album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2019-02-15"));
+            album.setGenero(Arrays.asList("Reggaeton", "Latin Urban"));
+            album.setImagenPortada(portada);
+            album.setArtistaId(artista.getId());
+
+            List<DetallesCancion> canciones = this.crearCanciones(
+                    Arrays.asList(
+                            new String[]{"Pa' Mala Yo", "3:32"},
+                            new String[]{"Me Gusta", "3:12"},
+                            new String[]{"Obsesión", "3:33"},
+                            new String[]{"La Mejor Versión de Mí", "3:33"},
+                            new String[]{"Toca Toca", "3:35"}
+                    ),
+                    album.getId(),
+                    portada
+            );
+            album.setDetallesCanciones(canciones);
+
+            return album;
+        } catch (Exception ex) {
+            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Natti Natasha: Iluminatti", ex);
+            return null;
+        }
+    }
+
+    private Albumes crearAlbumNattiNatasha2(Artistas artista) {
+        try {
+            File imagenFile = new File("./images/nattivida.jpg");
+            Imagen portada = GestorImagenesMongo.crearImagen("Nattividad", imagenFile);
+
+            Albumes album = new Albumes();
+            album.setNombre("Nattividad");
+            album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2021-09-24"));
+            album.setGenero(Arrays.asList("Reggaeton", "Latin Pop"));
+            album.setImagenPortada(portada);
+            album.setArtistaId(artista.getId());
+
+            List<DetallesCancion> canciones = this.crearCanciones(
+                    Arrays.asList(
+                            new String[]{"Noches en Miami", "3:15"},
+                            new String[]{"Philliecito", "3:38"},
+                            new String[]{"Imposible Amor", "3:36"},
+                            new String[]{"Las Nenas", "3:48"},
+                            new String[]{"Wow BB", "3:21"}
+                    ),
+                    album.getId(),
+                    portada
+            );
+            album.setDetallesCanciones(canciones);
+
+            return album;
+        } catch (Exception ex) {
+            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Natti Natasha: Nattividad", ex);
+            return null;
+        }
+    }
+
+    private Albumes crearAlbumNattiNatasha3(Artistas artista) {
+        try {
+            File imagenFile = new File("./images/allaboutme.jpg");
+            Imagen portada = GestorImagenesMongo.crearImagen("All About Me", imagenFile);
+
+            Albumes album = new Albumes();
+            album.setNombre("All About Me");
+            album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2020-03-20"));
+            album.setGenero(Arrays.asList("Reggaeton", "Latin Urban"));
+            album.setImagenPortada(portada);
+            album.setArtistaId(artista.getId());
+
+            List<DetallesCancion> canciones = this.crearCanciones(
+                    Arrays.asList(
+                            new String[]{"Diosa", "3:10"},
+                            new String[]{"Qué Mal Te Fue", "2:55"},
+                            new String[]{"Despacio", "3:40"},
+                            new String[]{"Te Lo Dije", "3:50"},
+                            new String[]{"La Mejor Versión de Mí (Remix)", "3:55"}
+                    ),
+                    album.getId(),
+                    portada
+            );
+            album.setDetallesCanciones(canciones);
+
+            return album;
+        } catch (Exception ex) {
+            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Natti Natasha: All About Me", ex);
+            return null;
+        }
+    }
+
+    ////////////////////////////////////////////////////////////////////////////
+    private Albumes crearAlbumBeckyG1(Artistas artista) {
+        try {
+            File imagenFile = new File("./images/malibu.jpg");
+            Imagen portada = GestorImagenesMongo.crearImagen("Mala Santa", imagenFile);
+
+            Albumes album = new Albumes();
+            album.setNombre("Mala Santa");
+            album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2019-10-17"));
+            album.setGenero(Arrays.asList("Reggaeton", "Latin Pop"));
+            album.setImagenPortada(portada);
+            album.setArtistaId(artista.getId());
+
+            List<DetallesCancion> canciones = this.crearCanciones(
+                    Arrays.asList(
+                            new String[]{"Mala Santa", "3:05"},
+                            new String[]{"Sin Pijama", "3:09"},
+                            new String[]{"Dollar", "3:12"},
+                            new String[]{"Mayores", "3:22"},
+                            new String[]{"Cuando Te Besé", "3:26"}
+                    ),
+                    album.getId(),
+                    portada
+            );
+            album.setDetallesCanciones(canciones);
+
+            return album;
+        } catch (Exception ex) {
+            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Becky G: Mala Santa", ex);
+            return null;
+        }
+    }
+
+    private Albumes crearAlbumBeckyG2(Artistas artista) {
+        try {
+            File imagenFile = new File("./images/esquemas.jpg");
+            Imagen portada = GestorImagenesMongo.crearImagen("Esquemas", imagenFile);
+
+            Albumes album = new Albumes();
+            album.setNombre("Esquemas");
+            album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2022-05-13"));
+            album.setGenero(Arrays.asList("Reggaeton", "Dance Pop"));
+            album.setImagenPortada(portada);
+            album.setArtistaId(artista.getId());
+
+            List<DetallesCancion> canciones = this.crearCanciones(
+                    Arrays.asList(
+                            new String[]{"Mamiii", "3:25"},
+                            new String[]{"No Mienten", "3:18"},
+                            new String[]{"Bailé Con Mi Ex", "3:10"},
+                            new String[]{"Dolores", "3:00"},
+                            new String[]{"Flashback", "3:35"}
+                    ),
+                    album.getId(),
+                    portada
+            );
+            album.setDetallesCanciones(canciones);
+
+            return album;
+        } catch (Exception ex) {
+            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Becky G: Esquemas", ex);
+            return null;
+        }
+    }
+
+    ////////////////////////////////////////////////////////////////////////////
+    private Albumes crearAlbumFarruko1(Artistas artista) {
+        try {
+            File imagenFile = new File("./images/visionary.jpg");
+            Imagen portada = GestorImagenesMongo.crearImagen("Visionary", imagenFile);
+
+            Albumes album = new Albumes();
+            album.setNombre("Visionary");
+            album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2015-10-23"));
+            album.setGenero(Arrays.asList("Reggaeton", "Latin Urban"));
+            album.setImagenPortada(portada);
+            album.setArtistaId(artista.getId());
+
+            List<DetallesCancion> canciones = this.crearCanciones(
+                    Arrays.asList(
+                            new String[]{"Obsesionado", "3:57"},
+                            new String[]{"Sunset", "3:42"},
+                            new String[]{"Chillax", "3:58"},
+                            new String[]{"Te Va a Doler", "3:20"},
+                            new String[]{"Después Que Te Perdí", "3:45"}
+                    ),
+                    album.getId(),
+                    portada
+            );
+            album.setDetallesCanciones(canciones);
+
+            return album;
+        } catch (Exception ex) {
+            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Farruko: Visionary", ex);
+            return null;
+        }
+    }
+
+    private Albumes crearAlbumFarruko2(Artistas artista) {
+        try {
+            File imagenFile = new File("./images/gangalee.jpg");
+            Imagen portada = GestorImagenesMongo.crearImagen("Gangalee", imagenFile);
+
+            Albumes album = new Albumes();
+            album.setNombre("Gangalee");
+            album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2019-04-26"));
+            album.setGenero(Arrays.asList("Reggaeton", "Trap Latino", "Dancehall"));
+            album.setImagenPortada(portada);
+            album.setArtistaId(artista.getId());
+
+            List<DetallesCancion> canciones = this.crearCanciones(
+                    Arrays.asList(
+                            new String[]{"Nadie", "3:20"},
+                            new String[]{"La Cartera", "3:25"},
+                            new String[]{"Titerito", "3:10"},
+                            new String[]{"Inolvidable", "4:12"},
+                            new String[]{"Quédate", "3:05"}
+                    ),
+                    album.getId(),
+                    portada
+            );
+            album.setDetallesCanciones(canciones);
+
+            return album;
+        } catch (Exception ex) {
+            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Farruko: Gangalee", ex);
+            return null;
+        }
+    }
+
+    private Albumes crearAlbumFarruko3(Artistas artista) {
+        try {
+            File imagenFile = new File("./images/la167.jpg");
+            Imagen portada = GestorImagenesMongo.crearImagen("La 167", imagenFile);
+
+            Albumes album = new Albumes();
+            album.setNombre("La 167");
+            album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2021-10-01"));
+            album.setGenero(Arrays.asList("Reggaeton", "Latin Urban", "Reggae"));
+            album.setImagenPortada(portada);
+            album.setArtistaId(artista.getId());
+
+            List<DetallesCancion> canciones = this.crearCanciones(
+                    Arrays.asList(
+                            new String[]{"Pepas", "4:47"},
+                            new String[]{"El Incomprendido", "3:52"},
+                            new String[]{"La Tóxica", "3:25"},
+                            new String[]{"Jíbaro", "3:55"},
+                            new String[]{"My Lova", "4:10"}
+                    ),
+                    album.getId(),
+                    portada
+            );
+            album.setDetallesCanciones(canciones);
+
+            return album;
+        } catch (Exception ex) {
+            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Farruko: La 167", ex);
+            return null;
+        }
+    }
+    ////////////////////////////////////////////////////////////////////////////
+
+    private Albumes crearAlbumSech1(Artistas artista) {
+        try {
+            File imagenFile = new File("./images/suenossech.jpg");
+            Imagen portada = GestorImagenesMongo.crearImagen("Sueños", imagenFile);
+
+            Albumes album = new Albumes();
+            album.setNombre("Sueños");
+            album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2019-04-19"));
+            album.setGenero(Arrays.asList("Reggaeton", "Latin Urban"));
+            album.setImagenPortada(portada);
+            album.setArtistaId(artista.getId());
+
+            List<DetallesCancion> canciones = this.crearCanciones(
+                    Arrays.asList(
+                            new String[]{"Otro Trago", "3:47"},
+                            new String[]{"Solita", "3:46"},
+                            new String[]{"Si Te Vas", "3:30"},
+                            new String[]{"Que Más Pues", "3:28"},
+                            new String[]{"Me Gustas", "3:52"}
+                    ),
+                    album.getId(),
+                    portada
+            );
+            album.setDetallesCanciones(canciones);
+
+            return album;
+        } catch (Exception ex) {
+            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Sech: Sueños", ex);
+            return null;
+        }
+    }
+
+    private Albumes crearAlbumSech2(Artistas artista) {
+        try {
+            File imagenFile = new File("./images/1of1.jpg");
+            Imagen portada = GestorImagenesMongo.crearImagen("1 of 1", imagenFile);
+
+            Albumes album = new Albumes();
+            album.setNombre("1 of 1");
+            album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2020-05-21"));
+            album.setGenero(Arrays.asList("Reggaeton", "Trap Latino"));
+            album.setImagenPortada(portada);
+            album.setArtistaId(artista.getId());
+
+            List<DetallesCancion> canciones = this.crearCanciones(
+                    Arrays.asList(
+                            new String[]{"Relación", "3:31"},
+                            new String[]{"Goteras", "3:54"},
+                            new String[]{"Pantera", "2:50"},
+                            new String[]{"911", "3:20"},
+                            new String[]{"Confía", "3:42"}
+                    ),
+                    album.getId(),
+                    portada
+            );
+            album.setDetallesCanciones(canciones);
+
+            return album;
+        } catch (Exception ex) {
+            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Sech: 1 of 1", ex);
+            return null;
+        }
+    }
+
+    private Albumes crearAlbumSech3(Artistas artista) {
+        try {
+            File imagenFile = new File("./images/42.jpg");
+            Imagen portada = GestorImagenesMongo.crearImagen("42", imagenFile);
+
+            Albumes album = new Albumes();
+            album.setNombre("42");
+            album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2021-04-15"));
+            album.setGenero(Arrays.asList("Reggaeton", "Latin Urban"));
+            album.setImagenPortada(portada);
+            album.setArtistaId(artista.getId());
+
+            List<DetallesCancion> canciones = this.crearCanciones(
+                    Arrays.asList(
+                            new String[]{"911 Remix", "3:56"},
+                            new String[]{"Pata' Abajo", "3:20"},
+                            new String[]{"Sal y Perrea", "3:11"},
+                            new String[]{"Playa", "3:38"},
+                            new String[]{"Wao", "3:25"}
+                    ),
+                    album.getId(),
+                    portada
+            );
+            album.setDetallesCanciones(canciones);
+
+            return album;
+        } catch (Exception ex) {
+            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Sech: 42", ex);
+            return null;
+        }
+    }
+
+    ////////////////////////////////////////////////////////////////////////////
+    private Albumes crearAlbumDannyOcean1(Artistas artista) {
+        try {
+            File imagenFile = new File("./images/54plus1.jpg");
+            Imagen portada = GestorImagenesMongo.crearImagen("54+1", imagenFile);
+
+            Albumes album = new Albumes();
+            album.setNombre("54+1");
+            album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2019-03-22"));
+            album.setGenero(Arrays.asList("Reggaeton", "Pop Latino"));
+            album.setImagenPortada(portada);
+            album.setArtistaId(artista.getId());
+
+            List<DetallesCancion> canciones = this.crearCanciones(
+                    Arrays.asList(
+                            new String[]{"Dembow", "4:11"},
+                            new String[]{"Epa Wei", "3:35"},
+                            new String[]{"Swing", "3:10"},
+                            new String[]{"Veneno", "3:25"},
+                            new String[]{"Tú", "3:40"}
+                    ),
+                    album.getId(),
+                    portada
+            );
+            album.setDetallesCanciones(canciones);
+
+            return album;
+        } catch (Exception ex) {
+            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Danny Ocean: 54+1", ex);
+            return null;
+        }
+    }
+
+    private Albumes crearAlbumDannyOcean2(Artistas artista) {
+        try {
+            // Crear imagen de portada
+            File imagenFile = new File("./images/dannyoceanalbum.jpg");
+            Imagen portada = GestorImagenesMongo.crearImagen("@dannocean", imagenFile);
+
+            // Crear álbum
+            Albumes album = new Albumes();
+            album.setNombre("@dannocean");
+            album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2022-03-25"));
+            album.setGenero(Arrays.asList("Reggaeton", "Pop Latino"));
+            album.setImagenPortada(portada);
+            album.setArtistaId(artista.getId());
+
+            // Crear canciones
+            List<DetallesCancion> canciones = this.crearCanciones(
+                    Arrays.asList(
+                            new String[]{"Fuera del Mercado", "3:25"},
+                            new String[]{"Tú No Me Conoces", "3:14"},
+                            new String[]{"Pronto", "2:59"},
+                            new String[]{"Apartamento", "3:48"},
+                            new String[]{"Rubia Sol Morena Luna", "3:33"},
+                            new String[]{"Veneno", "3:16"},
+                            new String[]{"3 de Febrero", "2:50"},
+                            new String[]{"La Bella y la Bestia", "3:20"},
+                            new String[]{"Cuántas Veces", "3:31"},
+                            new String[]{"Me Rehúso", "3:24"},
+                            new String[]{"Volvamos a Caer", "2:46"},
+                            new String[]{"Tú", "3:30"},
+                            new String[]{"Call Me", "3:35"},
+                            new String[]{"Que Lo Que", "2:57"},
+                            new String[]{"Agua", "2:45"},
+                            new String[]{"Todo Va a Estar Bien", "3:27"},
+                            new String[]{"Dembow", "3:15"},
+                            new String[]{"Flow", "2:50"},
+                            new String[]{"Sirena", "3:18"},
+                            new String[]{"Relax", "3:20"},
+                            new String[]{"Romance", "2:56"},
+                            new String[]{"Cositas", "3:14"},
+                            new String[]{"Mensaje de Voz", "3:12"},
+                            new String[]{"Amor Prohibido", "3:30"},
+                            new String[]{"Adiós", "3:25"}
+                    ),
+                    album.getId(),
+                    portada
+            );
+            album.setDetallesCanciones(canciones);
+
+            return album;
+        } catch (Exception ex) {
+            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Danny Ocean: @dannocean", ex);
             return null;
         }
     }
