@@ -382,7 +382,7 @@ public class InsecionMasiva {
             artistas.add(artistadao.crearArtista("Olivia Rodrigo", "Solista", "Pop Rock", "oliviarodrigo.jpg", "./images/oliviarodrigo.jpg", null));
             artistas.add(artistadao.crearArtista("Bruno Mars", "Solista", "Funk", "brunomars.jpg", "./images/brunomars.jpg", null));
             artistas.add(artistadao.crearArtista("Ariana Grande", "Solista", "Pop", "arianagrande.jpg", "./images/arianagrande.jpg", null));
-            artistas.add(artistadao.crearArtista("J Balvin", "Solista", "Reggaeton", "jbalvin.jpg", "./images/jbalvin.jpg", null));/////////************hasta aqui voy
+            artistas.add(artistadao.crearArtista("J Balvin", "Solista", "Reggaeton", "jbalvin.jpg", "./images/jbalvin.jpg", null));
             artistas.add(artistadao.crearArtista("Elvis Presley", "Solista", "Rock & Roll", "elvispresley.jpg", "./images/elvispresley.jpg", null));
             artistas.add(artistadao.crearArtista("Bob Dylan", "Solista", "Folk Rock", "bobdylan.jpg", "./images/bobdylan.jpg", null));
             artistas.add(artistadao.crearArtista("Janis Joplin", "Solista", "Blues Rock", "janisjoplin.jpg", "./images/janisjoplin.jpg", null));
