@@ -142,25 +142,23 @@ public class UsuarioBO implements IUsuarioBO {
             throw new PersistenciaException("Error inesperado al consultar el usuario: " + e.getMessage());
         }
     }
-    
-public List<String> consultarGenerosBaneados(ObjectId idUsuario) throws Exception {
-    try {
-        // Consultar usuario desde el DAO
-        Usuarios usuario = usuarioDAO.consultarPorId(idUsuario);
 
-        // Validar si el usuario existe
-        if (usuario == null) {
-            throw new Exception("Usuario no encontrado con ID: " + idUsuario);
+    public List<String> consultarGenerosBaneados(ObjectId idUsuario) throws Exception {
+        try {
+            // Consultar usuario desde el DAO
+            Usuarios usuario = usuarioDAO.consultarPorId(idUsuario);
+
+            // Validar si el usuario existe
+            if (usuario == null) {
+                throw new Exception("Usuario no encontrado con ID: " + idUsuario);
+            }
+
+            // Devolver la lista de géneros baneados
+            return usuario.getGenerosNoDeseados();
+        } catch (Exception e) {
+            throw new Exception("Error al consultar géneros baneados: " + e.getMessage(), e);
         }
-
-        // Devolver la lista de géneros baneados
-        return usuario.getGenerosNoDeseados();
-    } catch (Exception e) {
-        throw new Exception("Error al consultar géneros baneados: " + e.getMessage(), e);
     }
-}
-    
-    
 
     /*
     public boolean agregarGeneroNoDeseado(ObjectId idUsuario, String genero) throws NegocioException {
@@ -178,6 +176,4 @@ public List<String> consultarGenerosBaneados(ObjectId idUsuario) throws Exceptio
             throw new NegocioException("Error al eliminar el género no deseado: " + e.getMessage(), e);
         }
     }*/
-
-
 }
