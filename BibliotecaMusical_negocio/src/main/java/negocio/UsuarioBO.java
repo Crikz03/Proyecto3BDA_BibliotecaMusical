@@ -13,6 +13,8 @@ import excepciones.PersistenciaException;
 import interfaces.IUsuarioBO;
 import java.util.List;
 import interfaces.IUsuarioDAO;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import objetos.Favorito;
 import objetos.Usuarios;
 import org.bson.types.ObjectId;
@@ -121,8 +123,13 @@ public class UsuarioBO implements IUsuarioBO {
         }
     }
 
-    public void actualizarGenerosNoDeseados(ObjectId usuarioId, List<String> generosNoDeseados) throws PersistenciaException {
-        usuarioDAO.actualizarGenerosNoDeseados(usuarioId, generosNoDeseados);
+    @Override
+    public void actualizarGenerosNoDeseados(ObjectId usuarioId, List<String> generosNoDeseados) throws NegocioException {
+        try {
+            usuarioDAO.actualizarGenerosNoDeseados(usuarioId, generosNoDeseados);
+        } catch (PersistenciaException ex) {
+            Logger.getLogger(UsuarioBO.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public UsuarioDTO consultarPorId(ObjectId idUsuario) throws PersistenciaException {

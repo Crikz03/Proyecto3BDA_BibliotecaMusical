@@ -314,7 +314,7 @@ System.out.println("Generos baneados: " + generosNoDeseados);
 
             // Actualizar el usuario localmente (opcional)
             usuarioLoggeado.setGenerosNoDeseados(generosSeleccionados);
-        } catch (PersistenciaException e) {
+        } catch (NegocioException e) {
             JOptionPane.showMessageDialog(this, "Error al actualizar los géneros baneados: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }

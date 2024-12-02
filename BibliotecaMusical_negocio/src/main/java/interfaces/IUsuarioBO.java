@@ -66,7 +66,7 @@ public interface IUsuarioBO {
     
     UsuarioDTO consultarUsuarioCorreo(String correo) throws NegocioException;
 
-    void actualizarGenerosNoDeseados(ObjectId usuarioId, List<String> generosBaneados) throws PersistenciaException;
+    void actualizarGenerosNoDeseados(ObjectId usuarioId, List<String> generosNoDeseados) throws NegocioException;
     /*
     public boolean agregarGeneroNoDeseado(ObjectId idUsuario, String genero) throws NegocioException {
     try {
