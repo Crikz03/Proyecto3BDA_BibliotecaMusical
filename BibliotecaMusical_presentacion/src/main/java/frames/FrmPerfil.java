@@ -19,18 +19,12 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.event.ActionListener;
 import java.awt.geom.Ellipse2D;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.BorderFactory;
@@ -46,11 +40,7 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.ListSelectionModel;
 import javax.swing.border.LineBorder;
-import objetos.Albumes;
-import objetos.Artistas;
-import objetos.DetallesCancion;
 import recursos.Forms;
 import recursos.GestorImagenesMongo;
 import recursos.Imagen;
@@ -337,7 +327,7 @@ public class FrmPerfil extends javax.swing.JFrame {
     }//GEN-LAST:event_bAlbumes4ActionPerformed
 
     private void bAlbumes3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAlbumes3ActionPerformed
-        // TODO add your handling code here:
+        Forms.cargarForm(new FrmPestañaCanciones(usuarioLoggeado), this);
     }//GEN-LAST:event_bAlbumes3ActionPerformed
 
     private void bAlbumes2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAlbumes2ActionPerformed
@@ -345,15 +335,15 @@ public class FrmPerfil extends javax.swing.JFrame {
     }//GEN-LAST:event_bAlbumes2ActionPerformed
 
     private void bAlbumes1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAlbumes1ActionPerformed
-        // TODO add your handling code here:
+        Forms.cargarForm(new FrmPestañaArtistas(usuarioLoggeado), this);
     }//GEN-LAST:event_bAlbumes1ActionPerformed
 
     private void bAlbumesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAlbumesActionPerformed
-        // TODO add your handling code here:
+        Forms.cargarForm(new FrmPestañaAlbumes(usuarioLoggeado), this);
     }//GEN-LAST:event_bAlbumesActionPerformed
 
     private void bHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bHomeActionPerformed
-        // TODO add your handling code here:
+        Forms.cargarForm(new FrmInicio(usuarioLoggeado), this);
     }//GEN-LAST:event_bHomeActionPerformed
 
     private void btnEditarGenerosBaneadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarGenerosBaneadosActionPerformed
