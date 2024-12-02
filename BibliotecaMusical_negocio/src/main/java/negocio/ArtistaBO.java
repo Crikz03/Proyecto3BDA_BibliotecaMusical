@@ -12,7 +12,10 @@ import excepciones.NegocioException;
 import excepciones.PersistenciaException;
 import interfaces.IArtistaBO;
 import interfaces.IArtistaDAO;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import objetos.Artistas;
@@ -28,7 +31,7 @@ public class ArtistaBO implements IArtistaBO {
     private final IArtistaDAO artistaDAO;
 
     public ArtistaBO() {
-        this.artistaDAO = new ArtistaDAO(); 
+        this.artistaDAO = new ArtistaDAO();
     }
 
     /**
@@ -138,7 +141,15 @@ public class ArtistaBO implements IArtistaBO {
         }
     }
 
-
-
+    public List<String> obtenerGenerosDeArtistas() throws PersistenciaException {
+        List<Artistas> artistas = artistaDAO.obtenerTodos(); // Recupera todos los artistas
+        Set<String> generos = new HashSet<>();
+        for (Artistas artista : artistas) {
+            if (artista.getGenero() != null) {
+                generos.add(artista.getGenero()); // Agrega géneros únicos
+            }
+        }
+        return new ArrayList<>(generos);
+    }
 
 }

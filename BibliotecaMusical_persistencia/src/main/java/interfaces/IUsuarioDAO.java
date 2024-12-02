@@ -29,4 +29,8 @@ public interface IUsuarioDAO {
     boolean agregarAFavoritos(ObjectId idUsuario, Favorito favorito) throws PersistenciaException;
 
     boolean agregarAFavoritos(ObjectId idUsuario, List<Favorito> favoritos) throws PersistenciaException;
+
+    void actualizarGenerosNoDeseados(ObjectId usuarioId, List<String> generosBaneados) throws PersistenciaException;
+
+    Usuarios consultarPorId(ObjectId idUsuario) throws PersistenciaException;
 }

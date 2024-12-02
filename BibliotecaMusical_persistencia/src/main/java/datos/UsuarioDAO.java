@@ -154,6 +154,18 @@ public class UsuarioDAO implements IUsuarioDAO {
         }
     }
 
+    public Usuarios consultarPorId(ObjectId idUsuario) throws PersistenciaException {
+        try {
+            Usuarios usuario = this.coleccionUsuarios.find(eq("_id", idUsuario)).first();
+            if (usuario == null) {
+                throw new PersistenciaException("No se encontró un usuario con el ID: " + idUsuario);
+            }
+            return usuario;
+        } catch (MongoException e) {
+            throw new PersistenciaException("Error al consultar el usuario con ID: " + idUsuario);
+        }
+    }
+
     @Override
     public Usuarios consultar(Usuarios u) throws PersistenciaException {
         try {
@@ -165,25 +177,24 @@ public class UsuarioDAO implements IUsuarioDAO {
     }
 
     @Override
-public Usuarios consultarCorreo(String correo) throws PersistenciaException {
-    if (correo == null || correo.isEmpty()) {
-        throw new PersistenciaException("El correo proporcionado es inválido.");
-    }
-
-    try {
-        // Busca el usuario por correo electrónico
-        Usuarios result = this.coleccionUsuarios.find(eq("correo", correo)).first();
-        if (result == null) {
-            System.out.println("No se encontró ningún usuario con el correo: " + correo);
+    public Usuarios consultarCorreo(String correo) throws PersistenciaException {
+        if (correo == null || correo.isEmpty()) {
+            throw new PersistenciaException("El correo proporcionado es inválido.");
         }
-        return result;
 
-    } catch (MongoException e) {
-        e.printStackTrace();
-        throw new PersistenciaException("Error al buscar el usuario por correo: " + correo);
+        try {
+            // Busca el usuario por correo electrónico
+            Usuarios result = this.coleccionUsuarios.find(eq("correo", correo)).first();
+            if (result == null) {
+                System.out.println("No se encontró ningún usuario con el correo: " + correo);
+            }
+            return result;
+
+        } catch (MongoException e) {
+            e.printStackTrace();
+            throw new PersistenciaException("Error al buscar el usuario por correo: " + correo);
+        }
     }
-}
-
 
     @Override
     public List<Usuarios> consultarTodos() throws PersistenciaException {
@@ -193,6 +204,17 @@ public Usuarios consultarCorreo(String correo) throws PersistenciaException {
             return usuarios;
         } catch (MongoException e) {
             throw new PersistenciaException("No se pudieron encontrar los usuarios.");
+        }
+    }
+
+    public void actualizarGenerosNoDeseados(ObjectId usuarioId, List<String> generosNoDeseados) throws PersistenciaException {
+        try {
+            coleccionUsuarios.updateOne(
+                    Filters.eq("_id", usuarioId),
+                    Updates.set("generosNoDeseados", generosNoDeseados)
+            );
+        } catch (Exception e) {
+            throw new PersistenciaException("Error al actualizar los géneros baneados: " + e.getMessage());
         }
     }
 

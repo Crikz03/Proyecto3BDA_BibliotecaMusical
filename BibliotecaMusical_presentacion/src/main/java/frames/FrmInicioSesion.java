@@ -58,12 +58,12 @@ public class FrmInicioSesion extends javax.swing.JFrame {
         panelArtistas.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(204, 0, 153)));
 
         jLabel4.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel4.setFont(new java.awt.Font("Georgia", 3, 18)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Correo electrónico:");
 
         jLabel5.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel5.setFont(new java.awt.Font("Georgia", 3, 18)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Contraseña:");
 
@@ -71,7 +71,8 @@ public class FrmInicioSesion extends javax.swing.JFrame {
         txtPass.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 255)));
 
         bInicia.setBackground(new java.awt.Color(204, 0, 204));
-        bInicia.setFont(new java.awt.Font("Georgia", 3, 18)); // NOI18N
+        bInicia.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        bInicia.setForeground(new java.awt.Color(255, 255, 255));
         bInicia.setText("Iniciar Sesión");
         bInicia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -80,7 +81,7 @@ public class FrmInicioSesion extends javax.swing.JFrame {
         });
 
         bRegistrar.setBackground(new java.awt.Color(0, 0, 0));
-        bRegistrar.setFont(new java.awt.Font("Georgia", 3, 18)); // NOI18N
+        bRegistrar.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         bRegistrar.setForeground(new java.awt.Color(255, 255, 255));
         bRegistrar.setText("Registrarse");
         bRegistrar.setContentAreaFilled(false);
@@ -91,7 +92,7 @@ public class FrmInicioSesion extends javax.swing.JFrame {
         });
 
         bAlbumes.setBackground(new java.awt.Color(0, 0, 0));
-        bAlbumes.setFont(new java.awt.Font("Georgia", 3, 18)); // NOI18N
+        bAlbumes.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         bAlbumes.setForeground(new java.awt.Color(255, 255, 255));
         bAlbumes.setText("Iniciar Sesion");
         bAlbumes.setContentAreaFilled(false);
@@ -147,14 +148,14 @@ public class FrmInicioSesion extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(130, Short.MAX_VALUE)
+                .addContainerGap(144, Short.MAX_VALUE)
                 .addComponent(panelArtistas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(118, 118, 118))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(86, Short.MAX_VALUE)
+                .addContainerGap(80, Short.MAX_VALUE)
                 .addComponent(panelArtistas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(16, 16, 16))
         );

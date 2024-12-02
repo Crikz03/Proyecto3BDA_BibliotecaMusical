@@ -121,6 +121,47 @@ public class UsuarioBO implements IUsuarioBO {
         }
     }
 
+    public void actualizarGenerosNoDeseados(ObjectId usuarioId, List<String> generosNoDeseados) throws PersistenciaException {
+        usuarioDAO.actualizarGenerosNoDeseados(usuarioId, generosNoDeseados);
+    }
+
+    public UsuarioDTO consultarPorId(ObjectId idUsuario) throws PersistenciaException {
+        try {
+            // Obtener el usuario desde el DAO
+            Usuarios usuarioEntidad = usuarioDAO.consultarPorId(idUsuario);
+
+            if (usuarioEntidad == null) {
+                throw new PersistenciaException("No se encontró un usuario con el ID proporcionado.");
+            }
+
+            // Convertir la entidad a DTO usando el convertidor genérico
+            return ConvertidorGeneral.convertidoraDTO(usuarioEntidad, UsuarioDTO.class);
+        } catch (PersistenciaException e) {
+            throw e; // Re-lanzar excepciones de persistencia
+        } catch (Exception e) {
+            throw new PersistenciaException("Error inesperado al consultar el usuario: " + e.getMessage());
+        }
+    }
+    
+public List<String> consultarGenerosBaneados(ObjectId idUsuario) throws Exception {
+    try {
+        // Consultar usuario desde el DAO
+        Usuarios usuario = usuarioDAO.consultarPorId(idUsuario);
+
+        // Validar si el usuario existe
+        if (usuario == null) {
+            throw new Exception("Usuario no encontrado con ID: " + idUsuario);
+        }
+
+        // Devolver la lista de géneros baneados
+        return usuario.getGenerosNoDeseados();
+    } catch (Exception e) {
+        throw new Exception("Error al consultar géneros baneados: " + e.getMessage(), e);
+    }
+}
+    
+    
+
     /*
     public boolean agregarGeneroNoDeseado(ObjectId idUsuario, String genero) throws NegocioException {
         try {
@@ -137,4 +178,6 @@ public class UsuarioBO implements IUsuarioBO {
             throw new NegocioException("Error al eliminar el género no deseado: " + e.getMessage(), e);
         }
     }*/
+
+
 }

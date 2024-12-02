@@ -7,6 +7,7 @@ package interfaces;
 import dto.ArtistaDTO;
 import dto.IntegrantesDTO;
 import excepciones.NegocioException;
+import excepciones.PersistenciaException;
 import java.util.List;
 import org.bson.types.ObjectId;
 
@@ -71,5 +72,7 @@ public interface IArtistaBO {
      * @throws NegocioException Si ocurre un error de negocio o persistencia.
      */
     List<IntegrantesDTO> obtenerIntegrantesInactivos(ObjectId idArtista) throws NegocioException;
+
+    List<String> obtenerGenerosDeArtistas() throws PersistenciaException;
     
 }

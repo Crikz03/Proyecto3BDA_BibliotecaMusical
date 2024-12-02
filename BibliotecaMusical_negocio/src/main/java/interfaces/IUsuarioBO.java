@@ -7,6 +7,8 @@ package interfaces;
 import dto.UsuarioDTO;
 import excepciones.NegocioException;
 import excepciones.PersistenciaException;
+import java.util.List;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -63,5 +65,22 @@ public interface IUsuarioBO {
     boolean registrarUsuario(UsuarioDTO usuarioDTO) throws NegocioException;
     
     UsuarioDTO consultarUsuarioCorreo(String correo) throws NegocioException;
+
+    void actualizarGenerosNoDeseados(ObjectId usuarioId, List<String> generosBaneados) throws PersistenciaException;
+    /*
+    public boolean agregarGeneroNoDeseado(ObjectId idUsuario, String genero) throws NegocioException {
+    try {
+    return usuarioDAO.agregarGeneroNoDeseado(idUsuario, genero);//////////////////////////////////////////////////////////////
+    } catch (PersistenciaException e) {
+    throw new NegocioException("Error al agregar el género no deseado: " + e.getMessage(), e);
+    }
+    }
+    public boolean eliminarGeneroNoDeseado(ObjectId idUsuario, String genero) throws NegocioException {
+    try {
+    return usuarioDAO.eliminarGeneroNoDeseado(idUsuario, genero);/////////////////////////////////////////////////////////////
+    } catch (PersistenciaException e) {
+    throw new NegocioException("Error al eliminar el género no deseado: " + e.getMessage(), e);
+    }
+    }*/
     
 }
