@@ -18,9 +18,8 @@ import org.bson.types.ObjectId;
  */
 public interface IAlbumDAO {
 
-
     List<Albumes> crearAlbumesParaArtista(Artistas artista);
-    
+
     List<Albumes> buscarPorArtista(ObjectId artistaId) throws PersistenciaException;
 
     List<Albumes> buscarPorFechaLanzamiento(Date fechaInicio, Date fechaFin) throws PersistenciaException;
@@ -32,9 +31,11 @@ public interface IAlbumDAO {
     void insertarAlbum(Albumes album) throws PersistenciaException;
 
     List<DetallesCancion> obtenerCancionesDeAlbum(ObjectId albumId) throws PersistenciaException;
-    
+
     List<Albumes> obtenerCincoAlbumes() throws PersistenciaException;
-    
+
+    List<Albumes> obtenerAlbumes() throws PersistenciaException;
+
     List<DetallesCancion> obtenerCancionesDeAlbumes() throws PersistenciaException;
-    
+
 }

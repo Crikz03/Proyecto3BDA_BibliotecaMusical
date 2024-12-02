@@ -4,14 +4,13 @@
  */
 package frames;
 
-import datos.AlbumDAO;
-import datos.ArtistaDAO;
-import datos.DetallesCancionDAO;
+import dto.AlbumDTO;
+import dto.ArtistaDTO;
+import dto.DetallesCancionDTO;
 import dto.UsuarioDTO;
-import excepciones.PersistenciaException;
-import interfaces.IAlbumDAO;
-import interfaces.IArtistaDAO;
-import interfaces.IDetallesCancionDAO;
+import excepciones.NegocioException;
+import interfaces.IAlbumBO;
+import interfaces.IArtistaBO;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -30,7 +29,6 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.Icon;
@@ -40,9 +38,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
-import objetos.Albumes;
-import objetos.Artistas;
-import objetos.DetallesCancion;
+import negocio.AlbumBO;
+import negocio.ArtistaBO;
 import recursos.Forms;
 import recursos.GestorImagenesMongo;
 import recursos.Imagen;
@@ -53,21 +50,19 @@ import recursos.Imagen;
  */
 public class FrmInicio extends javax.swing.JFrame {
 
-    private IArtistaDAO adao;
-    private IAlbumDAO albumdao;
-    private IDetallesCancionDAO candao;
+    private IArtistaBO abo;
+    private IAlbumBO albumbo;
     private UsuarioDTO usuarioLoggeado;
 
     /**
      * Creates new form FrmHome
+     *
      * @param usuarioLoggeado
      */
     public FrmInicio(UsuarioDTO usuarioLoggeado) {
         initComponents();
-        this.SetImageLabel(jLabel1, "images/logo.png");
-        this.adao = new ArtistaDAO();
-        this.albumdao = new AlbumDAO();
-        this.candao = new DetallesCancionDAO();
+        this.abo = new ArtistaBO();
+        this.albumbo = new AlbumBO();
         this.usuarioLoggeado = usuarioLoggeado;
 
         this.configuraFrame();
@@ -75,6 +70,7 @@ public class FrmInicio extends javax.swing.JFrame {
 
     private void configuraFrame() {
         setSize(1830, 1000);
+        this.SetImageLabel(jLabel1, "images/logo.png");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         this.obtieneArtistas();
@@ -395,11 +391,11 @@ public class FrmInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_bHomeActionPerformed
 
     private void bAlbumesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAlbumesActionPerformed
-        // TODO add your handling code here:
+        Forms.cargarForm(new FrmPestañaAlbumes(usuarioLoggeado), this);
     }//GEN-LAST:event_bAlbumesActionPerformed
 
     private void bAlbumes1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAlbumes1ActionPerformed
-        // TODO add your handling code here:
+        Forms.cargarForm(new FrmPestañaArtistas(usuarioLoggeado), this);
     }//GEN-LAST:event_bAlbumes1ActionPerformed
 
     private void bAlbumes2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAlbumes2ActionPerformed
@@ -407,11 +403,10 @@ public class FrmInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_bAlbumes2ActionPerformed
 
     private void bAlbumes3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAlbumes3ActionPerformed
-        // TODO add your handling code here:
+        Forms.cargarForm(new FrmPestañaCanciones(usuarioLoggeado), this);
     }//GEN-LAST:event_bAlbumes3ActionPerformed
 
     private void btnPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPerfilActionPerformed
-       
         Forms.cargarForm(new FrmPerfil(usuarioLoggeado), this);
     }//GEN-LAST:event_btnPerfilActionPerformed
 
@@ -424,10 +419,6 @@ public class FrmInicio extends javax.swing.JFrame {
         Icon icon = new ImageIcon(image.getImage().getScaledInstance(labelname.getWidth(), labelname.getHeight(), Image.SCALE_DEFAULT));
         labelname.setIcon(icon);
         this.repaint();
-    }
-    
-    private void editarPerfil(UsuarioDTO usuario) {
-        Forms.cargarForm(new FrmEditarPerfil(usuario), this);
     }
 
     private void cargarDatosUsuario() {
@@ -446,7 +437,7 @@ public class FrmInicio extends javax.swing.JFrame {
     private void obtieneArtistas() {
         try {
             // Obtener la lista de artistas
-            List<Artistas> artistas = this.adao.obtenerCincoArtistas();
+            List<ArtistaDTO> artistas = this.abo.obtenerCincoArtistas();
             Collections.shuffle(artistas);
 
             // Configurar el layout con espacio adicional para el botón
@@ -454,15 +445,14 @@ public class FrmInicio extends javax.swing.JFrame {
             panelArtistas.setBackground(new Color(18, 18, 18));
 
             // Crear los paneles redondos para los artistas
-            for (Artistas artista : artistas) {
+            for (ArtistaDTO artista : artistas) {
                 JPanel panelArtista = creaPanelRedondo(artista.getNombre(), artista.getImagen());
                 panelArtistas.add(panelArtista);
             }
 
             // Crear y agregar el botón "Ver Todos" al final
             JButton btnVerTodos = crearBotonVerTodos("Ver todos los artistas", e -> {
-                System.out.println("Botón 'Ver Todos' presionado.");
-                // Acción al presionar "Ver Todos" (como abrir otra ventana)
+                Forms.cargarForm(new FrmPestañaArtistas(usuarioLoggeado), this);
             });
             JPanel panelBoton = new JPanel();
             panelBoton.setBackground(new Color(18, 18, 18));
@@ -473,28 +463,27 @@ public class FrmInicio extends javax.swing.JFrame {
 
             panelArtistas.revalidate();
             panelArtistas.repaint();
-        } catch (PersistenciaException e) {
+        } catch (NegocioException e) {
             e.printStackTrace();
         }
     }
 
     private void obtieneAlbumes() {
         try {
-            List<Albumes> albumes = this.albumdao.obtenerCincoAlbumes();
+            List<AlbumDTO> albumes = this.albumbo.obtenerCincoAlbumes();
             Collections.shuffle(albumes);
 
             panelAlbumes.setLayout(new GridLayout(1, albumes.size(), 1, 0));
             panelAlbumes.setBackground(new Color(18, 18, 18));
 
-            for (Albumes album : albumes) {
+            for (AlbumDTO album : albumes) {
                 JPanel panelAlbum = creaPanel(album.getNombre(), album.getImagenPortada());
                 panelAlbumes.add(panelAlbum);
             }
 
             // Crear y agregar el botón "Ver Todos" al final
             JButton btnVerTodos = crearBotonVerTodos("Ver todos los artistas", e -> {
-                System.out.println("Botón 'Ver Todos' presionado.");
-                // Acción al presionar "Ver Todos" (como abrir otra ventana)
+                Forms.cargarForm(new FrmPestañaAlbumes(usuarioLoggeado), this);
             });
             JPanel panelBoton = new JPanel();
             panelBoton.setBackground(new Color(18, 18, 18));
@@ -505,34 +494,33 @@ public class FrmInicio extends javax.swing.JFrame {
 
             panelAlbumes.revalidate();
             panelAlbumes.repaint();
-        } catch (PersistenciaException e) {
+        } catch (NegocioException e) {
             e.printStackTrace();
         }
     }
 
     private void obtieneCanciones() {
         try {
-            List<DetallesCancion> canciones = this.albumdao.obtenerCancionesDeAlbumes();
+            List<DetallesCancionDTO> canciones = this.albumbo.obtenerCancionesDeAlbumes();
 
-            Set<DetallesCancion> cancionesUnicas = new HashSet<>(canciones);
-            List<DetallesCancion> cancionesSinDuplicados = new ArrayList<>(cancionesUnicas);
+            Set<DetallesCancionDTO> cancionesUnicas = new HashSet<>(canciones);
+            List<DetallesCancionDTO> cancionesSinDuplicados = new ArrayList<>(cancionesUnicas);
 
             Collections.shuffle(cancionesSinDuplicados);
 
-            List<DetallesCancion> cancionesAMostrar = cancionesSinDuplicados.subList(0, Math.min(5, cancionesSinDuplicados.size()));
+            List<DetallesCancionDTO> cancionesAMostrar = cancionesSinDuplicados.subList(0, Math.min(5, cancionesSinDuplicados.size()));
 
             panelCanciones.setLayout(new GridLayout(1, cancionesAMostrar.size(), 1, 0));
             panelCanciones.setBackground(new Color(18, 18, 18));
 
-            for (DetallesCancion cancion : cancionesAMostrar) {
+            for (DetallesCancionDTO cancion : cancionesAMostrar) {
                 JPanel panelArtista = creaPanel(cancion.getTitulo(), cancion.getFotoAlbum());
                 panelCanciones.add(panelArtista);
             }
 
             // Crear y agregar el botón "Ver Todos" al final
             JButton btnVerTodos = crearBotonVerTodos("Ver todos los artistas", e -> {
-                System.out.println("Botón 'Ver Todos' presionado.");
-                // Acción al presionar "Ver Todos" (como abrir otra ventana)
+                Forms.cargarForm(new FrmPestañaCanciones(usuarioLoggeado), this);
             });
             JPanel panelBoton = new JPanel();
             panelBoton.setBackground(new Color(18, 18, 18));
@@ -543,7 +531,7 @@ public class FrmInicio extends javax.swing.JFrame {
 
             panelCanciones.revalidate();
             panelCanciones.repaint();
-        } catch (PersistenciaException e) {
+        } catch (NegocioException e) {
             e.printStackTrace();
         }
     }

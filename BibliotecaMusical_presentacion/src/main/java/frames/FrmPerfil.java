@@ -279,7 +279,7 @@ public class FrmPerfil extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnEditarGenerosBaneados);
-        btnEditarGenerosBaneados.setBounds(234, 640, 207, 26);
+        btnEditarGenerosBaneados.setBounds(234, 640, 211, 30);
 
         lblFoto.setText("jLabel5");
         jPanel1.add(lblFoto);
@@ -295,7 +295,7 @@ public class FrmPerfil extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnEditarDatosPersonales1);
-        btnEditarDatosPersonales1.setBounds(312, 259, 197, 26);
+        btnEditarDatosPersonales1.setBounds(312, 259, 201, 30);
 
         lblCorreo.setBackground(new java.awt.Color(0, 0, 0));
         lblCorreo.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -312,17 +312,17 @@ public class FrmPerfil extends javax.swing.JFrame {
         jScrollPane1.setViewportView(listaGenerosBaneados);
 
         jPanel1.add(jScrollPane1);
-        jScrollPane1.setBounds(250, 390, 130, 146);
+        jScrollPane1.setBounds(250, 390, 130, 150);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1240, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 803, Short.MAX_VALUE)
         );
 
         pack();

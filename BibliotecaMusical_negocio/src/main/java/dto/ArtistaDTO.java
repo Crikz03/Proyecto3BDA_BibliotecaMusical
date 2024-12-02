@@ -6,6 +6,7 @@ package dto;
 
 import java.util.List;
 import org.bson.types.ObjectId;
+import recursos.Imagen;
 
 /**
  *
@@ -17,13 +18,13 @@ public class ArtistaDTO {
     private String nombre;                // Nombre del artista
     private String tipo;                  // Tipo de artista: "Solista" o "Banda"
     private String genero;                // Género musical
-    private String imagen;                // Ruta o base64 de la imagen
+    private Imagen imagen;                // Ruta o base64 de la imagen
     private List<IntegrantesDTO> integrantes; // Lista de integrantes (solo si es banda)
 
     public ArtistaDTO() {
     }
 
-    public ArtistaDTO(ObjectId id, String nombre, String tipo, String genero, String imagen, List<IntegrantesDTO> integrantes) {
+    public ArtistaDTO(ObjectId id, String nombre, String tipo, String genero, Imagen imagen, List<IntegrantesDTO> integrantes) {
         this.id = id;
         this.nombre = nombre;
         this.tipo = tipo;
@@ -65,11 +66,11 @@ public class ArtistaDTO {
         this.genero = genero;
     }
 
-    public String getImagen() {
+    public Imagen getImagen() {
         return imagen;
     }
 
-    public void setImagen(String imagen) {
+    public void setImagen(Imagen imagen) {
         this.imagen = imagen;
     }
 

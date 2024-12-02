@@ -70,5 +70,29 @@ public interface IAlbumBO {
      * @throws NegocioException Si ocurre un error de negocio o persistencia.
      */
     List<DetallesCancionDTO> obtenerCancionesDeAlbum(ObjectId idAlbum) throws NegocioException;
+
+    /**
+     * Obtiene cinco albumes de los artistas para mostrar.
+     *
+     * @return Lista de cinco albumes de artistas.
+     * @throws NegocioException Si ocurre un error de negocio o persistencia.
+     */
+    List<AlbumDTO> obtenerCincoAlbumes() throws NegocioException;
     
+    /**
+     * Obtiene los albumes de los artistas para mostrar.
+     *
+     * @return Lista de los albumes de artistas.
+     * @throws NegocioException Si ocurre un error de negocio o persistencia.
+     */
+    List<AlbumDTO> obtenerAlbumes() throws NegocioException;
+
+    /**
+     * Obtiene las canciones de los albumes.
+     *
+     * @return Lista de las canciones de los albumes de diferentes artistas.
+     * @throws NegocioException Si ocurre un error de negocio o persistencia.
+     */
+    List<DetallesCancionDTO> obtenerCancionesDeAlbumes() throws NegocioException;
+
 }

@@ -152,6 +152,18 @@ public class AlbumDAO implements IAlbumDAO {
             throw new PersistenciaException("Error al obtener 6 artistas: " + e.getMessage());
         }
     }
+    
+    
+    @Override
+    public List<Albumes> obtenerAlbumes() throws PersistenciaException {
+        try {
+            // Consulta para obtener 6 artistas
+            return this.coleccionAlbumes.find()
+                    .into(new ArrayList<>());
+        } catch (Exception e) {
+            throw new PersistenciaException("Error al obtener 6 artistas: " + e.getMessage());
+        }
+    }
 
     @Override
     public List<DetallesCancion> obtenerCancionesDeAlbumes() throws PersistenciaException {

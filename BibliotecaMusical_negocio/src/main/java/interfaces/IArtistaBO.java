@@ -9,6 +9,7 @@ import dto.IntegrantesDTO;
 import excepciones.NegocioException;
 import excepciones.PersistenciaException;
 import java.util.List;
+import objetos.Artistas;
 import org.bson.types.ObjectId;
 
 /**
@@ -73,6 +74,10 @@ public interface IArtistaBO {
      */
     List<IntegrantesDTO> obtenerIntegrantesInactivos(ObjectId idArtista) throws NegocioException;
 
-    List<String> obtenerGenerosDeArtistas() throws PersistenciaException;
+    List<String> obtenerGenerosDeArtistas() throws NegocioException;
+    
+    List<ArtistaDTO> obtenerArtistas() throws NegocioException;
+    
+    List<ArtistaDTO> obtenerCincoArtistas() throws NegocioException;
     
 }

@@ -7,6 +7,7 @@ package dto;
 import java.util.Date;
 import java.util.List;
 import org.bson.types.ObjectId;
+import recursos.Imagen;
 
 /**
  *
@@ -18,7 +19,7 @@ public class AlbumDTO {
     private String nombre;                // Nombre del álbum
     private Date fechaLanzamiento;        // Fecha de lanzamiento
     private List<String> genero;          // Géneros del álbum
-    private String imagenPortada;         // Ruta o base64 de la imagen de portada
+    private Imagen imagenPortada;         // Ruta o base64 de la imagen de portada
     private ObjectId artistaId;           // ID del artista
     private String nombreArtista;         // Nombre del artista
     private List<DetallesCancionDTO> canciones; // Lista de canciones en formato DTO
@@ -26,7 +27,7 @@ public class AlbumDTO {
     public AlbumDTO() {
     }
 
-    public AlbumDTO(ObjectId id, String nombre, Date fechaLanzamiento, List<String> genero, String imagenPortada, ObjectId artistaId, String nombreArtista, List<DetallesCancionDTO> canciones) {
+    public AlbumDTO(ObjectId id, String nombre, Date fechaLanzamiento, List<String> genero, Imagen imagenPortada, ObjectId artistaId, String nombreArtista, List<DetallesCancionDTO> canciones) {
         this.id = id;
         this.nombre = nombre;
         this.fechaLanzamiento = fechaLanzamiento;
@@ -70,11 +71,11 @@ public class AlbumDTO {
         this.genero = genero;
     }
 
-    public String getImagenPortada() {
+    public Imagen getImagenPortada() {
         return imagenPortada;
     }
 
-    public void setImagenPortada(String imagenPortada) {
+    public void setImagenPortada(Imagen imagenPortada) {
         this.imagenPortada = imagenPortada;
     }
 
