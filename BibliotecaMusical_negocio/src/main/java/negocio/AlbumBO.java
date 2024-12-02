@@ -27,7 +27,7 @@ public class AlbumBO implements IAlbumBO {
     private final IAlbumDAO albumDAO;
 
     public AlbumBO() {
-        this.albumDAO = new AlbumDAO(); 
+        this.albumDAO = new AlbumDAO();
     }
 
     /**
@@ -138,6 +138,54 @@ public class AlbumBO implements IAlbumBO {
         try {
             List<DetallesCancion> detallesCanciones = albumDAO.obtenerCancionesDeAlbum(idAlbum);
             return ConvertidorGeneral.convertidoraListaDTO(detallesCanciones, DetallesCancionDTO.class);
+        } catch (PersistenciaException e) {
+            throw new NegocioException("Error al obtener canciones del álbum: " + e.getMessage(), e);
+        }
+    }
+
+    /**
+     * Obtiene cinco albumes de los artistas para mostrar.
+     *
+     * @return Lista de cinco albumes de artistas.
+     * @throws NegocioException Si ocurre un error de negocio o persistencia.
+     */
+    @Override
+    public List<AlbumDTO> obtenerCincoAlbumes() throws NegocioException {
+        try {
+            List<Albumes> albumes = albumDAO.obtenerCincoAlbumes();
+            return ConvertidorGeneral.convertidoraListaDTO(albumes, AlbumDTO.class);
+        } catch (PersistenciaException e) {
+            throw new NegocioException("Error al obtener los cinco álbumes: " + e.getMessage(), e);
+        }
+    }
+
+    /**
+     * Obtiene los albumes de los artistas para mostrar.
+     *
+     * @return Lista de los albumes de artistas.
+     * @throws NegocioException Si ocurre un error de negocio o persistencia.
+     */
+    @Override
+    public List<AlbumDTO> obtenerAlbumes() throws NegocioException {
+        try {
+            List<Albumes> albumes = albumDAO.obtenerAlbumes();
+            return ConvertidorGeneral.convertidoraListaDTO(albumes, AlbumDTO.class);
+        } catch (PersistenciaException e) {
+            throw new NegocioException("Error al obtener los álbumes: " + e.getMessage(), e);
+        }
+    }
+
+    /**
+     * Obtiene las canciones de los albumes.
+     *
+     * @return Lista de las canciones de los albumes de diferentes artistas.
+     * @throws NegocioException Si ocurre un error de negocio o persistencia.
+     */
+    @Override
+    public List<DetallesCancionDTO> obtenerCancionesDeAlbumes() throws NegocioException {
+        try {
+            List<DetallesCancion> canciones = albumDAO.obtenerCancionesDeAlbumes();
+            return ConvertidorGeneral.convertidoraListaDTO(canciones, DetallesCancionDTO.class);
         } catch (PersistenciaException e) {
             throw new NegocioException("Error al obtener canciones del álbum: " + e.getMessage(), e);
         }

@@ -51,21 +51,25 @@ public class FrmEditarGenerosBaneados extends javax.swing.JFrame {
      * Creates new form FrmRegistrarse
      */
     public FrmEditarGenerosBaneados(UsuarioDTO usuarioLoggeado) throws PersistenciaException {
-        initComponents();
-        this.usuariobo = new UsuarioBO();
-        this.usuarioLoggeado = usuarioLoggeado;
-        setLocationRelativeTo(null);
-        this.artistabo = new ArtistaBO();
-
-        List<String> generos = artistabo.obtenerGenerosDeArtistas();
-        List<String> generosNoDeseados = usuarioLoggeado.getGenerosNoDeseados();
-        if (generosNoDeseados == null) {
-            generosNoDeseados = new ArrayList<>(); // Usa una lista vacía si es null
+        try {
+            initComponents();
+            this.usuariobo = new UsuarioBO();
+            this.usuarioLoggeado = usuarioLoggeado;
+            setLocationRelativeTo(null);
+            this.artistabo = new ArtistaBO();
+            
+            List<String> generos = artistabo.obtenerGenerosDeArtistas();
+            List<String> generosNoDeseados = usuarioLoggeado.getGenerosNoDeseados();
+            if (generosNoDeseados == null) {
+                generosNoDeseados = new ArrayList<>(); // Usa una lista vacía si es null
+            }
+            System.out.println("Generos disponibles: " + generos);
+            System.out.println("Generos baneados: " + generosNoDeseados);
+            inicializarTablaGeneros(generos, generosNoDeseados);
+            this.setVisible(true);
+        } catch (NegocioException ex) {
+            Logger.getLogger(FrmEditarGenerosBaneados.class.getName()).log(Level.SEVERE, null, ex);
         }
-        System.out.println("Generos disponibles: " + generos);
-System.out.println("Generos baneados: " + generosNoDeseados);
-        inicializarTablaGeneros(generos, generosNoDeseados);
-        this.setVisible(true);
 
     }
 

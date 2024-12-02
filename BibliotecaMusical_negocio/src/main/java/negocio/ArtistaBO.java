@@ -141,15 +141,37 @@ public class ArtistaBO implements IArtistaBO {
         }
     }
 
-    public List<String> obtenerGenerosDeArtistas() throws PersistenciaException {
-        List<Artistas> artistas = artistaDAO.obtenerTodos(); // Recupera todos los artistas
-        Set<String> generos = new HashSet<>();
-        for (Artistas artista : artistas) {
-            if (artista.getGenero() != null) {
-                generos.add(artista.getGenero()); // Agrega géneros únicos
+    public List<String> obtenerGenerosDeArtistas() throws NegocioException {
+        try {
+            List<Artistas> artistas = artistaDAO.obtenerTodos(); // Recupera todos los artistas
+            Set<String> generos = new HashSet<>();
+            for (Artistas artista : artistas) {
+                if (artista.getGenero() != null) {
+                    generos.add(artista.getGenero()); // Agrega géneros únicos
+                }
             }
+            return new ArrayList<>(generos);
+        } catch (PersistenciaException ex) {
+            throw new NegocioException("Error al obtener los generos de artista: " + ex.getMessage());
         }
-        return new ArrayList<>(generos);
+    }
+
+    public List<ArtistaDTO> obtenerArtistas() throws NegocioException {
+        try {
+            List<Artistas> artistas = artistaDAO.obtenerTodos();
+            return ConvertidorGeneral.convertidoraListaDTO(artistas, ArtistaDTO.class);
+        } catch (PersistenciaException ex) {
+            throw new NegocioException("Error al obtener los artistas: " + ex.getMessage());
+        }
+    }
+
+    public List<ArtistaDTO> obtenerCincoArtistas() throws NegocioException {
+        try {
+            List<Artistas> artistas = artistaDAO.obtenerCincoArtistas();
+            return ConvertidorGeneral.convertidoraListaDTO(artistas, ArtistaDTO.class);
+        } catch (PersistenciaException ex) {
+            throw new NegocioException("Error al obtener los 5 artistas: " + ex.getMessage());
+        }
     }
 
 }

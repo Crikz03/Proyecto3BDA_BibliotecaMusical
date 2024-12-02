@@ -230,6 +230,7 @@ public class ArtistaDAO implements IArtistaDAO {
     }
     
     
+    @Override
     public List<Artistas> obtenerTodos() throws PersistenciaException {
     try {
         // Devuelve la lista de todos los artistas en la colección

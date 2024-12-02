@@ -5,6 +5,7 @@
 package dto;
 
 import org.bson.types.ObjectId;
+import recursos.Imagen;
 
 /**
  *
@@ -14,18 +15,18 @@ public class DetallesCancionDTO {
 
     private String titulo;          // Título de la canción
     private Integer duracion;       // Duración en segundos
-    private String duracionFormateada; // Duración en formato mm:ss
-    private ObjectId idArtista;     // ID del artista
+    private ObjectId idReferenciaAlbum;     // ID del artista
+    private Imagen fotoAlbum;
     private String nombreArtista;   // Nombre del artista
 
     public DetallesCancionDTO() {
     }
 
-    public DetallesCancionDTO(String titulo, Integer duracion, ObjectId idArtista, String nombreArtista) {
+    public DetallesCancionDTO(String titulo, Integer duracion, ObjectId idReferenciaAlbum, String nombreArtista) {
         this.titulo = titulo;
         this.duracion = duracion;
-        this.duracionFormateada = formatearDuracion(duracion);
-        this.idArtista = idArtista;
+        this.duracion = duracion;
+        this.idReferenciaAlbum = idReferenciaAlbum;
         this.nombreArtista = nombreArtista;
     }
 
@@ -42,21 +43,12 @@ public class DetallesCancionDTO {
         return duracion;
     }
 
-    public void setDuracion(Integer duracion) {
-        this.duracion = duracion;
-        this.duracionFormateada = formatearDuracion(duracion); // Actualizar formato al cambiar duración
-    }
-
-    public String getDuracionFormateada() {
-        return duracionFormateada;
-    }
-
     public ObjectId getIdArtista() {
-        return idArtista;
+        return idReferenciaAlbum;
     }
 
-    public void setIdArtista(ObjectId idArtista) {
-        this.idArtista = idArtista;
+    public void setIdArtista(ObjectId idReferenciaAlbum) {
+        this.idReferenciaAlbum = idReferenciaAlbum;
     }
 
     public String getNombreArtista() {
@@ -67,11 +59,23 @@ public class DetallesCancionDTO {
         this.nombreArtista = nombreArtista;
     }
 
-    // Método adicional para formatear la duración
-    private String formatearDuracion(Integer duracion) {
+    public Imagen getFotoAlbum() {
+        return fotoAlbum;
+    }
+
+    public void setFotoAlbum(Imagen fotoAlbum) {
+        this.fotoAlbum = fotoAlbum;
+    }
+
+    public void setDuracion(Integer duracion) {
+        this.duracion = duracion;
+    }
+
+    public String getDuracionFormateada() {
         if (duracion == null) {
             return "0:00";
         }
+
         int minutos = duracion / 60;
         int segundos = duracion % 60;
         return String.format("%d:%02d", minutos, segundos);
@@ -82,8 +86,7 @@ public class DetallesCancionDTO {
         return "DetallesDTO{" +
                 "titulo='" + titulo + '\'' +
                 ", duracion=" + duracion +
-                ", duracionFormateada='" + duracionFormateada + '\'' +
-                ", idArtista=" + idArtista +
+                ", idArtista=" + idReferenciaAlbum +
                 ", nombreArtista='" + nombreArtista + '\'' +
                 '}';
     }
