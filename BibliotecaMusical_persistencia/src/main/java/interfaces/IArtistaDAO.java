@@ -38,4 +38,8 @@ public interface IArtistaDAO {
     public List<Artistas> obtenerArtistasFavoritos(ObjectId usuarioId) throws PersistenciaException;
 
     public boolean verificarArtistaConGenero(ObjectId artistaId, List<String> generosNoDeseados) throws PersistenciaException;
+
+    List<String> obtenerGenerosDeArtistas() throws PersistenciaException;
+
+    List<Artistas> obtenerTodos() throws PersistenciaException;
 }

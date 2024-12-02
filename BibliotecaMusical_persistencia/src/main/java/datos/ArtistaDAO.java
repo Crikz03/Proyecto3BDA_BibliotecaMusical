@@ -5,6 +5,7 @@
 package datos;
 
 import com.mongodb.MongoException;
+import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Updates;
@@ -17,7 +18,9 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
@@ -204,4 +207,35 @@ public class ArtistaDAO implements IArtistaDAO {
             throw new PersistenciaException("Error al verificar el género del artista: " + e.getMessage());
         }
     }
+
+    public List<String> obtenerGenerosDeArtistas() throws PersistenciaException {
+        try {
+            // Recuperar todos los artistas
+            FindIterable<Artistas> artistas = coleccionArtistas.find();
+            Set<String> generosUnicos = new HashSet<>();
+
+            // Extraer géneros únicos
+            for (Artistas artista : artistas) {
+                if (artista.getGenero() != null && !artista.getGenero().isEmpty()) {
+                    generosUnicos.add(artista.getGenero());
+                }
+            }
+
+            // Retornar los géneros como lista
+            return new ArrayList<>(generosUnicos);
+        } catch (Exception e) {
+            // Lanzar PersistenciaException si ocurre algún error
+            throw new PersistenciaException("Error al obtener géneros de los artistas: " + e.getMessage());
+        }
+    }
+    
+    
+    public List<Artistas> obtenerTodos() throws PersistenciaException {
+    try {
+        // Devuelve la lista de todos los artistas en la colección
+        return coleccionArtistas.find().into(new ArrayList<>());
+    } catch (Exception e) {
+        throw new PersistenciaException("Error al obtener todos los artistas: " + e.getMessage());
+    }
+}
 }
