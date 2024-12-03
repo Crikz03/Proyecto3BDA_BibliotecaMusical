@@ -174,4 +174,17 @@ public class ArtistaBO implements IArtistaBO {
         }
     }
 
+    public ArtistaDTO obtenerArtistaPorId(ObjectId idArtista) throws NegocioException {
+        try {
+            // Asume que tienes un DAO o similar para acceder a los artistas
+            Artistas artista = artistaDAO.buscarPorId(idArtista); // Método DAO para buscar el artista
+            if (artista == null) {
+                throw new NegocioException("No se encontró el artista con ID: " + idArtista);
+            }
+            return ConvertidorGeneral.convertidoraDTO(artista, ArtistaDTO.class);
+        } catch (PersistenciaException e) {
+            throw new NegocioException("Error al obtener artista: " + e.getMessage(), e);
+        }
+    }
+
 }

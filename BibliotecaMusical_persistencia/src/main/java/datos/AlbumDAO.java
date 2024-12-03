@@ -152,8 +152,7 @@ public class AlbumDAO implements IAlbumDAO {
             throw new PersistenciaException("Error al obtener 6 artistas: " + e.getMessage());
         }
     }
-    
-    
+
     @Override
     public List<Albumes> obtenerAlbumes() throws PersistenciaException {
         try {
@@ -207,6 +206,28 @@ public class AlbumDAO implements IAlbumDAO {
             canciones.add(detalleCancion);
         }
         return canciones;
+    }
+
+    public List<DetallesCancion> buscarCancionesPorNombre(String nombre) throws PersistenciaException {
+        try {
+            // Buscar todos los álbumes
+            List<Albumes> albumes = coleccionAlbumes.find().into(new ArrayList<>());
+
+            // Lista para almacenar las canciones que coincidan con el nombre
+            List<DetallesCancion> cancionesEncontradas = new ArrayList<>();
+
+            for (Albumes album : albumes) {
+                for (DetallesCancion cancion : album.getDetallesCanciones()) {
+                    if (cancion.getTitulo().toLowerCase().contains(nombre.toLowerCase())) {
+                        cancionesEncontradas.add(cancion);
+                    }
+                }
+            }
+
+            return cancionesEncontradas;
+        } catch (Exception e) {
+            throw new PersistenciaException("Error al buscar canciones por nombre: " + e.getMessage());
+        }
     }
 
     @Override
@@ -570,8 +591,6 @@ public class AlbumDAO implements IAlbumDAO {
                 albumes.add(crearAlbumDannyOcean1(artista));
                 albumes.add(crearAlbumDannyOcean2(artista));
                 break;
-
-                
 
         }
 
@@ -3148,6 +3167,7 @@ public class AlbumDAO implements IAlbumDAO {
             return null;
         }
     }
+
     ////////////////////////////////////////////////////////////////////////////
     private Albumes crearAlbumBillieEilish1(Artistas artista) {
         try {
@@ -6204,6 +6224,7 @@ public class AlbumDAO implements IAlbumDAO {
         }
     }
 ///////////////////////////////////////////////////////////////////////////////
+
     private Albumes crearAlbumAnuelAA1(Artistas artista) {
         try {
             File imagenFile = new File("./images/realhastalamuerte.jpg");

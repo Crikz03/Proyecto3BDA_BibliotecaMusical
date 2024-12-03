@@ -70,7 +70,7 @@ public class FrmInicioSesion extends javax.swing.JFrame {
         txtPass.setFont(new java.awt.Font("Georgia", 3, 18)); // NOI18N
         txtPass.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 255)));
 
-        bInicia.setBackground(new java.awt.Color(204, 0, 204));
+        bInicia.setBackground(new java.awt.Color(255, 0, 153));
         bInicia.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         bInicia.setForeground(new java.awt.Color(255, 255, 255));
         bInicia.setText("Iniciar Sesión");

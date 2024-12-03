@@ -4,10 +4,12 @@
  */
 package frames;
 
+import dto.ArtistaDTO;
 import dto.DetallesCancionDTO;
 import dto.UsuarioDTO;
 import excepciones.NegocioException;
 import interfaces.IAlbumBO;
+import interfaces.IArtistaBO;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -19,6 +21,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 import javax.swing.BorderFactory;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -27,6 +30,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import negocio.AlbumBO;
+import negocio.ArtistaBO;
+import objetos.Artistas;
 import recursos.Forms;
 import recursos.GestorImagenesMongo;
 
@@ -38,6 +43,7 @@ public class FrmPestañaCanciones extends javax.swing.JFrame {
 
     private IAlbumBO albumbo;
     private UsuarioDTO usuarioLoggeado;
+    private IArtistaBO artistabo;
 
     /**
      * Creates new form FrmPestañaCanciones
@@ -46,6 +52,7 @@ public class FrmPestañaCanciones extends javax.swing.JFrame {
         initComponents();
         this.albumbo = new AlbumBO();
         this.usuarioLoggeado = usuarioLoggeado;
+        this.artistabo = new ArtistaBO();
 
         this.configuraFrame();
     }
@@ -102,16 +109,16 @@ public class FrmPestañaCanciones extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         lblNameUser = new javax.swing.JLabel();
         lblFoto = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 0));
-        jPanel2.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(204, 0, 153)));
-        jPanel2.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel2.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 3, new java.awt.Color(255, 0, 153)));
 
-        jLabel1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(204, 0, 153)));
+        jLabel1.setBorder(new javax.swing.border.MatteBorder(null));
 
         bHome.setBackground(new java.awt.Color(0, 0, 0));
         bHome.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
@@ -181,8 +188,8 @@ public class FrmPestañaCanciones extends javax.swing.JFrame {
 
         bCerrarSesion.setBackground(new java.awt.Color(0, 0, 0));
         bCerrarSesion.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        bCerrarSesion.setForeground(new java.awt.Color(204, 0, 204));
-        bCerrarSesion.setText("Cerrar Sesion");
+        bCerrarSesion.setForeground(new java.awt.Color(255, 0, 153));
+        bCerrarSesion.setText("Cerrar Sesión");
         bCerrarSesion.setContentAreaFilled(false);
         bCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -231,10 +238,10 @@ public class FrmPestañaCanciones extends javax.swing.JFrame {
                 .addComponent(bAlbumes4)
                 .addGap(18, 18, 18)
                 .addComponent(bCerrarSesion)
-                .addContainerGap(338, Short.MAX_VALUE))
+                .addContainerGap(340, Short.MAX_VALUE))
         );
 
-        panelCanciones.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(204, 0, 153)));
+        panelCanciones.setBorder(new javax.swing.border.MatteBorder(null));
 
         javax.swing.GroupLayout panelCancionesLayout = new javax.swing.GroupLayout(panelCanciones);
         panelCanciones.setLayout(panelCancionesLayout);
@@ -248,7 +255,7 @@ public class FrmPestañaCanciones extends javax.swing.JFrame {
         );
 
         jPanel3.setBackground(new java.awt.Color(0, 0, 0));
-        jPanel3.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(204, 0, 153)));
+        jPanel3.setBorder(new javax.swing.border.MatteBorder(null));
 
         lblNameUser.setBackground(new java.awt.Color(0, 0, 0));
         lblNameUser.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
@@ -278,6 +285,11 @@ public class FrmPestañaCanciones extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jLabel6.setBackground(new java.awt.Color(255, 0, 153));
+        jLabel6.setForeground(new java.awt.Color(255, 0, 153));
+        jLabel6.setText("jLabel6");
+        jLabel6.setOpaque(true);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -287,17 +299,21 @@ public class FrmPestañaCanciones extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 733, Short.MAX_VALUE)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(panelCanciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 736, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 3, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(panelCanciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31))
@@ -318,11 +334,11 @@ public class FrmPestañaCanciones extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bHomeActionPerformed
-       Forms.cargarForm(new FrmInicio(usuarioLoggeado), this);
+        Forms.cargarForm(new FrmInicio(usuarioLoggeado), this);
     }//GEN-LAST:event_bHomeActionPerformed
 
     private void bAlbumesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAlbumesActionPerformed
-       Forms.cargarForm(new FrmPestañaAlbumes(usuarioLoggeado), this);
+        Forms.cargarForm(new FrmPestañaAlbumes(usuarioLoggeado), this);
     }//GEN-LAST:event_bAlbumesActionPerformed
 
     private void bAlbumes1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAlbumes1ActionPerformed
@@ -346,7 +362,7 @@ public class FrmPestañaCanciones extends javax.swing.JFrame {
     }//GEN-LAST:event_bCerrarSesionActionPerformed
 
     private void obtieneCanciones() {
-        try {
+        /*try {
             List<DetallesCancionDTO> canciones = this.albumbo.obtenerCancionesDeAlbumes();
 
             Set<DetallesCancionDTO> cancionesUnicas = new HashSet<>(canciones);
@@ -367,7 +383,69 @@ public class FrmPestañaCanciones extends javax.swing.JFrame {
             panelCanciones.repaint();
         } catch (NegocioException e) {
             e.printStackTrace();
+        }*/
+
+        try {
+            // Obtener la lista de géneros no deseados del usuario
+            List<String> generosNoDeseados = usuarioLoggeado.getGenerosNoDeseados();
+
+            // Obtener todas las canciones
+            List<DetallesCancionDTO> canciones = this.albumbo.obtenerCancionesDeAlbumes2();
+
+            // Filtrar canciones basándose en los géneros de los artistas
+            List<DetallesCancionDTO> cancionesFiltradas = canciones.stream()
+                    .filter(cancion -> {
+                        try {
+                            // Obtener el artista asociado a la canción usando ObjectId
+                            ArtistaDTO artista = this.artistabo.obtenerArtistaPorId(cancion.getIdArtista());
+                            if (!generosNoDeseados.contains(artista.getGenero())) {
+                                // Asignar el nombre del artista al DTO de la canción
+                                cancion.setNombreArtista(artista.getNombre());
+                                return true;
+                            }
+                        } catch (NegocioException e) {
+                            e.printStackTrace();
+                        }
+                        return false; // Excluir canción si ocurre un error o está en géneros no deseados
+                    })
+                    .collect(Collectors.toList());
+
+            // Imprimir todas las canciones filtradas antes de limitar
+            System.out.println("Canciones posibles a mostrar (antes de limitar):");
+            cancionesFiltradas.forEach(cancion
+                    -> System.out.println("Título: " + cancion.getTitulo() + ", Artista: " + cancion.getNombreArtista())
+            );
+
+            // Eliminar duplicados y mezclar canciones
+            Set<DetallesCancionDTO> cancionesUnicas = new HashSet<>(cancionesFiltradas);
+            List<DetallesCancionDTO> cancionesSinDuplicados = new ArrayList<>(cancionesUnicas);
+            Collections.shuffle(cancionesSinDuplicados);
+
+            // Limitar las canciones a mostrar a 9
+            List<DetallesCancionDTO> cancionesAMostrar = cancionesSinDuplicados.subList(0, Math.min(9, cancionesSinDuplicados.size()));
+
+            // Configurar el layout del panel
+            panelCanciones.setLayout(new GridLayout(0, 1, 0, 10));
+            panelCanciones.setBackground(new Color(18, 18, 18));
+
+            // Crear paneles para las canciones
+            for (DetallesCancionDTO cancion : cancionesAMostrar) {
+                JPanel panelCancion = creaPanelCancion(cancion);
+                panelCanciones.add(panelCancion);
+            }
+
+            // Imprimir las canciones que se van a mostrar
+            System.out.println("Canciones que se mostrarán (después de limitar):");
+            cancionesAMostrar.forEach(cancion
+                    -> System.out.println("Título: " + cancion.getTitulo() + ", Artista: " + cancion.getNombreArtista())
+            );
+
+            panelCanciones.revalidate();
+            panelCanciones.repaint();
+        } catch (NegocioException e) {
+            e.printStackTrace();
         }
+
     }
 
     private JPanel creaPanelCancion(DetallesCancionDTO cancion) {
@@ -430,6 +508,7 @@ public class FrmPestañaCanciones extends javax.swing.JFrame {
     private javax.swing.JButton bCerrarSesion;
     private javax.swing.JButton bHome;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

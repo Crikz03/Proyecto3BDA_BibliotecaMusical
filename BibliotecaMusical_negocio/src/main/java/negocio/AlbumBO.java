@@ -7,11 +7,13 @@ package negocio;
 import conversiones.ConvertidorGeneral;
 import datos.AlbumDAO;
 import dto.AlbumDTO;
+import dto.ArtistaDTO;
 import dto.DetallesCancionDTO;
 import excepciones.NegocioException;
 import excepciones.PersistenciaException;
 import interfaces.IAlbumBO;
 import interfaces.IAlbumDAO;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import objetos.Albumes;
@@ -191,4 +193,42 @@ public class AlbumBO implements IAlbumBO {
         }
     }
 
+    public List<DetallesCancionDTO> obtenerCancionesDeAlbumes2() throws NegocioException {
+        try {
+            // Obtener todos los álbumes
+            List<Albumes> albumes = albumDAO.obtenerAlbumes();
+
+            // Lista para almacenar las canciones
+            List<DetallesCancionDTO> canciones = new ArrayList<>();
+
+            // Iterar sobre los álbumes para extraer las canciones
+            for (Albumes album : albumes) {
+                ObjectId artistaId = album.getArtistaId(); // Dejar como ObjectId
+                for (DetallesCancion detalles : album.getDetallesCanciones()) {
+                    DetallesCancionDTO cancionDTO = new DetallesCancionDTO();
+                    cancionDTO.setTitulo(detalles.getTitulo());
+                    cancionDTO.setDuracion(detalles.getDuracion());
+                    cancionDTO.setIdArtista(artistaId); // Asociar el ObjectId del artista
+                    cancionDTO.setFotoAlbum(detalles.getFotoAlbum());
+                    canciones.add(cancionDTO);
+                }
+            }
+
+            return canciones;
+        } catch (PersistenciaException e) {
+            throw new NegocioException("Error al obtener canciones de álbumes: " + e.getMessage(), e);
+        }
+    }
+
+    public List<DetallesCancionDTO> buscarCancionesPorNombre(String nombre) throws NegocioException {
+        try {
+            // Llamar al DAO para buscar canciones por nombre
+            List<DetallesCancion> canciones = albumDAO.buscarCancionesPorNombre(nombre);
+
+            // Convertir las canciones a DTO
+            return ConvertidorGeneral.convertidoraListaDTO(canciones, DetallesCancionDTO.class);
+        } catch (PersistenciaException e) {
+            throw new NegocioException("Error al buscar canciones por nombre: " + e.getMessage(), e);
+        }
+    }
 }

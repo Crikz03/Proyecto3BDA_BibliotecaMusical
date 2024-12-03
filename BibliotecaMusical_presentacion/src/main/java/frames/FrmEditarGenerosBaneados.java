@@ -39,10 +39,7 @@ import recursos.ValidadorFrames;
  */
 public class FrmEditarGenerosBaneados extends javax.swing.JFrame {
 
-    private Imagen imagenPerfil;
-    private UsuarioDTO usuario;
     private IUsuarioBO usuariobo;
-    private ArtistaDTO artista;
     private IArtistaBO artistabo;
     private UsuarioDTO usuarioLoggeado;
     private GenerosTableModel modeloTabla;
@@ -103,7 +100,7 @@ public class FrmEditarGenerosBaneados extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Seleccionar generos que desea banear:");
 
-        btnGuardarBaneos.setBackground(new java.awt.Color(204, 0, 204));
+        btnGuardarBaneos.setBackground(new java.awt.Color(255, 0, 153));
         btnGuardarBaneos.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         btnGuardarBaneos.setForeground(new java.awt.Color(255, 255, 255));
         btnGuardarBaneos.setText("Guardar Cambios");
@@ -128,7 +125,7 @@ public class FrmEditarGenerosBaneados extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(tablaGeneros);
 
-        btnCancelar.setBackground(new java.awt.Color(204, 0, 204));
+        btnCancelar.setBackground(new java.awt.Color(255, 0, 153));
         btnCancelar.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         btnCancelar.setForeground(new java.awt.Color(255, 255, 255));
         btnCancelar.setText("Cancelar");

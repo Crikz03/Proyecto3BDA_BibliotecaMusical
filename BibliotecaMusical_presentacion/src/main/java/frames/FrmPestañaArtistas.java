@@ -20,6 +20,7 @@ import java.awt.geom.Ellipse2D;
 import java.awt.image.BufferedImage;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.Icon;
@@ -38,12 +39,13 @@ import recursos.Imagen;
  * @author Chris
  */
 public class FrmPestañaArtistas extends javax.swing.JFrame {
-    
+
     private IArtistaBO abo;
     private UsuarioDTO usuarioLoggeado;
 
     /**
      * Creates new form FrmPestañaArtistas
+     *
      * @param usuarioLoggeado
      */
     public FrmPestañaArtistas(UsuarioDTO usuarioLoggeado) {
@@ -62,7 +64,7 @@ public class FrmPestañaArtistas extends javax.swing.JFrame {
         this.obtieneArtistas();
         this.cargarDatosUsuario();
     }
-    
+
     private void SetImageLabel(JLabel labelname, String root) {
         ImageIcon image = new ImageIcon(root);
         Icon icon = new ImageIcon(image.getImage().getScaledInstance(labelname.getWidth(), labelname.getHeight(), Image.SCALE_DEFAULT));
@@ -93,16 +95,16 @@ public class FrmPestañaArtistas extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         lblNameUser = new javax.swing.JLabel();
         lblFoto = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 0));
-        jPanel2.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(204, 0, 153)));
-        jPanel2.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel2.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 3, new java.awt.Color(255, 0, 153)));
 
-        jLabel1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(204, 0, 153)));
+        jLabel1.setBorder(new javax.swing.border.MatteBorder(null));
 
         bHome.setBackground(new java.awt.Color(0, 0, 0));
         bHome.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
@@ -172,8 +174,9 @@ public class FrmPestañaArtistas extends javax.swing.JFrame {
 
         bCerrarSesion.setBackground(new java.awt.Color(0, 0, 0));
         bCerrarSesion.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        bCerrarSesion.setForeground(new java.awt.Color(204, 0, 204));
-        bCerrarSesion.setText("Cerrar Sesion");
+        bCerrarSesion.setForeground(new java.awt.Color(255, 0, 153));
+        bCerrarSesion.setText("Cerrar Sesión");
+        bCerrarSesion.setActionCommand("Cerrar Sesión");
         bCerrarSesion.setContentAreaFilled(false);
         bCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -222,10 +225,10 @@ public class FrmPestañaArtistas extends javax.swing.JFrame {
                 .addComponent(bAlbumes4)
                 .addGap(18, 18, 18)
                 .addComponent(bCerrarSesion)
-                .addContainerGap(338, Short.MAX_VALUE))
+                .addContainerGap(340, Short.MAX_VALUE))
         );
 
-        panelArtistas.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(204, 0, 153)));
+        panelArtistas.setBorder(new javax.swing.border.MatteBorder(null));
 
         javax.swing.GroupLayout panelArtistasLayout = new javax.swing.GroupLayout(panelArtistas);
         panelArtistas.setLayout(panelArtistasLayout);
@@ -239,7 +242,7 @@ public class FrmPestañaArtistas extends javax.swing.JFrame {
         );
 
         jPanel3.setBackground(new java.awt.Color(0, 0, 0));
-        jPanel3.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(204, 0, 153)));
+        jPanel3.setBorder(new javax.swing.border.MatteBorder(null));
 
         lblNameUser.setBackground(new java.awt.Color(0, 0, 0));
         lblNameUser.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
@@ -269,6 +272,12 @@ public class FrmPestañaArtistas extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jLabel6.setBackground(new java.awt.Color(255, 0, 153));
+        jLabel6.setForeground(new java.awt.Color(255, 0, 153));
+        jLabel6.setText("jLabel6");
+        jLabel6.setAlignmentX(0.5F);
+        jLabel6.setOpaque(true);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -278,17 +287,21 @@ public class FrmPestañaArtistas extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 734, Short.MAX_VALUE)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(panelArtistas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 733, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 3, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(panelArtistas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31))
@@ -329,7 +342,7 @@ public class FrmPestañaArtistas extends javax.swing.JFrame {
     }//GEN-LAST:event_bAlbumes3ActionPerformed
 
     private void bAlbumes4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAlbumes4ActionPerformed
-       Forms.cargarForm(new FrmPerfil(usuarioLoggeado), this);
+        Forms.cargarForm(new FrmPerfil(usuarioLoggeado), this);
     }//GEN-LAST:event_bAlbumes4ActionPerformed
 
     private void bCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCerrarSesionActionPerformed
@@ -351,18 +364,32 @@ public class FrmPestañaArtistas extends javax.swing.JFrame {
 
     private void obtieneArtistas() {
         try {
+            // Obtener la lista de géneros no deseados del usuario
+            List<String> generosNoDeseados = usuarioLoggeado.getGenerosNoDeseados();
+
             // Obtener la lista de artistas
             List<ArtistaDTO> artistas = this.abo.obtenerArtistas();
-            Collections.shuffle(artistas);
 
-            // Limitar a 28 artistas (7 columnas x 4 filas)
+            // Filtrar artistas cuyo género no esté en la lista de géneros no deseados
+            List<ArtistaDTO> artistasFiltrados = artistas.stream()
+                    .filter(artista -> !generosNoDeseados.contains(artista.getGenero()))
+                    .collect(Collectors.toList());
+            
+            // Imprimir los artistas que se van a mostrar
+            System.out.println("Artistas que se mostrarán:");
+            artistasFiltrados.forEach(artista
+                    -> System.out.println("Nombre: " + artista.getNombre() + ", Género: " + artista.getGenero())
+            );
+
+            // Mezclar y limitar a 28 artistas (7 columnas x 4 filas)
+            Collections.shuffle(artistasFiltrados);
             int maxArtistas = 28;
-            List<ArtistaDTO> artistasLimitados = artistas.size() > maxArtistas
-                    ? artistas.subList(0, maxArtistas)
-                    : artistas;
+            List<ArtistaDTO> artistasLimitados = artistasFiltrados.size() > maxArtistas
+                    ? artistasFiltrados.subList(0, maxArtistas)
+                    : artistasFiltrados;
 
             // Configurar el layout con 4 filas y 7 columnas
-            panelArtistas.setLayout(new GridLayout(4, 10, 20, 20));
+            panelArtistas.setLayout(new GridLayout(4, 7, 20, 20));
             panelArtistas.setBackground(new Color(18, 18, 18));
 
             // Crear los paneles redondos para los artistas
@@ -443,6 +470,7 @@ public class FrmPestañaArtistas extends javax.swing.JFrame {
     private javax.swing.JButton bCerrarSesion;
     private javax.swing.JButton bHome;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

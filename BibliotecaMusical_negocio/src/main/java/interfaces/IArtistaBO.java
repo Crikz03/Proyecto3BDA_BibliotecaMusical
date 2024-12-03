@@ -79,5 +79,7 @@ public interface IArtistaBO {
     List<ArtistaDTO> obtenerArtistas() throws NegocioException;
     
     List<ArtistaDTO> obtenerCincoArtistas() throws NegocioException;
+
+    ArtistaDTO obtenerArtistaPorId(ObjectId idArtista) throws NegocioException;
     
 }

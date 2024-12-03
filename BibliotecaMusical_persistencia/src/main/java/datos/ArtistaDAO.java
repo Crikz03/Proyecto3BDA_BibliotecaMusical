@@ -239,4 +239,18 @@ public class ArtistaDAO implements IArtistaDAO {
         throw new PersistenciaException("Error al obtener todos los artistas: " + e.getMessage());
     }
 }
+    
+    
+    public Artistas buscarPorId(ObjectId idArtista) throws PersistenciaException {
+    try {
+        // Busca el artista por ID en la base de datos
+        Artistas artista = coleccionArtistas.find(Filters.eq("_id", idArtista)).first();
+        if (artista == null) {
+            throw new PersistenciaException("No se encontró el artista con ID: " + idArtista);
+        }
+        return artista;
+    } catch (Exception e) {
+        throw new PersistenciaException("Error al buscar artista por ID: " + e.getMessage());
+    }
+}
 }
