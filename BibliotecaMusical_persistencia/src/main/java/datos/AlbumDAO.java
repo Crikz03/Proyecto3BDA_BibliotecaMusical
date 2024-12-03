@@ -293,13 +293,13 @@ public class AlbumDAO implements IAlbumDAO {
                 albumes.add(crearAlbumImagineDragons3(artista));
                 break;
 
-            case "One Republic":
+            case "OneRepublic":
                 albumes.add(crearAlbumOneRepublic1(artista));
                 albumes.add(crearAlbumOneRepublic2(artista));
                 albumes.add(crearAlbumOneRepublic3(artista));
                 break;
 
-            case "Maroon5":
+            case "Maroon 5":
                 albumes.add(crearAlbumMaroon5_1(artista));
                 albumes.add(crearAlbumMaroon5_2(artista));
                 albumes.add(crearAlbumMaroon5_3(artista));
@@ -311,7 +311,7 @@ public class AlbumDAO implements IAlbumDAO {
                 albumes.add(crearAlbumMorat3(artista));
                 break;
 
-            case "Mana":
+            case "Maná":
                 albumes.add(crearAlbumMana1(artista));
                 albumes.add(crearAlbumMana2(artista));
                 albumes.add(crearAlbumMana3(artista));
@@ -323,7 +323,7 @@ public class AlbumDAO implements IAlbumDAO {
                 albumes.add(crearAlbumAventura3(artista));
                 break;
 
-            case "Los Angeles Azules":
+            case "Los Ángeles Azules":
                 albumes.add(crearAlbumLosAngelesAzules1(artista));
                 albumes.add(crearAlbumLosAngelesAzules2(artista));
                 albumes.add(crearAlbumLosAngelesAzules3(artista));
@@ -360,7 +360,7 @@ public class AlbumDAO implements IAlbumDAO {
                 albumes.add(crearAlbumBadBunny3(artista));
                 break;
 
-            case "DuaLipa":
+            case "Dua Lipa":
                 albumes.add(crearAlbumDuaLipa1(artista));
                 albumes.add(crearAlbumDuaLipa2(artista));
                 albumes.add(crearAlbumDuaLipa3(artista));
@@ -402,7 +402,7 @@ public class AlbumDAO implements IAlbumDAO {
                 albumes.add(crearAlbumAdele3(artista));
                 break;
 
-            case "Rosalia":
+            case "Rosalía":
                 albumes.add(crearAlbumRosalia1(artista));
                 albumes.add(crearAlbumRosalia2(artista));
                 albumes.add(crearAlbumRosalia3(artista));

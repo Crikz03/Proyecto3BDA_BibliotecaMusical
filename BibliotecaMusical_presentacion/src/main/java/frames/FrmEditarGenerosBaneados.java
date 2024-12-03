@@ -14,6 +14,7 @@ import java.awt.BorderLayout;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -212,7 +213,7 @@ public class FrmEditarGenerosBaneados extends javax.swing.JFrame {
         Forms.cargarForm(new FrmPerfil(usuarioLoggeado), this);
     }//GEN-LAST:event_btnCancelarActionPerformed
 
-    public class GenerosTableModel extends AbstractTableModel {
+    /*public class GenerosTableModel extends AbstractTableModel {
 
     private final List<String> generos;
     private final Map<String, Boolean> seleccionados; // Género -> Seleccionado
@@ -225,7 +226,26 @@ public class FrmEditarGenerosBaneados extends javax.swing.JFrame {
         for (String genero : generos) {
             seleccionados.put(genero, generosBaneados != null && generosBaneados.contains(genero));
         }
+    }*/
+    
+    public class GenerosTableModel extends AbstractTableModel {
+
+    private final List<String> generos;
+    private final Map<String, Boolean> seleccionados; // Género -> Seleccionado
+
+    public GenerosTableModel(List<String> generos, List<String> generosBaneados) {
+        // Ordenar los géneros alfabéticamente
+        this.generos = new ArrayList<>(generos);
+        Collections.sort(this.generos);
+
+        this.seleccionados = new HashMap<>();
+
+        // Inicializar el estado de los checkboxes
+        for (String genero : this.generos) {
+            seleccionados.put(genero, generosBaneados != null && generosBaneados.contains(genero));
+        }
     }
+    
 
     @Override
     public int getRowCount() {
@@ -269,6 +289,19 @@ public class FrmEditarGenerosBaneados extends javax.swing.JFrame {
         return columnIndex == 1 ? Boolean.class : String.class;
     }
 
+    //**************************************************************************
+    @Override
+    public String getColumnName(int columnIndex) {
+        switch (columnIndex) {
+            case 0:
+                return "Género"; // Nombre de la primera columna
+            case 1:
+                return "Seleccionar"; // Nombre de la segunda columna
+            default:
+                return super.getColumnName(columnIndex);
+        }
+    }
+    
     public List<String> getGenerosSeleccionados() {
         List<String> seleccionadosList = new ArrayList<>();
         for (Map.Entry<String, Boolean> entry : seleccionados.entrySet()) {
@@ -290,22 +323,6 @@ public class FrmEditarGenerosBaneados extends javax.swing.JFrame {
     
 }
 
-    /*private void actualizarBaneos() {
-        List<String> generosSeleccionados = modeloTabla.getGenerosSeleccionados(); // Obtener géneros seleccionados
-    try {
-        // Actualizar la lista de géneros baneados en el usuario
-        usuarioLoggeado.setGenerosNoDeseados(generosSeleccionados);
-
-        // Guardar los cambios en la base de datos
-        usuariobo.actualizarGenerosBaneados(usuarioLoggeado.getId(), generosSeleccionados);
-
-        JOptionPane.showMessageDialog(this, "Los géneros baneados se actualizaron correctamente.", 
-                "Éxito", JOptionPane.INFORMATION_MESSAGE);
-    } catch (PersistenciaException e) {
-        JOptionPane.showMessageDialog(this, "Error al actualizar los géneros baneados: " + e.getMessage(), 
-                "Error", JOptionPane.ERROR_MESSAGE);
-    }
-    }*/
     private void actualizarBaneos() {
         List<String> generosSeleccionados = modeloTabla.getGenerosSeleccionados();
         try {

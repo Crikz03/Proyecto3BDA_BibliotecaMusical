@@ -63,10 +63,16 @@ public class InsecionMasiva {
             List<Albumes> albumesAInsertar = new ArrayList<>();
 
             // Iterar sobre los artistas para crear álbumes
-            for (Artistas artista : artistas) {
-                // Crear álbumes según el artista
-                albumesAInsertar.addAll(this.albumdao.crearAlbumesParaArtista(artista));
+        for (Artistas artista : artistas) {
+            if(artista.getNombre().equalsIgnoreCase("Los Ángeles Azules")){
+                System.out.println("");
             }
+            // Crear álbumes según el artista
+            List<Albumes> albumesDelArtista = this.albumdao.crearAlbumesParaArtista(artista);
+            albumesAInsertar.addAll(albumesDelArtista);
+            System.out.println("Artista: " + artista.getNombre() + ", Álbumes creados: " + albumesDelArtista.size());
+        }
+
 
             // Insertar álbumes en la base de datos
             if (!albumesAInsertar.isEmpty()) {
@@ -287,7 +293,7 @@ public class InsecionMasiva {
                     "Banda",
                     "Bachata",
                     "aventura.jpg",
-                    "./images/aventura.jpg",
+                    "./images/aventuraa.jpg",
                     artistadao.crearIntegrantes(
                             "Romeo Santos", "Vocalista", "1994-01-01", "null", "true",
                             "Henry Santos", "Vocalista/Guitarrista", "1994-01-01", "null", "true",

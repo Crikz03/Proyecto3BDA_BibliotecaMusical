@@ -85,6 +85,7 @@ public class FrmInicio extends javax.swing.JFrame {
         //buscador
         inicializarBuscador();
 
+
     }
 
     private void configuraFrame() {
@@ -315,7 +316,7 @@ public class FrmInicio extends javax.swing.JFrame {
         lblNameUser.setForeground(new java.awt.Color(255, 255, 255));
         lblNameUser.setText("name");
 
-        lblFoto.setText("jLabel5");
+        lblFoto.setText("lblFoto");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -543,66 +544,65 @@ public class FrmInicio extends javax.swing.JFrame {
     private void cargarDatosUsuario() {
         if (usuarioLoggeado != null) {
             lblNameUser.setText(usuarioLoggeado.getNombreUsuario());
-            ImageIcon imageIcon
-                    = GestorImagenesMongo
-                            .getImageIcon(
-                                    usuarioLoggeado.getFotoPerfil(),
-                                    GestorImagenesMongo.SizeImage.SMALL
-                            );
-            lblFoto.setIcon(imageIcon);
+            ImageIcon imageIcon = GestorImagenesMongo.getImageIcon(
+                    usuarioLoggeado.getFotoPerfil(),
+                    GestorImagenesMongo.SizeImage.SMALL
+            );
 
-        }
-    }
+            if (imageIcon != null) {
+                // Obtener el objeto Image desde el ImageIcon
+                Image originalImage = imageIcon.getImage();
 
-    private void obtieneArtistas() {
-        try {
-            // Obtener la lista de artistas
-            List<ArtistaDTO> artistas = this.abo.obtenerCincoArtistas();
-            Collections.shuffle(artistas);
+                // Crear una imagen circular
+                int size = Math.min(lblFoto.getWidth(), lblFoto.getHeight());
+                Image roundedImage = makeRoundedImage(originalImage, size);
 
-            // Configurar el layout con espacio adicional para el botón
-            panelArtistas.setLayout(new GridLayout(1, artistas.size(), 1, 0));
-            panelArtistas.setBackground(new Color(18, 18, 18));
-
-            // Crear los paneles redondos para los artistas
-            for (ArtistaDTO artista : artistas) {
-                JPanel panelArtista = creaPanelRedondo(artista.getNombre(), artista.getImagen());
-                panelArtistas.add(panelArtista);
+                // Asignar la imagen redondeada al JLabel
+                lblFoto.setIcon(new ImageIcon(roundedImage));
+            } else {
+                lblFoto.setText("Sin Foto");
             }
-
-            // Crear y agregar el botón "Ver Todos" al final
-            JButton btnVerTodos = crearBotonVerTodos("Ver todos los artistas", e -> {
-                Forms.cargarForm(new FrmPestañaArtistas(usuarioLoggeado), this);
-            });
-            JPanel panelBoton = new JPanel();
-            panelBoton.setBackground(new Color(18, 18, 18));
-            panelBoton.setLayout(new GridBagLayout());
-            panelBoton.add(btnVerTodos);
-
-            panelArtistas.add(panelBoton);
-
-            panelArtistas.revalidate();
-            panelArtistas.repaint();
-        } catch (NegocioException e) {
-            e.printStackTrace();
         }
     }
 
     private void obtieneAlbumes() {
         try {
-            List<AlbumDTO> albumes = this.albumbo.obtenerCincoAlbumes();
-            Collections.shuffle(albumes);
+            // Obtener la lista de géneros no deseados del usuario, asegurando que no sea null
+        List<String> generosNoDeseados = usuarioLoggeado.getGenerosNoDeseados() != null 
+                ? usuarioLoggeado.getGenerosNoDeseados() 
+                : Collections.emptyList();
 
-            panelAlbumes.setLayout(new GridLayout(1, albumes.size(), 1, 0));
+            // Obtener todos los álbumes
+            List<AlbumDTO> albumes = this.albumbo.obtenerAlbumes();
+
+            // Filtrar álbumes cuyo género no esté en la lista de géneros no deseados
+            List<AlbumDTO> albumesFiltrados = albumes.stream()
+                    .filter(album -> {
+                        // Validar si el género no está en la lista de no deseados
+                        List<String> generosAlbum = album.getGenero();
+                        if (generosAlbum == null || generosAlbum.isEmpty()) {
+                            return false; // Excluir si no tiene géneros
+                        }
+                        return generosAlbum.stream().noneMatch(generosNoDeseados::contains);
+                    })
+                    .collect(Collectors.toList());
+
+            // Mezclar y limitar a 5 álbumes
+            Collections.shuffle(albumesFiltrados);
+            List<AlbumDTO> albumesAMostrar = albumesFiltrados.subList(0, Math.min(5, albumesFiltrados.size()));
+
+            // Configurar el layout
+            panelAlbumes.setLayout(new GridLayout(1, albumesAMostrar.size(), 10, 10));
             panelAlbumes.setBackground(new Color(18, 18, 18));
 
-            for (AlbumDTO album : albumes) {
+            // Crear paneles para los álbumes
+            for (AlbumDTO album : albumesAMostrar) {
                 JPanel panelAlbum = creaPanel(album.getNombre(), album.getImagenPortada());
                 panelAlbumes.add(panelAlbum);
             }
 
-            // Crear y agregar el botón "Ver Todos" al final
-            JButton btnVerTodos = crearBotonVerTodos("Ver todos los artistas", e -> {
+            // Crear y agregar el botón "Ver Todos"
+            JButton btnVerTodos = crearBotonVerTodos("Ver todos los álbumes", e -> {
                 Forms.cargarForm(new FrmPestañaAlbumes(usuarioLoggeado), this);
             });
             JPanel panelBoton = new JPanel();
@@ -621,25 +621,54 @@ public class FrmInicio extends javax.swing.JFrame {
 
     private void obtieneCanciones() {
         try {
-            List<DetallesCancionDTO> canciones = this.albumbo.obtenerCancionesDeAlbumes();
+            // Obtener la lista de géneros no deseados del usuario, asegurando que no sea null
+        List<String> generosNoDeseados = usuarioLoggeado.getGenerosNoDeseados() != null 
+                ? usuarioLoggeado.getGenerosNoDeseados() 
+                : Collections.emptyList();
 
-            Set<DetallesCancionDTO> cancionesUnicas = new HashSet<>(canciones);
-            List<DetallesCancionDTO> cancionesSinDuplicados = new ArrayList<>(cancionesUnicas);
+            // Obtener todas las canciones
+            List<DetallesCancionDTO> canciones = this.albumbo.obtenerCancionesDeAlbumes2();
 
-            Collections.shuffle(cancionesSinDuplicados);
+            // Filtrar canciones basándose en los géneros de los artistas
+            List<DetallesCancionDTO> cancionesFiltradas = canciones.stream()
+                    .filter(cancion -> {
+                        if (cancion.getIdArtista() == null) {
+                            System.out.println("Canción sin ID de artista: " + cancion.getTitulo());
+                            return false; // Excluir canciones sin ID de artista
+                        }
+                        try {
+                            ArtistaDTO artista = this.abo.obtenerArtistaPorId(cancion.getIdArtista());
+                            if (artista == null || artista.getGenero() == null) {
+                                System.out.println("Artista no encontrado o sin género: " + cancion.getIdArtista());
+                                return false; // Excluir si el artista no existe o no tiene género
+                            }
+                            if (!generosNoDeseados.contains(artista.getGenero())) {
+                                cancion.setNombreArtista(artista.getNombre());
+                                return true;
+                            }
+                        } catch (NegocioException e) {
+                            e.printStackTrace();
+                        }
+                        return false; // Excluir si ocurre un error o está en géneros no deseados
+                    })
+                    .collect(Collectors.toList());
 
-            List<DetallesCancionDTO> cancionesAMostrar = cancionesSinDuplicados.subList(0, Math.min(5, cancionesSinDuplicados.size()));
+            // Mezclar y limitar a 5 canciones
+            Collections.shuffle(cancionesFiltradas);
+            List<DetallesCancionDTO> cancionesAMostrar = cancionesFiltradas.subList(0, Math.min(5, cancionesFiltradas.size()));
 
-            panelCanciones.setLayout(new GridLayout(1, cancionesAMostrar.size(), 1, 0));
+            // Configurar el layout
+            panelCanciones.setLayout(new GridLayout(1, cancionesAMostrar.size(), 10, 10));
             panelCanciones.setBackground(new Color(18, 18, 18));
 
+            // Crear paneles para las canciones
             for (DetallesCancionDTO cancion : cancionesAMostrar) {
-                JPanel panelArtista = creaPanel(cancion.getTitulo(), cancion.getFotoAlbum());
-                panelCanciones.add(panelArtista);
+                JPanel panelCancion = creaPanel(cancion.getTitulo(), cancion.getFotoAlbum());
+                panelCanciones.add(panelCancion);
             }
 
-            // Crear y agregar el botón "Ver Todos" al final
-            JButton btnVerTodos = crearBotonVerTodos("Ver todos los artistas", e -> {
+            // Crear y agregar el botón "Ver Todos"
+            JButton btnVerTodos = crearBotonVerTodos("Ver todas las canciones", e -> {
                 Forms.cargarForm(new FrmPestañaCanciones(usuarioLoggeado), this);
             });
             JPanel panelBoton = new JPanel();
@@ -651,6 +680,53 @@ public class FrmInicio extends javax.swing.JFrame {
 
             panelCanciones.revalidate();
             panelCanciones.repaint();
+        } catch (NegocioException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void obtieneArtistas() {
+        try {
+            // Obtener la lista de géneros no deseados del usuario, asegurando que no sea null
+            List<String> generosNoDeseados = usuarioLoggeado.getGenerosNoDeseados() != null
+                    ? usuarioLoggeado.getGenerosNoDeseados()
+                    : Collections.emptyList();
+
+            // Obtener todos los artistas
+            List<ArtistaDTO> artistas = this.abo.obtenerArtistas();
+
+            // Filtrar artistas cuyo género no esté en la lista de géneros no deseados
+            List<ArtistaDTO> artistasFiltrados = artistas.stream()
+                    .filter(artista -> artista.getGenero() != null && !generosNoDeseados.contains(artista.getGenero()))
+                    .collect(Collectors.toList());
+
+            // Mezclar y limitar a 5 artistas
+            Collections.shuffle(artistasFiltrados);
+            List<ArtistaDTO> artistasAMostrar = artistasFiltrados.subList(0, Math.min(5, artistasFiltrados.size()));
+
+            // Configurar el layout
+            panelArtistas.setLayout(new GridLayout(1, artistasAMostrar.size(), 10, 10));
+            panelArtistas.setBackground(new Color(18, 18, 18));
+
+            // Crear paneles para los artistas
+            for (ArtistaDTO artista : artistasAMostrar) {
+                JPanel panelArtista = creaPanelRedondo(artista.getNombre(), artista.getImagen());
+                panelArtistas.add(panelArtista);
+            }
+
+            // Crear y agregar el botón "Ver Todos"
+            JButton btnVerTodos = crearBotonVerTodos("Ver todos los artistas", e -> {
+                Forms.cargarForm(new FrmPestañaArtistas(usuarioLoggeado), this);
+            });
+            JPanel panelBoton = new JPanel();
+            panelBoton.setBackground(new Color(18, 18, 18));
+            panelBoton.setLayout(new GridBagLayout());
+            panelBoton.add(btnVerTodos);
+
+            panelArtistas.add(panelBoton);
+
+            panelArtistas.revalidate();
+            panelArtistas.repaint();
         } catch (NegocioException e) {
             e.printStackTrace();
         }

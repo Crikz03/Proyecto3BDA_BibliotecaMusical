@@ -20,6 +20,7 @@ frames\FrmPestañaCanciones$4.class
 frames\FrmEditarPerfil$2.class
 frames\FrmPestañaArtistas$2.class
 frames\FrmPestañaAlbumes$6.class
+frames\FrmRegistrarse$5.class
 frames\FrmInicioSesion$2.class
 frames\FrmPerfil$9.class
 frames\FrmInicio$5.class
@@ -37,6 +38,7 @@ frames\FrmRegistrarse$2.class
 frames\FrmPestañaAlbumes$3.class
 frames\FrmPestañaArtistas$6.class
 frames\FrmInicioSesion$3.class
+frames\FrmRegistrarse$6.class
 recursos\Forms.class
 frames\FrmInicio$11.class
 frames\FrmPestañaArtistas$3.class
