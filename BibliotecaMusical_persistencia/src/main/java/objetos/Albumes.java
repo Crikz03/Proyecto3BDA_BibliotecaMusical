@@ -13,6 +13,7 @@ import recursos.Imagen;
  *
  * @author Chris
  */
+
 public class Albumes {
 
     private ObjectId id;
@@ -22,7 +23,6 @@ public class Albumes {
     private Imagen imagenPortada;
     private ObjectId artistaId;
     private List<DetallesCancion> detallesCanciones;
-
     public Albumes() {
     }
 

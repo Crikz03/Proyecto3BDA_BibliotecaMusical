@@ -4,9 +4,13 @@
  */
 package conversiones;
 
+import dto.AlbumDTO;
+import dto.DetallesCancionDTO;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
+import objetos.Albumes;
+import objetos.DetallesCancion;
 
 /**
  * Clase genérica que proporciona métodos de conversión entre objetos de tipo
@@ -150,4 +154,5 @@ public class ConvertidorGeneral {
         }
         return listaDtos;
     }
+   
 }

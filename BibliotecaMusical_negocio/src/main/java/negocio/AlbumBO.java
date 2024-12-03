@@ -16,6 +16,7 @@ import interfaces.IAlbumDAO;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 import objetos.Albumes;
 import objetos.DetallesCancion;
 import org.bson.types.ObjectId;
@@ -171,7 +172,9 @@ public class AlbumBO implements IAlbumBO {
     public List<AlbumDTO> obtenerAlbumes() throws NegocioException {
         try {
             List<Albumes> albumes = albumDAO.obtenerAlbumes();
-            return ConvertidorGeneral.convertidoraListaDTO(albumes, AlbumDTO.class);
+             return albumes.stream()
+                .map(this::convertirAlbum) // Usa el método convertirAlbum definido en esta clase
+                .collect(Collectors.toList());
         } catch (PersistenciaException e) {
             throw new NegocioException("Error al obtener los álbumes: " + e.getMessage(), e);
         }
@@ -230,5 +233,41 @@ public class AlbumBO implements IAlbumBO {
         } catch (PersistenciaException e) {
             throw new NegocioException("Error al buscar canciones por nombre: " + e.getMessage(), e);
         }
+    }
+    private AlbumDTO convertirAlbum(Albumes album) {
+        AlbumDTO albumDTO = new AlbumDTO();
+
+        // Mapea los campos simples
+        albumDTO.setId(album.getId());
+        albumDTO.setNombre(album.getNombre());
+        albumDTO.setFechaLanzamiento(album.getFechaLanzamiento());
+        albumDTO.setGenero(album.getGenero());
+        albumDTO.setImagenPortada(album.getImagenPortada());
+        albumDTO.setArtistaId(album.getArtistaId());
+
+        // Mapea las canciones
+        if (album.getDetallesCanciones() != null) {
+            List<DetallesCancionDTO> canciones = album.getDetallesCanciones().stream()
+                    .map(this::convertirCancion) // Convierte cada canción
+                    .collect(Collectors.toList());
+            albumDTO.setCanciones(canciones);
+        } else {
+            albumDTO.setCanciones(new ArrayList<>());
+        }
+
+        return albumDTO;
+    }
+
+    // Método privado para convertir un objeto DetallesCancion a DetallesCancionDTO
+    private DetallesCancionDTO convertirCancion(DetallesCancion cancion) {
+        DetallesCancionDTO cancionDTO = new DetallesCancionDTO();
+
+        // Mapea los campos de DetallesCancion a DetallesCancionDTO
+        cancionDTO.setTitulo(cancion.getTitulo());
+        cancionDTO.setDuracion(cancion.getDuracion());
+        cancionDTO.setFotoAlbum(cancion.getFotoAlbum());
+       // cancionDTO.setIdArtista(cancion.getIdArtista()); // Si está disponible
+
+        return cancionDTO;
     }
 }

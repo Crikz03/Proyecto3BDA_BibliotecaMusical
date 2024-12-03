@@ -248,14 +248,14 @@ public class FrmPerfil extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Generos baneados");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(340, 330, 332, 36);
+        jLabel2.setBounds(810, 90, 332, 36);
 
         lblNameUser.setBackground(new java.awt.Color(0, 0, 0));
         lblNameUser.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         lblNameUser.setForeground(new java.awt.Color(255, 255, 255));
         lblNameUser.setText("name");
         jPanel1.add(lblNameUser);
-        lblNameUser.setBounds(570, 110, 224, 32);
+        lblNameUser.setBounds(350, 240, 224, 32);
 
         btnEditarGenerosBaneados.setBackground(new java.awt.Color(255, 0, 153));
         btnEditarGenerosBaneados.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -268,7 +268,7 @@ public class FrmPerfil extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnEditarGenerosBaneados);
-        btnEditarGenerosBaneados.setBounds(340, 640, 207, 26);
+        btnEditarGenerosBaneados.setBounds(850, 590, 207, 26);
 
         lblFoto.setText("jLabel5");
         jPanel1.add(lblFoto);
@@ -284,14 +284,14 @@ public class FrmPerfil extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnEditarDatosPersonales1);
-        btnEditarDatosPersonales1.setBounds(350, 260, 197, 26);
+        btnEditarDatosPersonales1.setBounds(350, 400, 197, 26);
 
         lblCorreo.setBackground(new java.awt.Color(0, 0, 0));
         lblCorreo.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         lblCorreo.setForeground(new java.awt.Color(255, 255, 255));
         lblCorreo.setText("correo");
         jPanel1.add(lblCorreo);
-        lblCorreo.setBounds(570, 160, 224, 19);
+        lblCorreo.setBounds(350, 300, 224, 19);
 
         listaGenerosBaneados.setBackground(new java.awt.Color(0, 0, 0));
         listaGenerosBaneados.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
@@ -304,7 +304,7 @@ public class FrmPerfil extends javax.swing.JFrame {
         jScrollPane1.setViewportView(listaGenerosBaneados);
 
         jPanel1.add(jScrollPane1);
-        jScrollPane1.setBounds(340, 390, 270, 190);
+        jScrollPane1.setBounds(810, 150, 270, 420);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
