@@ -623,7 +623,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Parachutes");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2000-07-10"));
-            album.setGenero(Arrays.asList("Rock Alternativo", "Soft Rock"));
+            album.setGenero(Arrays.asList("Rock Alternativo"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -658,7 +658,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("A Rush of Blood to the Head");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2002-08-26"));
-            album.setGenero(Arrays.asList("Rock Alternativo", "Post-Britpop"));
+            album.setGenero(Arrays.asList("Rock Alternativo"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -693,7 +693,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("X&Y");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2005-06-06"));
-            album.setGenero(Arrays.asList("Rock Alternativo", "Pop Rock"));
+            album.setGenero(Arrays.asList("Rock Alternativo"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -729,7 +729,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("AM");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2013-09-09"));
-            album.setGenero(Arrays.asList("Rock Indie", "Alternative Rock"));
+            album.setGenero(Arrays.asList("Rock Indie"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -764,7 +764,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Whatever People Say I Am, That's What I'm Not");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2006-01-23"));
-            album.setGenero(Arrays.asList("Rock Indie", "Garage Rock"));
+            album.setGenero(Arrays.asList("Rock Indie"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -799,7 +799,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Favourite Worst Nightmare");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2007-04-23"));
-            album.setGenero(Arrays.asList("Rock Indie", "Post-Punk Revival"));
+            album.setGenero(Arrays.asList("Rock Indie"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -833,7 +833,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Abbey Road");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("1969-09-26"));
-            album.setGenero(Arrays.asList("Rock", "Pop Rock"));
+            album.setGenero(Arrays.asList("Rock"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -867,7 +867,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Sgt. Pepper's Lonely Hearts Club Band");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("1967-06-01"));
-            album.setGenero(Arrays.asList("Rock", "Psychedelic Rock"));
+            album.setGenero(Arrays.asList("Rock"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -902,7 +902,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Let It Be");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("1970-05-08"));
-            album.setGenero(Arrays.asList("Rock", "Soft Rock"));
+            album.setGenero(Arrays.asList("Rock"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -937,7 +937,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("American Idiot");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2004-09-21"));
-            album.setGenero(Arrays.asList("Punk Rock", "Rock Alternativo"));
+            album.setGenero(Arrays.asList("Punk Rock"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -971,7 +971,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Dookie");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("1994-02-01"));
-            album.setGenero(Arrays.asList("Punk Rock", "Pop Punk"));
+            album.setGenero(Arrays.asList("Punk Rock"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -1006,7 +1006,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Revolution Radio");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2016-10-07"));
-            album.setGenero(Arrays.asList("Punk Rock", "Alternative Rock"));
+            album.setGenero(Arrays.asList("Punk Rock"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -1041,7 +1041,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Blurryface");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2015-05-19"));
-            album.setGenero(Arrays.asList("Alternative Rock", "Indie Pop"));
+            album.setGenero(Arrays.asList("Alternative Rock"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -1075,7 +1075,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Trench");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2018-10-05"));
-            album.setGenero(Arrays.asList("Alternative Rock", "Hip Hop"));
+            album.setGenero(Arrays.asList("Alternative Rock"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -1110,7 +1110,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Scaled and Icy");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2021-05-21"));
-            album.setGenero(Arrays.asList("Alternative Rock", "Pop Rock"));
+            album.setGenero(Arrays.asList("Alternative Rock"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -1146,7 +1146,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("A Night at the Opera");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("1975-11-21"));
-            album.setGenero(Arrays.asList("Rock", "Progressive Rock"));
+            album.setGenero(Arrays.asList("Rock"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -1181,7 +1181,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("News of the World");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("1977-10-28"));
-            album.setGenero(Arrays.asList("Rock", "Arena Rock"));
+            album.setGenero(Arrays.asList("Rock"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -1216,7 +1216,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Innuendo");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("1991-02-04"));
-            album.setGenero(Arrays.asList("Rock", "Progressive Rock"));
+            album.setGenero(Arrays.asList("Rock"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -1252,7 +1252,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Let It Bleed");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("1969-12-05"));
-            album.setGenero(Arrays.asList("Rock", "Blues Rock"));
+            album.setGenero(Arrays.asList("Rock"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -1287,7 +1287,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Sticky Fingers");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("1971-04-23"));
-            album.setGenero(Arrays.asList("Rock", "Hard Rock"));
+            album.setGenero(Arrays.asList("Rock"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -1322,7 +1322,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Exile on Main St.");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("1972-05-12"));
-            album.setGenero(Arrays.asList("Rock", "Blues Rock"));
+            album.setGenero(Arrays.asList("Rock"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -1358,7 +1358,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Nevermind");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("1991-09-24"));
-            album.setGenero(Arrays.asList("Grunge", "Alternative Rock"));
+            album.setGenero(Arrays.asList("Grunge"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -1393,7 +1393,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("In Utero");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("1993-09-21"));
-            album.setGenero(Arrays.asList("Grunge", "Alternative Rock"));
+            album.setGenero(Arrays.asList("Grunge"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -1428,7 +1428,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Bleach");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("1989-06-15"));
-            album.setGenero(Arrays.asList("Grunge", "Punk Rock"));
+            album.setGenero(Arrays.asList("Grunge"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -1464,7 +1464,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Blood Sugar Sex Magik");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("1991-09-24"));
-            album.setGenero(Arrays.asList("Funk Rock", "Alternative Rock"));
+            album.setGenero(Arrays.asList("Funk Rock"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -1499,7 +1499,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Californication");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("1999-06-08"));
-            album.setGenero(Arrays.asList("Alternative Rock", "Funk Rock"));
+            album.setGenero(Arrays.asList("Funk Rock"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -1534,7 +1534,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("By the Way");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2002-07-09"));
-            album.setGenero(Arrays.asList("Alternative Rock", "Funk Rock"));
+            album.setGenero(Arrays.asList("Funk Rock"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -1570,7 +1570,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Night Visions");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2012-09-04"));
-            album.setGenero(Arrays.asList("Pop Rock", "Indie Rock"));
+            album.setGenero(Arrays.asList("Pop Rock"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -1605,7 +1605,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Smoke + Mirrors");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2015-02-17"));
-            album.setGenero(Arrays.asList("Pop Rock", "Alternative Rock"));
+            album.setGenero(Arrays.asList("Pop Rock"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -1640,7 +1640,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Evolve");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2017-06-23"));
-            album.setGenero(Arrays.asList("Pop Rock", "Electropop"));
+            album.setGenero(Arrays.asList("Pop Rock"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -1676,7 +1676,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Dreaming Out Loud");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2007-11-20"));
-            album.setGenero(Arrays.asList("Pop Rock", "Alternative Rock"));
+            album.setGenero(Arrays.asList("Pop Rock"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -1711,7 +1711,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Native");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2013-03-26"));
-            album.setGenero(Arrays.asList("Pop Rock", "Alternative Rock"));
+            album.setGenero(Arrays.asList("Pop Rock"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -1746,7 +1746,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Human");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2021-08-27"));
-            album.setGenero(Arrays.asList("Pop Rock", "Electronic Pop"));
+            album.setGenero(Arrays.asList("Pop Rock"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -1782,7 +1782,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Songs About Jane");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2002-06-25"));
-            album.setGenero(Arrays.asList("Pop Rock", "Blue-Eyed Soul"));
+            album.setGenero(Arrays.asList("Pop Rock"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -1817,7 +1817,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("It Won't Be Soon Before Long");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2007-05-16"));
-            album.setGenero(Arrays.asList("Pop Rock", "Funk Rock"));
+            album.setGenero(Arrays.asList("Pop Rock"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -1852,7 +1852,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("V");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2014-08-29"));
-            album.setGenero(Arrays.asList("Pop Rock", "Dance Pop"));
+            album.setGenero(Arrays.asList("Pop Rock"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -1888,7 +1888,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Sobre El Amor Y Sus Efectos Secundarios");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2015-07-17"));
-            album.setGenero(Arrays.asList("Pop Latino", "Folk"));
+            album.setGenero(Arrays.asList("Pop Latino/Folk"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -1923,7 +1923,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Balas Perdidas");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2018-10-26"));
-            album.setGenero(Arrays.asList("Pop Latino", "Folk"));
+            album.setGenero(Arrays.asList("Pop Latino/Folk"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -1958,7 +1958,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("¿A Dónde Vamos?");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2021-07-15"));
-            album.setGenero(Arrays.asList("Pop Latino", "Folk"));
+            album.setGenero(Arrays.asList("Pop Latino/Folk"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -1994,7 +1994,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("¿Dónde Jugarán los Niños?");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("1992-10-27"));
-            album.setGenero(Arrays.asList("Rock en Español", "Pop Rock"));
+            album.setGenero(Arrays.asList("Rock en Español"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -2029,7 +2029,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Sueños Líquidos");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("1997-10-14"));
-            album.setGenero(Arrays.asList("Rock en Español", "Pop Rock"));
+            album.setGenero(Arrays.asList("Rock en Español"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -2064,7 +2064,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Amar es Combatir");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2006-08-22"));
-            album.setGenero(Arrays.asList("Rock en Español", "Pop Rock"));
+            album.setGenero(Arrays.asList("Rock en Español"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -2100,7 +2100,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("We Broke the Rules");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2002-07-30"));
-            album.setGenero(Arrays.asList("Bachata", "Latin Pop"));
+            album.setGenero(Arrays.asList("Bachata"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -2135,7 +2135,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Love & Hate");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2003-11-18"));
-            album.setGenero(Arrays.asList("Bachata", "Latin Pop"));
+            album.setGenero(Arrays.asList("Bachata"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -2170,7 +2170,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("The Last");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2009-06-09"));
-            album.setGenero(Arrays.asList("Bachata", "Latin Pop"));
+            album.setGenero(Arrays.asList("Bachata"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -2206,7 +2206,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Inolvidables");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("1996-07-01"));
-            album.setGenero(Arrays.asList("Cumbia", "Tropical"));
+            album.setGenero(Arrays.asList("Cumbia"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -2241,7 +2241,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Cómo Amanecí");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2002-08-15"));
-            album.setGenero(Arrays.asList("Cumbia", "Tropical"));
+            album.setGenero(Arrays.asList("Cumbia"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -2276,7 +2276,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("De Plaza en Plaza");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2016-09-30"));
-            album.setGenero(Arrays.asList("Cumbia", "Tropical", "Pop Latino"));
+            album.setGenero(Arrays.asList("Cumbia"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -2312,7 +2312,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Sueños");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("1984-06-15"));
-            album.setGenero(Arrays.asList("Rock en Español", "Pop Rock"));
+            album.setGenero(Arrays.asList("Rock en Español"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -2347,7 +2347,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Habitaciones Extrañas");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("1987-11-01"));
-            album.setGenero(Arrays.asList("Rock en Español", "Pop Rock"));
+            album.setGenero(Arrays.asList("Rock en Español"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -2382,7 +2382,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Igloo");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("1995-09-01"));
-            album.setGenero(Arrays.asList("Rock en Español", "Pop Rock"));
+            album.setGenero(Arrays.asList("Rock en Español"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -2418,7 +2418,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Caifanes Volumen 1");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("1988-08-28"));
-            album.setGenero(Arrays.asList("Rock en Español", "Rock Alternativo"));
+            album.setGenero(Arrays.asList("Rock en Español"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -2453,7 +2453,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Caifanes Volumen 2: El Diablito");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("1990-06-01"));
-            album.setGenero(Arrays.asList("Rock en Español", "Rock Alternativo"));
+            album.setGenero(Arrays.asList("Rock en Español"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -2488,7 +2488,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("El Silencio");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("1992-05-01"));
-            album.setGenero(Arrays.asList("Rock en Español", "Rock Alternativo"));
+            album.setGenero(Arrays.asList("Rock en Español"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -2524,7 +2524,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Arroz Con Leche");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2000-09-02"));
-            album.setGenero(Arrays.asList("Rock Alternativo", "Pop Punk"));
+            album.setGenero(Arrays.asList("Rock Alternativo"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -2559,7 +2559,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("La Revancha Del Príncipe Charro");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2002-02-18"));
-            album.setGenero(Arrays.asList("Rock Alternativo", "Emo"));
+            album.setGenero(Arrays.asList("Rock Alternativo"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -2594,7 +2594,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Para Ti Con Desprecio");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2005-06-11"));
-            album.setGenero(Arrays.asList("Rock Alternativo", "Pop Punk", "Emo"));
+            album.setGenero(Arrays.asList("Rock Alternativo"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -2630,7 +2630,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Allison");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2006-03-01"));
-            album.setGenero(Arrays.asList("Pop Punk", "Rock Alternativo"));
+            album.setGenero(Arrays.asList("Pop Punk"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -2665,7 +2665,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Memorama");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2008-05-01"));
-            album.setGenero(Arrays.asList("Pop Punk", "Emo Punk"));
+            album.setGenero(Arrays.asList("Pop Punk"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -2700,7 +2700,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Todo Está Encendido");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2012-11-01"));
-            album.setGenero(Arrays.asList("Pop Punk", "Rock Alternativo"));
+            album.setGenero(Arrays.asList("Pop Punk"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -2736,7 +2736,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("X 100PRE");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2018-12-24"));
-            album.setGenero(Arrays.asList("Reggaeton", "Trap Latino"));
+            album.setGenero(Arrays.asList("Reggaeton"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -2771,7 +2771,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("YHLQMDLG");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2020-02-29"));
-            album.setGenero(Arrays.asList("Reggaeton", "Trap Latino"));
+            album.setGenero(Arrays.asList("Reggaeton"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -2806,7 +2806,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Un Verano Sin Ti");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2022-05-06"));
-            album.setGenero(Arrays.asList("Reggaeton", "Pop Latino"));
+            album.setGenero(Arrays.asList("Reggaeton"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -2842,7 +2842,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Dua Lipa");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2017-06-02"));
-            album.setGenero(Arrays.asList("Pop", "Dance Pop"));
+            album.setGenero(Arrays.asList("Pop"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -2877,7 +2877,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Future Nostalgia");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2020-03-27"));
-            album.setGenero(Arrays.asList("Pop", "Disco Pop"));
+            album.setGenero(Arrays.asList("Pop"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -2912,7 +2912,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Club Future Nostalgia");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2020-08-28"));
-            album.setGenero(Arrays.asList("Pop", "Dance", "Remix"));
+            album.setGenero(Arrays.asList("Pop"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -2948,7 +2948,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Fearless");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2008-11-11"));
-            album.setGenero(Arrays.asList("Country", "Pop"));
+            album.setGenero(Arrays.asList("Pop"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -2983,7 +2983,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("1989");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2014-10-27"));
-            album.setGenero(Arrays.asList("Pop", "Synthpop"));
+            album.setGenero(Arrays.asList("Pop"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -3018,7 +3018,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Folklore");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2020-07-24"));
-            album.setGenero(Arrays.asList("Indie Folk", "Alternative"));
+            album.setGenero(Arrays.asList("Pop"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -3054,7 +3054,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Beauty Behind the Madness");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2015-08-28"));
-            album.setGenero(Arrays.asList("R&B", "Pop", "Alternative R&B"));
+            album.setGenero(Arrays.asList("R&B"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -3089,7 +3089,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("After Hours");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2020-03-20"));
-            album.setGenero(Arrays.asList("R&B", "Synthpop"));
+            album.setGenero(Arrays.asList("R&B"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -3124,7 +3124,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Starboy");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2016-11-25"));
-            album.setGenero(Arrays.asList("R&B", "Pop", "Electropop"));
+            album.setGenero(Arrays.asList("R&B"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -3148,7 +3148,7 @@ public class AlbumDAO implements IAlbumDAO {
             return null;
         }
     }
-
+    ////////////////////////////////////////////////////////////////////////////
     private Albumes crearAlbumBillieEilish1(Artistas artista) {
         try {
             // Crear imagen de portada
@@ -3159,7 +3159,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("When We All Fall Asleep, Where Do We Go?");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2019-03-29"));
-            album.setGenero(Arrays.asList("Alternative Pop", "Electropop"));
+            album.setGenero(Arrays.asList("Alternative Pop"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -3194,7 +3194,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Happier Than Ever");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2021-07-30"));
-            album.setGenero(Arrays.asList("Alternative Pop", "Electropop"));
+            album.setGenero(Arrays.asList("Alternative Pop"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -3229,7 +3229,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Don't Smile at Me");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2017-08-11"));
-            album.setGenero(Arrays.asList("Alternative Pop", "Electropop"));
+            album.setGenero(Arrays.asList("Alternative Pop"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -3265,7 +3265,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Harry Styles");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2017-05-12"));
-            album.setGenero(Arrays.asList("Pop Rock", "Soft Rock"));
+            album.setGenero(Arrays.asList("Pop Rock"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -3300,7 +3300,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Fine Line");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2019-12-13"));
-            album.setGenero(Arrays.asList("Pop Rock", "Indie Pop"));
+            album.setGenero(Arrays.asList("Pop Rock"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -3335,7 +3335,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Harry's House");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2022-05-20"));
-            album.setGenero(Arrays.asList("Pop", "Synth Pop"));
+            album.setGenero(Arrays.asList("Pop Rock"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -3371,7 +3371,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("+ (Plus)");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2011-09-09"));
-            album.setGenero(Arrays.asList("Pop", "Acoustic"));
+            album.setGenero(Arrays.asList("Pop"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -3406,7 +3406,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("× (Multiply)");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2014-06-20"));
-            album.setGenero(Arrays.asList("Pop", "Folk Pop"));
+            album.setGenero(Arrays.asList("Pop"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -3441,7 +3441,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("÷ (Divide)");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2017-03-03"));
-            album.setGenero(Arrays.asList("Pop", "Acoustic"));
+            album.setGenero(Arrays.asList("Pop"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -3477,7 +3477,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("19");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2008-01-28"));
-            album.setGenero(Arrays.asList("Soul", "Pop"));
+            album.setGenero(Arrays.asList("Soul"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -3512,7 +3512,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("21");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2011-01-24"));
-            album.setGenero(Arrays.asList("Soul", "Pop", "Blues"));
+            album.setGenero(Arrays.asList("Soul"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -3547,7 +3547,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("25");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2015-11-20"));
-            album.setGenero(Arrays.asList("Soul", "Pop"));
+            album.setGenero(Arrays.asList("Soul"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -3583,7 +3583,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Los Ángeles");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2017-02-10"));
-            album.setGenero(Arrays.asList("Flamenco", "Experimental"));
+            album.setGenero(Arrays.asList("Flamenco Pop"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -3618,7 +3618,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("El Mal Querer");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2018-11-02"));
-            album.setGenero(Arrays.asList("Flamenco Pop", "R&B", "Experimental"));
+            album.setGenero(Arrays.asList("Flamenco Pop"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -3653,7 +3653,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Motomami");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2022-03-18"));
-            album.setGenero(Arrays.asList("Experimental Pop", "Reggaetón", "Flamenco"));
+            album.setGenero(Arrays.asList("Flamenco Pop"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -3689,7 +3689,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Pies Descalzos");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("1995-10-06"));
-            album.setGenero(Arrays.asList("Pop Latino", "Rock en Español"));
+            album.setGenero(Arrays.asList("Pop Latino"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -3724,7 +3724,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("¿Dónde Están los Ladrones?");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("1998-09-29"));
-            album.setGenero(Arrays.asList("Pop Latino", "Rock en Español"));
+            album.setGenero(Arrays.asList("Pop Latino"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -3759,7 +3759,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Loba");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2009-10-09"));
-            album.setGenero(Arrays.asList("Pop Latino", "Dance", "Electropop"));
+            album.setGenero(Arrays.asList("Pop Latino"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -3795,7 +3795,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Unstoppable");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2017-10-27"));
-            album.setGenero(Arrays.asList("Reggaeton", "Urbano"));
+            album.setGenero(Arrays.asList("Reggaeton"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -3830,7 +3830,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Ocean");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2019-05-03"));
-            album.setGenero(Arrays.asList("Reggaeton", "Urbano", "Pop Latino"));
+            album.setGenero(Arrays.asList("Reggaeton"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -3865,7 +3865,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("KG0516");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2021-03-25"));
-            album.setGenero(Arrays.asList("Reggaeton", "Urbano", "Trap Latino"));
+            album.setGenero(Arrays.asList("Reggaeton"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -3901,7 +3901,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("SOUR");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2021-05-21"));
-            album.setGenero(Arrays.asList("Pop Rock", "Indie Pop", "Alternative"));
+            album.setGenero(Arrays.asList("Pop Rock"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -3936,7 +3936,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("GUTS");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2023-09-08"));
-            album.setGenero(Arrays.asList("Pop Rock", "Alternative"));
+            album.setGenero(Arrays.asList("Pop Rock"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -3971,7 +3971,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Live from SOUR Tour");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2022-11-15"));
-            album.setGenero(Arrays.asList("Pop Rock", "Live Album"));
+            album.setGenero(Arrays.asList("Pop Rock"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -4007,7 +4007,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Doo-Wops & Hooligans");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2010-10-05"));
-            album.setGenero(Arrays.asList("Pop", "Funk", "Soul"));
+            album.setGenero(Arrays.asList("Funk"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -4042,7 +4042,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Unorthodox Jukebox");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2012-12-07"));
-            album.setGenero(Arrays.asList("Pop", "Funk", "R&B"));
+            album.setGenero(Arrays.asList("Funk"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -4077,7 +4077,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("24K Magic");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2016-11-18"));
-            album.setGenero(Arrays.asList("Funk", "R&B", "Pop"));
+            album.setGenero(Arrays.asList("Funk"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -4113,7 +4113,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Yours Truly");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2013-09-03"));
-            album.setGenero(Arrays.asList("Pop", "R&B"));
+            album.setGenero(Arrays.asList("Pop"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -4148,7 +4148,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("My Everything");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2014-08-25"));
-            album.setGenero(Arrays.asList("Pop", "Dance Pop", "R&B"));
+            album.setGenero(Arrays.asList("Pop"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -4183,7 +4183,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Thank U, Next");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2019-02-08"));
-            album.setGenero(Arrays.asList("Pop", "R&B", "Trap Pop"));
+            album.setGenero(Arrays.asList("Pop"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -4219,7 +4219,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Energía");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2016-06-24"));
-            album.setGenero(Arrays.asList("Reggaeton", "Latin Pop"));
+            album.setGenero(Arrays.asList("Reggaeton"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -4254,7 +4254,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Vibras");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2018-05-25"));
-            album.setGenero(Arrays.asList("Reggaeton", "Latin Pop", "Urban"));
+            album.setGenero(Arrays.asList("Reggaeton"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -4289,7 +4289,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Colores");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2020-03-19"));
-            album.setGenero(Arrays.asList("Reggaeton", "Urban"));
+            album.setGenero(Arrays.asList("Reggaeton"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -4325,7 +4325,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Elvis Presley");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("1956-03-23"));
-            album.setGenero(Arrays.asList("Rock & Roll", "Rockabilly"));
+            album.setGenero(Arrays.asList("Rock & Roll"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -4360,7 +4360,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("50,000,000 Elvis Fans Can't Be Wrong");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("1959-11-13"));
-            album.setGenero(Arrays.asList("Rock & Roll", "Pop"));
+            album.setGenero(Arrays.asList("Rock & Roll"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -4395,7 +4395,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("From Elvis in Memphis");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("1969-06-17"));
-            album.setGenero(Arrays.asList("Rock & Roll", "Soul", "Country"));
+            album.setGenero(Arrays.asList("Rock & Roll"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -4431,7 +4431,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("The Freewheelin' Bob Dylan");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("1963-05-27"));
-            album.setGenero(Arrays.asList("Folk", "Folk Rock"));
+            album.setGenero(Arrays.asList("Folk Rock"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -4466,7 +4466,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Highway 61 Revisited");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("1965-08-30"));
-            album.setGenero(Arrays.asList("Folk Rock", "Blues Rock"));
+            album.setGenero(Arrays.asList("Folk Rock"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -4501,7 +4501,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Blood on the Tracks");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("1975-01-20"));
-            album.setGenero(Arrays.asList("Folk Rock", "Country Rock"));
+            album.setGenero(Arrays.asList("Folk Rock"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -4537,7 +4537,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Pearl");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("1971-01-11"));
-            album.setGenero(Arrays.asList("Blues Rock", "Soul"));
+            album.setGenero(Arrays.asList("Blues Rock"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -4572,7 +4572,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Cheap Thrills");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("1968-08-12"));
-            album.setGenero(Arrays.asList("Psychedelic Rock", "Blues Rock"));
+            album.setGenero(Arrays.asList("Blues Rock"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -4607,7 +4607,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("I Got Dem Ol' Kozmic Blues Again Mama!");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("1969-09-11"));
-            album.setGenero(Arrays.asList("Blues Rock", "Soul"));
+            album.setGenero(Arrays.asList("Blues Rock"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -4643,7 +4643,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Are You Experienced");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("1967-05-12"));
-            album.setGenero(Arrays.asList("Psychedelic Rock", "Blues Rock"));
+            album.setGenero(Arrays.asList("Psychedelic Rock"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -4678,7 +4678,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Axis: Bold as Love");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("1967-12-01"));
-            album.setGenero(Arrays.asList("Psychedelic Rock", "Blues Rock"));
+            album.setGenero(Arrays.asList("Psychedelic Rock"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -4713,7 +4713,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Electric Ladyland");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("1968-10-16"));
-            album.setGenero(Arrays.asList("Psychedelic Rock", "Experimental Rock"));
+            album.setGenero(Arrays.asList("Psychedelic Rock"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -4749,7 +4749,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("The Rise and Fall of Ziggy Stardust and the Spiders from Mars");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("1972-06-16"));
-            album.setGenero(Arrays.asList("Glam Rock", "Art Rock"));
+            album.setGenero(Arrays.asList("Glam Rock"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -4784,7 +4784,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Low");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("1977-01-14"));
-            album.setGenero(Arrays.asList("Art Rock", "Experimental"));
+            album.setGenero(Arrays.asList("Glam Rock"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -4819,7 +4819,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Let's Dance");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("1983-04-14"));
-            album.setGenero(Arrays.asList("Pop Rock", "Dance Rock"));
+            album.setGenero(Arrays.asList("Glam Rock"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -4855,7 +4855,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Purple Rain");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("1984-06-25"));
-            album.setGenero(Arrays.asList("Funk Rock", "Pop", "R&B"));
+            album.setGenero(Arrays.asList("Funk Rock"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -4890,7 +4890,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Sign o' the Times");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("1987-03-30"));
-            album.setGenero(Arrays.asList("Funk Rock", "Soul", "Pop"));
+            album.setGenero(Arrays.asList("Funk Rock"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -4925,7 +4925,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("1999");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("1982-10-27"));
-            album.setGenero(Arrays.asList("Funk", "R&B", "Synth-Pop"));
+            album.setGenero(Arrays.asList("Funk Rock"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -4961,7 +4961,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Mr. Bad Guy");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("1985-04-29"));
-            album.setGenero(Arrays.asList("Rock", "Pop", "Synth-Pop"));
+            album.setGenero(Arrays.asList("Rock"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -4996,7 +4996,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Barcelona");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("1988-10-10"));
-            album.setGenero(Arrays.asList("Rock", "Opera", "Classical"));
+            album.setGenero(Arrays.asList("Rock"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -5031,7 +5031,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("The Great Pretender");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("1992-11-23"));
-            album.setGenero(Arrays.asList("Rock", "Pop"));
+            album.setGenero(Arrays.asList("Rock"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -5067,7 +5067,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Thriller");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("1982-11-30"));
-            album.setGenero(Arrays.asList("Pop", "Rock", "Funk"));
+            album.setGenero(Arrays.asList("Pop"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -5102,7 +5102,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Bad");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("1987-08-31"));
-            album.setGenero(Arrays.asList("Pop", "Rock", "R&B"));
+            album.setGenero(Arrays.asList("Pop"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -5137,7 +5137,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Dangerous");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("1991-11-13"));
-            album.setGenero(Arrays.asList("Pop", "New Jack Swing", "R&B"));
+            album.setGenero(Arrays.asList("Pop"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -5173,7 +5173,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Frank");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2003-10-20"));
-            album.setGenero(Arrays.asList("Jazz", "Soul", "R&B"));
+            album.setGenero(Arrays.asList("Jazz Pop"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -5208,7 +5208,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Back to Black");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2006-10-27"));
-            album.setGenero(Arrays.asList("Soul", "R&B", "Jazz"));
+            album.setGenero(Arrays.asList("Jazz Pop"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -5243,7 +5243,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Lioness: Hidden Treasures");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2011-12-02"));
-            album.setGenero(Arrays.asList("Soul", "Jazz", "R&B"));
+            album.setGenero(Arrays.asList("Jazz Pop"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -5279,7 +5279,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Traveller");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2015-05-05"));
-            album.setGenero(Arrays.asList("Country", "Country Rock", "Southern Rock"));
+            album.setGenero(Arrays.asList("Country Rock"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -5314,7 +5314,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("From A Room: Volume 1");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2017-05-05"));
-            album.setGenero(Arrays.asList("Country", "Country Rock", "Blues"));
+            album.setGenero(Arrays.asList("Country Rock"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -5349,7 +5349,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("From A Room: Volume 2");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2017-12-01"));
-            album.setGenero(Arrays.asList("Country", "Southern Rock", "Blues"));
+            album.setGenero(Arrays.asList("Country Rock"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -5385,7 +5385,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("In The Lonely Hour");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2014-05-26"));
-            album.setGenero(Arrays.asList("Pop", "Soul"));
+            album.setGenero(Arrays.asList("Pop"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -5420,7 +5420,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("The Thrill Of It All");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2017-11-03"));
-            album.setGenero(Arrays.asList("Pop", "Soul", "R&B"));
+            album.setGenero(Arrays.asList("Pop"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -5455,7 +5455,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Gloria");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2023-01-27"));
-            album.setGenero(Arrays.asList("Pop", "Dance", "Soul"));
+            album.setGenero(Arrays.asList("Pop"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -5491,7 +5491,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Hozier");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2014-09-19"));
-            album.setGenero(Arrays.asList("Indie Rock", "Soul"));
+            album.setGenero(Arrays.asList("Indie Rock"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -5526,7 +5526,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Wasteland, Baby!");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2019-03-01"));
-            album.setGenero(Arrays.asList("Indie Rock", "Soul", "Blues"));
+            album.setGenero(Arrays.asList("Indie Rock"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -5561,7 +5561,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Unreal Unearth");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2023-08-18"));
-            album.setGenero(Arrays.asList("Indie Rock", "Alternative"));
+            album.setGenero(Arrays.asList("Indie Rock"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -5597,7 +5597,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Born to Die");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2012-01-27"));
-            album.setGenero(Arrays.asList("Indie Pop", "Baroque Pop"));
+            album.setGenero(Arrays.asList("Indie Pop"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -5632,7 +5632,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Norman Fucking Rockwell!");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2019-08-30"));
-            album.setGenero(Arrays.asList("Indie Pop", "Soft Rock"));
+            album.setGenero(Arrays.asList("Indie Pop"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -5667,7 +5667,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Chemtrails Over the Country Club");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2021-03-19"));
-            album.setGenero(Arrays.asList("Indie Pop", "Folk"));
+            album.setGenero(Arrays.asList("Indie Pop"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -5703,7 +5703,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Stoney");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2016-12-09"));
-            album.setGenero(Arrays.asList("Hip Hop", "R&B"));
+            album.setGenero(Arrays.asList("Hip Hop"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -5738,7 +5738,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Beerbongs & Bentleys");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2018-04-27"));
-            album.setGenero(Arrays.asList("Hip Hop", "Trap", "Pop Rap"));
+            album.setGenero(Arrays.asList("Hip Hop"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -5773,7 +5773,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Hollywood's Bleeding");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2019-09-06"));
-            album.setGenero(Arrays.asList("Hip Hop", "Pop Rock"));
+            album.setGenero(Arrays.asList("Hip Hop"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -5809,7 +5809,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Handwritten");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2015-04-14"));
-            album.setGenero(Arrays.asList("Pop", "Acoustic"));
+            album.setGenero(Arrays.asList("Pop"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -5844,7 +5844,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Illuminate");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2016-09-23"));
-            album.setGenero(Arrays.asList("Pop", "Soul"));
+            album.setGenero(Arrays.asList("Pop"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -5879,7 +5879,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Shawn Mendes");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2018-05-25"));
-            album.setGenero(Arrays.asList("Pop", "Pop Rock"));
+            album.setGenero(Arrays.asList("Pop"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -5915,7 +5915,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Bangerz");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2013-10-04"));
-            album.setGenero(Arrays.asList("Pop", "Electropop"));
+            album.setGenero(Arrays.asList("Pop Rock"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -5950,7 +5950,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Plastic Hearts");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2020-11-27"));
-            album.setGenero(Arrays.asList("Rock", "Pop Rock"));
+            album.setGenero(Arrays.asList("Pop Rock"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -5985,7 +5985,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Endless Summer Vacation");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2023-03-10"));
-            album.setGenero(Arrays.asList("Pop", "Alternative Pop"));
+            album.setGenero(Arrays.asList("Pop Rock"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -6051,7 +6051,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("El Cartel: The Big Boss");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2007-06-05"));
-            album.setGenero(Arrays.asList("Reggaeton", "Hip Hop"));
+            album.setGenero(Arrays.asList("Reggaeton"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -6083,7 +6083,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Legendaddy");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2022-03-24"));
-            album.setGenero(Arrays.asList("Reggaeton", "Latin Urban"));
+            album.setGenero(Arrays.asList("Reggaeton"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -6116,7 +6116,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Odisea");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2017-08-25"));
-            album.setGenero(Arrays.asList("Reggaeton", "Latin Trap"));
+            album.setGenero(Arrays.asList("Reggaeton"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -6148,7 +6148,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Aura");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2018-08-24"));
-            album.setGenero(Arrays.asList("Reggaeton", "Latin Trap", "Pop Latino"));
+            album.setGenero(Arrays.asList("Reggaeton"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -6180,7 +6180,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("ENOC");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2020-09-04"));
-            album.setGenero(Arrays.asList("Reggaeton", "Latin Trap"));
+            album.setGenero(Arrays.asList("Reggaeton"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -6203,7 +6203,7 @@ public class AlbumDAO implements IAlbumDAO {
             return null;
         }
     }
-
+///////////////////////////////////////////////////////////////////////////////
     private Albumes crearAlbumAnuelAA1(Artistas artista) {
         try {
             File imagenFile = new File("./images/realhastalamuerte.jpg");
@@ -6212,7 +6212,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Real Hasta La Muerte");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2018-07-17"));
-            album.setGenero(Arrays.asList("Reggaeton", "Latin Trap"));
+            album.setGenero(Arrays.asList("Reggaeton"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -6244,7 +6244,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Emmanuel");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2020-05-29"));
-            album.setGenero(Arrays.asList("Reggaeton", "Latin Trap", "Pop Latino"));
+            album.setGenero(Arrays.asList("Reggaeton"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -6276,7 +6276,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Las Leyendas Nunca Mueren");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2021-11-26"));
-            album.setGenero(Arrays.asList("Reggaeton", "Latin Trap"));
+            album.setGenero(Arrays.asList("Reggaeton"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -6309,7 +6309,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("F.A.M.E.");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2018-05-18"));
-            album.setGenero(Arrays.asList("Reggaeton", "Latin Pop"));
+            album.setGenero(Arrays.asList("Reggaeton"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -6341,7 +6341,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("11:11");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2019-05-17"));
-            album.setGenero(Arrays.asList("Reggaeton", "Latin Pop"));
+            album.setGenero(Arrays.asList("Reggaeton"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -6373,7 +6373,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Papi Juancho");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2020-08-21"));
-            album.setGenero(Arrays.asList("Reggaeton", "Latin Urban"));
+            album.setGenero(Arrays.asList("Reggaeton"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -6406,7 +6406,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Iluminatti");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2019-02-15"));
-            album.setGenero(Arrays.asList("Reggaeton", "Latin Urban"));
+            album.setGenero(Arrays.asList("Reggaeton"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -6438,7 +6438,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Nattividad");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2021-09-24"));
-            album.setGenero(Arrays.asList("Reggaeton", "Latin Pop"));
+            album.setGenero(Arrays.asList("Reggaeton"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -6470,7 +6470,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("All About Me");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2020-03-20"));
-            album.setGenero(Arrays.asList("Reggaeton", "Latin Urban"));
+            album.setGenero(Arrays.asList("Reggaeton"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -6503,7 +6503,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Mala Santa");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2019-10-17"));
-            album.setGenero(Arrays.asList("Reggaeton", "Latin Pop"));
+            album.setGenero(Arrays.asList("Reggaeton"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -6535,7 +6535,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Esquemas");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2022-05-13"));
-            album.setGenero(Arrays.asList("Reggaeton", "Dance Pop"));
+            album.setGenero(Arrays.asList("Reggaeton"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -6568,7 +6568,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Visionary");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2015-10-23"));
-            album.setGenero(Arrays.asList("Reggaeton", "Latin Urban"));
+            album.setGenero(Arrays.asList("Reggaeton"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -6600,7 +6600,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Gangalee");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2019-04-26"));
-            album.setGenero(Arrays.asList("Reggaeton", "Trap Latino", "Dancehall"));
+            album.setGenero(Arrays.asList("Reggaeton"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -6632,7 +6632,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("La 167");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2021-10-01"));
-            album.setGenero(Arrays.asList("Reggaeton", "Latin Urban", "Reggae"));
+            album.setGenero(Arrays.asList("Reggaeton"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -6665,7 +6665,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("Sueños");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2019-04-19"));
-            album.setGenero(Arrays.asList("Reggaeton", "Latin Urban"));
+            album.setGenero(Arrays.asList("Reggaeton"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -6697,7 +6697,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("1 of 1");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2020-05-21"));
-            album.setGenero(Arrays.asList("Reggaeton", "Trap Latino"));
+            album.setGenero(Arrays.asList("Reggaeton"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -6729,7 +6729,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("42");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2021-04-15"));
-            album.setGenero(Arrays.asList("Reggaeton", "Latin Urban"));
+            album.setGenero(Arrays.asList("Reggaeton"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -6762,7 +6762,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("54+1");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2019-03-22"));
-            album.setGenero(Arrays.asList("Reggaeton", "Pop Latino"));
+            album.setGenero(Arrays.asList("Reggaeton"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 
@@ -6796,7 +6796,7 @@ public class AlbumDAO implements IAlbumDAO {
             Albumes album = new Albumes();
             album.setNombre("@dannocean");
             album.setFechaLanzamiento(new SimpleDateFormat("yyyy-MM-dd").parse("2022-03-25"));
-            album.setGenero(Arrays.asList("Reggaeton", "Pop Latino"));
+            album.setGenero(Arrays.asList("Reggaeton"));
             album.setImagenPortada(portada);
             album.setArtistaId(artista.getId());
 

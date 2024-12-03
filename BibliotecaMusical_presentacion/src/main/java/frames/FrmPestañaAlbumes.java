@@ -16,6 +16,7 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.Icon;
@@ -58,8 +59,8 @@ public class FrmPestañaAlbumes extends javax.swing.JFrame {
         this.obtieneAlbumes();
         this.cargarDatosUsuario();
     }
-    
-     private void SetImageLabel(JLabel labelname, String root) {
+
+    private void SetImageLabel(JLabel labelname, String root) {
         ImageIcon image = new ImageIcon(root);
         Icon icon = new ImageIcon(image.getImage().getScaledInstance(labelname.getWidth(), labelname.getHeight(), Image.SCALE_DEFAULT));
         labelname.setIcon(icon);
@@ -321,7 +322,7 @@ public class FrmPestañaAlbumes extends javax.swing.JFrame {
     }//GEN-LAST:event_bAlbumes2ActionPerformed
 
     private void bAlbumes3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAlbumes3ActionPerformed
-         Forms.cargarForm(new FrmPestañaCanciones(usuarioLoggeado), this);
+        Forms.cargarForm(new FrmPestañaCanciones(usuarioLoggeado), this);
     }//GEN-LAST:event_bAlbumes3ActionPerformed
 
     private void bAlbumes4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAlbumes4ActionPerformed
@@ -347,19 +348,36 @@ public class FrmPestañaAlbumes extends javax.swing.JFrame {
 
     private void obtieneAlbumes() {
         try {
+            // Obtiene la lista de géneros no deseados del usuario
+            List<String> generosNoDeseados = usuarioLoggeado.getGenerosNoDeseados();
+
+            // Obtiene todos los álbumes
             List<AlbumDTO> albumes = this.albumbo.obtenerAlbumes();
-            Collections.shuffle(albumes);
-            // Limitar a 28 artistas (7 columnas x 4 filas)
+
+            // Filtra los álbumes cuyo género no esté en la lista de géneros no deseados
+            List<AlbumDTO> albumesFiltrados = albumes.stream()
+                    .filter(album -> !generosNoDeseados.contains(album.getGenero()))
+                    .collect(Collectors.toList());
+            
+            // Imprimir los álbumes que se van a mostrar
+        System.out.println("Álbumes que se mostrarán:");
+        albumesFiltrados.forEach(album -> System.out.println(
+                "Nombre: " + album.getNombre() + ", Género: " + album.getGenero()
+        ));
+
+            // Mezclar y limitar los álbumes para mostrar
+            Collections.shuffle(albumesFiltrados);
             int maxArtistas = 28;
-            List<AlbumDTO> artistasLimitados = albumes.size() > maxArtistas
-                    ? albumes.subList(0, maxArtistas)
-                    : albumes;
+            List<AlbumDTO> albumesLimitados = albumesFiltrados.size() > maxArtistas
+                    ? albumesFiltrados.subList(0, maxArtistas)
+                    : albumesFiltrados;
 
             // Configurar el layout con 4 filas y 7 columnas
-            panelCanciones.setLayout(new GridLayout(4, 15, 15, 15));
+            panelCanciones.setLayout(new GridLayout(4, 7, 15, 15));
             panelCanciones.setBackground(new Color(18, 18, 18));
 
-            for (AlbumDTO album : artistasLimitados) {
+            // Crear paneles para los álbumes filtrados
+            for (AlbumDTO album : albumesLimitados) {
                 JPanel panelAlbum = creaPanel(album.getNombre(), album.getImagenPortada());
                 panelCanciones.add(panelAlbum);
             }
