@@ -90,7 +90,7 @@ public class FrmEditarPerfil extends javax.swing.JFrame {
 
         txtCorreo.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(221, 221, 221)));
 
-        bGuardarCambios.setBackground(new java.awt.Color(204, 0, 204));
+        bGuardarCambios.setBackground(new java.awt.Color(255, 0, 153));
         bGuardarCambios.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         bGuardarCambios.setForeground(new java.awt.Color(255, 255, 255));
         bGuardarCambios.setText("Guardar Cambios");
@@ -119,7 +119,7 @@ public class FrmEditarPerfil extends javax.swing.JFrame {
         lblImage.setForeground(new java.awt.Color(255, 255, 255));
         lblImage.setBorder(new javax.swing.border.MatteBorder(null));
 
-        btnCambiarFoto.setBackground(new java.awt.Color(204, 0, 204));
+        btnCambiarFoto.setBackground(new java.awt.Color(255, 0, 153));
         btnCambiarFoto.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         btnCambiarFoto.setForeground(new java.awt.Color(255, 255, 255));
         btnCambiarFoto.setText("Cambiar foto perfil");
@@ -133,7 +133,7 @@ public class FrmEditarPerfil extends javax.swing.JFrame {
         lblEditarPerfil.setForeground(new java.awt.Color(255, 255, 255));
         lblEditarPerfil.setText("Editar Perfil");
 
-        bCancelar.setBackground(new java.awt.Color(204, 0, 204));
+        bCancelar.setBackground(new java.awt.Color(255, 0, 153));
         bCancelar.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         bCancelar.setForeground(new java.awt.Color(255, 255, 255));
         bCancelar.setText("Cancelar");

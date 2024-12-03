@@ -20,6 +20,7 @@ frames\FrmPestañaCanciones$4.class
 frames\FrmEditarPerfil$2.class
 frames\FrmPestañaArtistas$2.class
 frames\FrmPestañaAlbumes$6.class
+frames\FrmRegistrarse$5.class
 frames\FrmInicioSesion$2.class
 frames\FrmPerfil$9.class
 frames\FrmInicio$5.class
@@ -29,6 +30,7 @@ frames\FrmEditarGenerosBaneados.class
 frames\FrmPerfil$6.class
 frames\FrmPestañaCanciones$1.class
 frames\FrmPerfil.class
+frames\FrmInicio$9.class
 frames\FrmPerfil$11.class
 recursos\ValidadorFrames.class
 frames\FrmInicio$2.class
@@ -36,7 +38,9 @@ frames\FrmRegistrarse$2.class
 frames\FrmPestañaAlbumes$3.class
 frames\FrmPestañaArtistas$6.class
 frames\FrmInicioSesion$3.class
+frames\FrmRegistrarse$6.class
 recursos\Forms.class
+frames\FrmInicio$11.class
 frames\FrmPestañaArtistas$3.class
 frames\FrmPestañaCanciones$3.class
 frames\FrmEditarPerfil$1.class
@@ -52,6 +56,7 @@ frames\FrmPerfil$4.class
 frames\FrmInicioSesion$4.class
 frames\FrmPestañaAlbumes$4.class
 frames\FrmPestañaArtistas$7.class
+frames\FrmInicio$10.class
 frames\FrmPestañaAlbumes$1.class
 frames\FrmEditarGenerosBaneados$1.class
 frames\FrmPestañaCanciones$2.class

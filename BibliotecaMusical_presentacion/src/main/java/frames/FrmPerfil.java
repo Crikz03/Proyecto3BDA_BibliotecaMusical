@@ -25,6 +25,7 @@ import java.awt.event.ActionListener;
 import java.awt.geom.Ellipse2D;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.BorderFactory;
@@ -55,7 +56,6 @@ public class FrmPerfil extends javax.swing.JFrame {
     private IAlbumDAO albumdao;
     private IDetallesCancionDAO candao;
     private UsuarioDTO usuarioLoggeado;
-    
 
     /**
      * Creates new form FrmHome
@@ -69,7 +69,6 @@ public class FrmPerfil extends javax.swing.JFrame {
         this.albumdao = new AlbumDAO();
         this.candao = new DetallesCancionDAO();
         this.usuarioLoggeado = usuarioLoggeado;
-     
 
         this.configuraFrame();
     }
@@ -116,9 +115,9 @@ public class FrmPerfil extends javax.swing.JFrame {
         jPanel1.setLayout(null);
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 0));
-        jPanel2.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(204, 0, 153)));
+        jPanel2.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 3, new java.awt.Color(255, 0, 153)));
 
-        jLabel1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(204, 0, 153)));
+        jLabel1.setBorder(new javax.swing.border.MatteBorder(null));
 
         bHome.setBackground(new java.awt.Color(0, 0, 0));
         bHome.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
@@ -188,8 +187,8 @@ public class FrmPerfil extends javax.swing.JFrame {
 
         bCerrarSesion.setBackground(new java.awt.Color(0, 0, 0));
         bCerrarSesion.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        bCerrarSesion.setForeground(new java.awt.Color(255, 51, 204));
-        bCerrarSesion.setText("Cerrar Sesion");
+        bCerrarSesion.setForeground(new java.awt.Color(255, 0, 153));
+        bCerrarSesion.setText("Cerrar Sesión");
         bCerrarSesion.setContentAreaFilled(false);
         bCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -213,7 +212,7 @@ public class FrmPerfil extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(9, 9, 9)
                         .addComponent(bCerrarSesion)))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(bAlbumes4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -249,16 +248,16 @@ public class FrmPerfil extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Generos baneados");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(228, 342, 332, 36);
+        jLabel2.setBounds(810, 90, 332, 36);
 
         lblNameUser.setBackground(new java.awt.Color(0, 0, 0));
         lblNameUser.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         lblNameUser.setForeground(new java.awt.Color(255, 255, 255));
         lblNameUser.setText("name");
         jPanel1.add(lblNameUser);
-        lblNameUser.setBounds(460, 110, 224, 32);
+        lblNameUser.setBounds(350, 240, 224, 32);
 
-        btnEditarGenerosBaneados.setBackground(new java.awt.Color(255, 51, 204));
+        btnEditarGenerosBaneados.setBackground(new java.awt.Color(255, 0, 153));
         btnEditarGenerosBaneados.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         btnEditarGenerosBaneados.setForeground(new java.awt.Color(255, 255, 255));
         btnEditarGenerosBaneados.setText("Editar generos baneados");
@@ -269,13 +268,13 @@ public class FrmPerfil extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnEditarGenerosBaneados);
-        btnEditarGenerosBaneados.setBounds(234, 640, 211, 30);
+        btnEditarGenerosBaneados.setBounds(850, 590, 207, 26);
 
         lblFoto.setText("jLabel5");
         jPanel1.add(lblFoto);
-        lblFoto.setBounds(302, 75, 146, 135);
+        lblFoto.setBounds(350, 70, 146, 135);
 
-        btnEditarDatosPersonales1.setBackground(new java.awt.Color(255, 51, 204));
+        btnEditarDatosPersonales1.setBackground(new java.awt.Color(255, 0, 153));
         btnEditarDatosPersonales1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         btnEditarDatosPersonales1.setForeground(new java.awt.Color(255, 255, 255));
         btnEditarDatosPersonales1.setText("Editar datos personales");
@@ -285,15 +284,18 @@ public class FrmPerfil extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnEditarDatosPersonales1);
-        btnEditarDatosPersonales1.setBounds(312, 259, 201, 30);
+        btnEditarDatosPersonales1.setBounds(350, 400, 197, 26);
 
         lblCorreo.setBackground(new java.awt.Color(0, 0, 0));
         lblCorreo.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         lblCorreo.setForeground(new java.awt.Color(255, 255, 255));
         lblCorreo.setText("correo");
         jPanel1.add(lblCorreo);
-        lblCorreo.setBounds(460, 160, 224, 19);
+        lblCorreo.setBounds(350, 300, 224, 19);
 
+        listaGenerosBaneados.setBackground(new java.awt.Color(0, 0, 0));
+        listaGenerosBaneados.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        listaGenerosBaneados.setForeground(new java.awt.Color(255, 0, 153));
         listaGenerosBaneados.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
@@ -302,7 +304,7 @@ public class FrmPerfil extends javax.swing.JFrame {
         jScrollPane1.setViewportView(listaGenerosBaneados);
 
         jPanel1.add(jScrollPane1);
-        jScrollPane1.setBounds(250, 390, 130, 150);
+        jScrollPane1.setBounds(810, 150, 270, 420);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -347,19 +349,19 @@ public class FrmPerfil extends javax.swing.JFrame {
     }//GEN-LAST:event_bHomeActionPerformed
 
     private void btnEditarGenerosBaneadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarGenerosBaneadosActionPerformed
-       try {
-        // Verificar si los géneros no deseados están inicializados
-        if (usuarioLoggeado.getGenerosNoDeseados() == null) {
-            usuarioLoggeado.setGenerosNoDeseados(new ArrayList<>());
-        }
+        try {
+            // Verificar si los géneros no deseados están inicializados
+            if (usuarioLoggeado.getGenerosNoDeseados() == null) {
+                usuarioLoggeado.setGenerosNoDeseados(new ArrayList<>());
+            }
 
-        // Abrir el formulario para editar géneros baneados
-        Forms.cargarForm(new FrmEditarGenerosBaneados(usuarioLoggeado), this);
-    } catch (PersistenciaException ex) {
-        Logger.getLogger(FrmPerfil.class.getName()).log(Level.SEVERE, "Error al cargar FrmEditarGenerosBaneados", ex);
-        JOptionPane.showMessageDialog(this, "Ocurrió un error al cargar la edición de géneros baneados.",
-                "Error", JOptionPane.ERROR_MESSAGE);
-    }
+            // Abrir el formulario para editar géneros baneados
+            Forms.cargarForm(new FrmEditarGenerosBaneados(usuarioLoggeado), this);
+        } catch (PersistenciaException ex) {
+            Logger.getLogger(FrmPerfil.class.getName()).log(Level.SEVERE, "Error al cargar FrmEditarGenerosBaneados", ex);
+            JOptionPane.showMessageDialog(this, "Ocurrió un error al cargar la edición de géneros baneados.",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnEditarGenerosBaneadosActionPerformed
 
     private void btnEditarDatosPersonales1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarDatosPersonales1ActionPerformed
@@ -386,8 +388,6 @@ public class FrmPerfil extends javax.swing.JFrame {
             lblFoto.setIcon(imageIcon);
         }
     }
-    
-
 
     private JPanel creaPanel(String nombre, Imagen imagen) {
         JPanel panel = new JPanel();
@@ -527,12 +527,20 @@ public class FrmPerfil extends javax.swing.JFrame {
 
         return btnVerTodos;
     }
-    
-        private void inicializarListaGenerosBaneados() {
-        if (usuarioLoggeado != null && usuarioLoggeado.getGenerosNoDeseados() != null) {
+
+
+    private void inicializarListaGenerosBaneados() {
+        if (usuarioLoggeado != null) {
             DefaultListModel<String> modeloLista = new DefaultListModel<>();
-            for (String genero : usuarioLoggeado.getGenerosNoDeseados()) {
-                modeloLista.addElement(genero);
+
+            // Verificar si hay géneros no deseados
+            List<String> generosNoDeseados = usuarioLoggeado.getGenerosNoDeseados();
+            if (generosNoDeseados == null || generosNoDeseados.isEmpty()) {
+                modeloLista.addElement("Sin géneros baneados");
+            } else {
+                for (String genero : generosNoDeseados) {
+                    modeloLista.addElement(genero);
+                }
             }
 
             if (listaGenerosBaneados == null) {

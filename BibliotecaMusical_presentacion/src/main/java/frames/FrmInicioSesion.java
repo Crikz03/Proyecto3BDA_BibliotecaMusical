@@ -7,8 +7,12 @@ package frames;
 import dto.UsuarioDTO;
 import excepciones.NegocioException;
 import interfaces.IUsuarioBO;
+import java.awt.Image;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import negocio.UsuarioBO;
 import recursos.Encriptacion;
@@ -29,6 +33,9 @@ public class FrmInicioSesion extends javax.swing.JFrame {
         initComponents();
         this.usuariobo = new UsuarioBO();
         setLocationRelativeTo(null);
+
+        this.SetImageLabel(jLabel2, "images/logo.png");
+
     }
 
     /**
@@ -49,13 +56,16 @@ public class FrmInicioSesion extends javax.swing.JFrame {
         bInicia = new javax.swing.JButton();
         bRegistrar = new javax.swing.JButton();
         bAlbumes = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
 
         panelArtistas.setBackground(new java.awt.Color(102, 0, 102));
-        panelArtistas.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(204, 0, 153)));
+        panelArtistas.setBorder(new javax.swing.border.MatteBorder(null));
+        panelArtistas.setPreferredSize(new java.awt.Dimension(802, 536));
 
         jLabel4.setBackground(new java.awt.Color(0, 0, 0));
         jLabel4.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
@@ -70,7 +80,7 @@ public class FrmInicioSesion extends javax.swing.JFrame {
         txtPass.setFont(new java.awt.Font("Georgia", 3, 18)); // NOI18N
         txtPass.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 255)));
 
-        bInicia.setBackground(new java.awt.Color(204, 0, 204));
+        bInicia.setBackground(new java.awt.Color(255, 0, 153));
         bInicia.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         bInicia.setForeground(new java.awt.Color(255, 255, 255));
         bInicia.setText("Iniciar Sesión");
@@ -102,12 +112,33 @@ public class FrmInicioSesion extends javax.swing.JFrame {
             }
         });
 
+        jPanel2.setBackground(new java.awt.Color(0, 0, 0));
+
+        jLabel2.setBackground(new java.awt.Color(0, 0, 0));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(304, 304, 304)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout panelArtistasLayout = new javax.swing.GroupLayout(panelArtistas);
         panelArtistas.setLayout(panelArtistasLayout);
         panelArtistasLayout.setHorizontalGroup(
             panelArtistasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelArtistasLayout.createSequentialGroup()
-                .addContainerGap(212, Short.MAX_VALUE)
+                .addContainerGap(216, Short.MAX_VALUE)
                 .addGroup(panelArtistasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(panelArtistasLayout.createSequentialGroup()
                         .addComponent(bRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -122,15 +153,17 @@ public class FrmInicioSesion extends javax.swing.JFrame {
                         .addGap(60, 60, 60))
                     .addComponent(bInicia, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(219, 219, 219))
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         panelArtistasLayout.setVerticalGroup(
             panelArtistasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelArtistasLayout.createSequentialGroup()
-                .addGap(36, 36, 36)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(panelArtistasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bAlbumes)
                     .addComponent(bRegistrar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 108, Short.MAX_VALUE)
+                .addGap(51, 51, 51)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -147,17 +180,17 @@ public class FrmInicioSesion extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(144, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(139, 139, 139)
                 .addComponent(panelArtistas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(118, 118, 118))
+                .addContainerGap(182, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(80, Short.MAX_VALUE)
-                .addComponent(panelArtistas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(16, 16, 16))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(panelArtistas, javax.swing.GroupLayout.PREFERRED_SIZE, 587, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(47, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -221,6 +254,13 @@ public class FrmInicioSesion extends javax.swing.JFrame {
         });
     }
 
+    private void SetImageLabel(JLabel labelname, String root) {
+        ImageIcon image = new ImageIcon(root);
+        Icon icon = new ImageIcon(image.getImage().getScaledInstance(labelname.getWidth(), labelname.getHeight(), Image.SCALE_DEFAULT));
+        labelname.setIcon(icon);
+        this.repaint();
+    }
+
     private void intentarIniciarSesion() {
 
         try {
@@ -276,15 +316,18 @@ public class FrmInicioSesion extends javax.swing.JFrame {
 
     private void iniciarSesion(UsuarioDTO usuario) {
         Forms.cargarForm(new FrmInicio(usuario), this);
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bAlbumes;
     private javax.swing.JButton bInicia;
     private javax.swing.JButton bRegistrar;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel panelArtistas;
     private javax.swing.JTextField txtCorreo;
     private javax.swing.JPasswordField txtPass;

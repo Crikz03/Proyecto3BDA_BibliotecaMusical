@@ -95,4 +95,8 @@ public interface IAlbumBO {
      */
     List<DetallesCancionDTO> obtenerCancionesDeAlbumes() throws NegocioException;
 
+    List<DetallesCancionDTO> obtenerCancionesDeAlbumes2() throws NegocioException;
+
+    List<DetallesCancionDTO> buscarCancionesPorNombre(String nombre) throws NegocioException;
+
 }

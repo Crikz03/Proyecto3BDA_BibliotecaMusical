@@ -42,4 +42,6 @@ public interface IArtistaDAO {
     List<String> obtenerGenerosDeArtistas() throws PersistenciaException;
 
     List<Artistas> obtenerTodos() throws PersistenciaException;
+
+    Artistas buscarPorId(ObjectId idArtista) throws PersistenciaException;
 }
