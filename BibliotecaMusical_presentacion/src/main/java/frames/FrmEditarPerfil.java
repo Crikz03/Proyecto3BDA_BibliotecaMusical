@@ -265,39 +265,43 @@ public class FrmEditarPerfil extends javax.swing.JFrame {
     private void bGuardarCambiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bGuardarCambiosActionPerformed
         
         if (!this.validarTodosLosCampos()) {
-            return;
-        }
+        return;
+    }
 
-        // Actualizar los datos del usuario con la información ingresada
-        usuario.setNombreUsuario(txtUsuario.getText().trim());
-        usuario.setCorreo(txtCorreo.getText().trim());
+    // Actualizar los datos del usuario con la información ingresada
+    usuario.setNombreUsuario(txtUsuario.getText().trim());
+    usuario.setCorreo(txtCorreo.getText().trim());
 
-        // Manejo de la contraseña
-        String nuevaContrasena = new String(txtPassword.getPassword()).trim();
-        if (nuevaContrasena.isEmpty()) {
-            try {
-                // Recuperar la contraseña actual utilizando el ID
-                UsuarioDTO usuarioActual = usuariobo.consultarPorId(usuario.getId());
-                usuario.setContrasena(usuarioActual.getContrasena());
-            } catch (PersistenciaException ex) {
-                Logger.getLogger(FrmEditarPerfil.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        } else {
-            usuario.setContrasena(nuevaContrasena);
-        }
-
+    // Manejo de la contraseña
+    String nuevaContrasena = new String(txtPassword.getPassword()).trim();
+    if (nuevaContrasena.isEmpty()) {
         try {
-            // Actualizar usuario
-            if (this.usuariobo.actualizarUsuario(usuario)) {
-                JOptionPane.showMessageDialog(this, "Se han guardado los cambios.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-                Forms.cargarForm(new FrmPerfil(usuario), this);
-            } else {
-                JOptionPane.showMessageDialog(this, "No se realizaron cambios.", "Información", JOptionPane.INFORMATION_MESSAGE);
-            }
-        } catch (NegocioException ex) {
-            JOptionPane.showMessageDialog(this, "Ocurrió un error al guardar los cambios: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            // Recuperar la contraseña actual utilizando el ID
+            UsuarioDTO usuarioActual = usuariobo.consultarPorId(usuario.getId());
+            usuario.setContrasena(usuarioActual.getContrasena());
+        } catch (PersistenciaException ex) {
+            Logger.getLogger(FrmEditarPerfil.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+    } else {
+        usuario.setContrasena(nuevaContrasena);
+    }
+
+    // Manejo de la foto de perfil
+    if (imagenPerfil != null) {
+        usuario.setFotoPerfil(imagenPerfil); // Actualizar solo si hay una nueva imagen
+    }
+
+    try {
+        // Actualizar usuario
+        if (this.usuariobo.actualizarUsuario(usuario)) {
+            JOptionPane.showMessageDialog(this, "Se han guardado los cambios.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            Forms.cargarForm(new FrmPerfil(usuario), this); // Redirigir al perfil actualizado
+        } else {
+            JOptionPane.showMessageDialog(this, "No se realizaron cambios.", "Información", JOptionPane.INFORMATION_MESSAGE);
+        }
+    } catch (NegocioException ex) {
+        JOptionPane.showMessageDialog(this, "Ocurrió un error al guardar los cambios: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+    }
 
     }//GEN-LAST:event_bGuardarCambiosActionPerformed
 
