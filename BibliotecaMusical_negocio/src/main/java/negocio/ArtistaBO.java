@@ -65,8 +65,22 @@ public class ArtistaBO implements IArtistaBO {
      * @throws NegocioException Si ocurre un error de negocio o persistencia.
      */
     @Override
+    /*public List<ArtistaDTO> buscarArtistasPorNombre(String nombre) throws NegocioException {
+        try {
+            List<Artistas> artistas = artistaDAO.buscarArtistasPorNombre(nombre);
+            return ConvertidorGeneral.convertidoraListaDTO(artistas, ArtistaDTO.class);
+        } catch (PersistenciaException e) {
+            throw new NegocioException("Error al buscar artistas por nombre: " + e.getMessage(), e);
+        }
+    }*/
     public List<ArtistaDTO> buscarArtistasPorNombre(String nombre) throws NegocioException {
         try {
+            // Validar que el nombre no sea nulo ni vacío
+            if (nombre == null || nombre.trim().isEmpty()) {
+                throw new NegocioException("El término de búsqueda no puede ser nulo o vacío.");
+            }
+
+            // Realizar la búsqueda
             List<Artistas> artistas = artistaDAO.buscarArtistasPorNombre(nombre);
             return ConvertidorGeneral.convertidoraListaDTO(artistas, ArtistaDTO.class);
         } catch (PersistenciaException e) {

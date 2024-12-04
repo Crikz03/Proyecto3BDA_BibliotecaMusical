@@ -62,12 +62,12 @@ public class UsuarioDAO implements IUsuarioDAO {
             updates.add(Updates.set("correo", u.getCorreo()));
         }
         if (u.getContrasena() != null) {
-            System.out.println("Contraseña original antes de encriptar: " + u.getContrasena());
+           
 
             // Validar si ya está encriptada
             if (!u.getContrasena().matches("^[a-zA-Z0-9+/=]+$")) { // Ejemplo para verificar encriptación
                 String contrasenaEncriptada = Encriptacion.encriptar(u.getContrasena());
-                System.out.println("Contraseña encriptada: " + contrasenaEncriptada);
+                
                 updates.add(Updates.set("contrasena", contrasenaEncriptada));
             } else {
                 updates.add(Updates.set("contrasena", u.getContrasena()));

@@ -120,14 +120,26 @@ public class ArtistaDAO implements IArtistaDAO {
     }
 
     @Override
-    public List<Artistas> buscarArtistasPorNombre(String nombre) throws PersistenciaException {
+    /*public List<Artistas> buscarArtistasPorNombre(String nombre) throws PersistenciaException {
         try {
             return coleccionArtistas.find(Filters.regex("nombre", Pattern.compile(nombre, Pattern.CASE_INSENSITIVE)))
                     .into(new ArrayList<>());
         } catch (Exception e) {
             throw new PersistenciaException("Error al buscar artistas por nombre: " + e.getMessage());
         }
+    }*/
+    public List<Artistas> buscarArtistasPorNombre(String pattern) throws PersistenciaException {
+    try {
+        if (pattern == null || pattern.isEmpty()) {
+            throw new IllegalArgumentException("El patrón de búsqueda no puede ser nulo o vacío");
+        }
+        
+        Bson filtro = Filters.regex("nombre", Pattern.compile(pattern, Pattern.CASE_INSENSITIVE));
+        return coleccionArtistas.find(filtro).into(new ArrayList<>());
+    } catch (Exception e) {
+        throw new PersistenciaException("Error al buscar artistas por nombre: " + e.getMessage());
     }
+}
 
     @Override
     public List<Artistas> obtenerCincoArtistas() throws PersistenciaException {
