@@ -85,7 +85,6 @@ public class FrmInicio extends javax.swing.JFrame {
         //buscador
         inicializarBuscador();
 
-
     }
 
     private void configuraFrame() {
@@ -568,9 +567,9 @@ public class FrmInicio extends javax.swing.JFrame {
     private void obtieneAlbumes() {
         try {
             // Obtener la lista de géneros no deseados del usuario, asegurando que no sea null
-        List<String> generosNoDeseados = usuarioLoggeado.getGenerosNoDeseados() != null 
-                ? usuarioLoggeado.getGenerosNoDeseados() 
-                : Collections.emptyList();
+            List<String> generosNoDeseados = usuarioLoggeado.getGenerosNoDeseados() != null
+                    ? usuarioLoggeado.getGenerosNoDeseados()
+                    : Collections.emptyList();
 
             // Obtener todos los álbumes
             List<AlbumDTO> albumes = this.albumbo.obtenerAlbumes();
@@ -597,7 +596,7 @@ public class FrmInicio extends javax.swing.JFrame {
 
             // Crear paneles para los álbumes
             for (AlbumDTO album : albumesAMostrar) {
-                JPanel panelAlbum = creaPanel(album.getNombre(), album.getImagenPortada());
+                JPanel panelAlbum = creaPanel(album, album.getImagenPortada());
                 panelAlbumes.add(panelAlbum);
             }
 
@@ -622,9 +621,9 @@ public class FrmInicio extends javax.swing.JFrame {
     private void obtieneCanciones() {
         try {
             // Obtener la lista de géneros no deseados del usuario, asegurando que no sea null
-        List<String> generosNoDeseados = usuarioLoggeado.getGenerosNoDeseados() != null 
-                ? usuarioLoggeado.getGenerosNoDeseados() 
-                : Collections.emptyList();
+            List<String> generosNoDeseados = usuarioLoggeado.getGenerosNoDeseados() != null
+                    ? usuarioLoggeado.getGenerosNoDeseados()
+                    : Collections.emptyList();
 
             // Obtener todas las canciones
             List<DetallesCancionDTO> canciones = this.albumbo.obtenerCancionesDeAlbumes2();
@@ -710,7 +709,7 @@ public class FrmInicio extends javax.swing.JFrame {
 
             // Crear paneles para los artistas
             for (ArtistaDTO artista : artistasAMostrar) {
-                JPanel panelArtista = creaPanelRedondo(artista.getNombre(), artista.getImagen());
+                JPanel panelArtista = creaPanelRedondo(artista);
                 panelArtistas.add(panelArtista);
             }
 
@@ -774,7 +773,7 @@ public class FrmInicio extends javax.swing.JFrame {
         return panel;
     }
 
-    private JPanel creaPanelRedondo(String nombre, Imagen imagen) {
+    private JPanel creaPanelRedondo(ArtistaDTO artista) {
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         panel.setBackground(new Color(18, 18, 18));
@@ -788,8 +787,8 @@ public class FrmInicio extends javax.swing.JFrame {
         btnFoto.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         // Crear imagen redonda
-        if (imagen != null) {
-            ImageIcon icon = GestorImagenesMongo.getImageIcon(imagen, GestorImagenesMongo.SizeImage.MEDIUM);
+        if (artista.getImagen() != null) {
+            ImageIcon icon = GestorImagenesMongo.getImageIcon(artista.getImagen(), GestorImagenesMongo.SizeImage.MEDIUM);
             if (icon != null) {
                 btnFoto.setIcon(new ImageIcon(makeRoundedImage(icon.getImage(), 130)));
             } else {
@@ -800,16 +799,59 @@ public class FrmInicio extends javax.swing.JFrame {
         }
 
         btnFoto.addActionListener(e -> {
-            System.out.println("Nocausa");
+            Forms.cargarForm(new FrmDetallesArtistas(usuarioLoggeado, artista), this);
         });
 
-        JLabel lblNombre = new JLabel(nombre);
+        JLabel lblNombre = new JLabel(artista.getNombre());
         lblNombre.setFont(new Font("Arial", Font.PLAIN, 14));
         lblNombre.setForeground(Color.WHITE);
         lblNombre.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         panel.add(btnFoto);
         panel.add(Box.createVerticalStrut(10));
+        panel.add(lblNombre);
+
+        return panel;
+    }
+
+    private JPanel creaPanel(AlbumDTO album, Imagen imagen) {
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        panel.setBackground(new Color(18, 18, 18));
+        panel.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        JButton btnFoto = new JButton(); // Cambiado a JButton
+        btnFoto.setPreferredSize(new Dimension(150, 150));
+        btnFoto.setOpaque(true);
+        btnFoto.setContentAreaFilled(false); // Elimina el fondo por defecto
+        btnFoto.setBorder(new LineBorder(new Color(18, 18, 18), 5, true));
+        btnFoto.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        // Usa GestorImagenesMongo para convertir la imagen
+        if (imagen != null) {
+            ImageIcon icon = GestorImagenesMongo.getImageIcon(imagen, GestorImagenesMongo.SizeImage.MEDIUM);
+            if (icon != null) {
+                btnFoto.setIcon(icon); // Asigna la imagen como icono
+            } else {
+                btnFoto.setBackground(Color.RED); // Indicador de error en la imagen
+            }
+        } else {
+            btnFoto.setBackground(Color.BLUE); // Fondo si no hay imagen
+        }
+
+        // Añadir un ActionListener al botón para manejar clics
+        btnFoto.addActionListener(e -> {
+            System.out.println("Nocausa");
+            Forms.cargarForm(new FrmDetallesAlbum(usuarioLoggeado, album), this);
+        });
+
+        JLabel lblNombre = new JLabel(album.getNombre());
+        lblNombre.setFont(new Font("Arial", Font.PLAIN, 14));
+        lblNombre.setForeground(Color.WHITE);
+        lblNombre.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        panel.add(btnFoto);
+        panel.add(Box.createVerticalStrut(5)); // Espaciado
         panel.add(lblNombre);
 
         return panel;
