@@ -40,23 +40,18 @@ public final class ValidadorFrames {
         return email.matches(regex);
     }
 
+
     /**
      * Checa si un string es una contraseña válida.
      *
      * @param password
      * @return true si es válido.
      */
-    public static boolean isValidPassword(final String password) {
-
-        String regex
-                = "^(?=.*[0-9])"
-                + "(?=.*[a-z])"
-                + "(?=.*[A-Z])"
-                + "(?=.*[!@#$%^&+=])"
-                + "(?=\\S+$).{8,}$";
-
-        return password.matches(regex);
-    }
+       public static boolean isValidPassword(String password) {
+    // La contraseña debe tener al menos 8 caracteres, una letra mayúscula, una minúscula, un número y un carácter especial
+    String passwordRegex = "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$";
+    return password.matches(passwordRegex);
+}
 
     /**
      * Valida el formato de un teléfono.
@@ -74,4 +69,3 @@ public final class ValidadorFrames {
     }
 
 }
-

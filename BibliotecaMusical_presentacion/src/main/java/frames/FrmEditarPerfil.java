@@ -7,13 +7,22 @@ package frames;
 import dto.UsuarioDTO;
 import excepciones.NegocioException;
 import excepciones.PersistenciaException;
+import frames.FrmPerfil;
 import interfaces.IUsuarioBO;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.RenderingHints;
+import java.awt.geom.Ellipse2D;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import negocio.UsuarioBO;
@@ -152,40 +161,39 @@ public class FrmEditarPerfil extends javax.swing.JFrame {
                 .addGroup(panelArtistasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelArtistasLayout.createSequentialGroup()
                         .addGroup(panelArtistasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtConfirmarPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6))
-                        .addContainerGap())
+                            .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblEditarPerfil)
+                            .addGroup(panelArtistasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelArtistasLayout.createSequentialGroup()
+                                    .addComponent(jLabel5)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnCambiarFoto))
+                                .addGroup(panelArtistasLayout.createSequentialGroup()
+                                    .addComponent(bCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(bGuardarCambios, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(panelArtistasLayout.createSequentialGroup()
+                                    .addGroup(panelArtistasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(txtConfirmarPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel6))
+                                    .addGap(333, 333, 333))))
+                        .addContainerGap(128, Short.MAX_VALUE))
                     .addGroup(panelArtistasLayout.createSequentialGroup()
                         .addGroup(panelArtistasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5)
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 157, Short.MAX_VALUE)
-                        .addGroup(panelArtistasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelArtistasLayout.createSequentialGroup()
-                                .addComponent(lblImage, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(144, 144, 144))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelArtistasLayout.createSequentialGroup()
-                                .addComponent(btnCambiarFoto)
-                                .addGap(128, 128, 128))))
-                    .addGroup(panelArtistasLayout.createSequentialGroup()
-                        .addGroup(panelArtistasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblEditarPerfil)
-                            .addGroup(panelArtistasLayout.createSequentialGroup()
-                                .addComponent(bGuardarCambios, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(bCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(191, 191, 191))))
+                            .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblImage, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(145, 145, 145))))
         );
         panelArtistasLayout.setVerticalGroup(
             panelArtistasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelArtistasLayout.createSequentialGroup()
-                .addGroup(panelArtistasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(44, 44, 44)
+                .addGroup(panelArtistasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(panelArtistasLayout.createSequentialGroup()
-                        .addGap(44, 44, 44)
                         .addComponent(lblEditarPerfil)
                         .addGap(48, 48, 48)
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -200,10 +208,10 @@ public class FrmEditarPerfil extends javax.swing.JFrame {
                         .addGap(12, 12, 12)
                         .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelArtistasLayout.createSequentialGroup()
-                        .addGap(198, 198, 198)
-                        .addComponent(lblImage, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnCambiarFoto)))
+                        .addComponent(lblImage, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(32, 32, 32)
+                        .addComponent(btnCambiarFoto)
+                        .addGap(55, 55, 55)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -255,30 +263,41 @@ public class FrmEditarPerfil extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCambiarFotoActionPerformed
 
     private void bGuardarCambiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bGuardarCambiosActionPerformed
+        
         if (!this.validarTodosLosCampos()) {
             return;
         }
 
         // Actualizar los datos del usuario con la información ingresada
-        usuario.setNombreUsuario(txtUsuario.getText());
-        usuario.setCorreo(txtCorreo.getText());
+        usuario.setNombreUsuario(txtUsuario.getText().trim());
+        usuario.setCorreo(txtCorreo.getText().trim());
 
-        // Actualizar la contraseña solo si el campo no está vacío
+        // Manejo de la contraseña
         String nuevaContrasena = new String(txtPassword.getPassword()).trim();
-        if (!nuevaContrasena.isEmpty()) {
+        if (nuevaContrasena.isEmpty()) {
+            try {
+                // Recuperar la contraseña actual utilizando el ID
+                UsuarioDTO usuarioActual = usuariobo.consultarPorId(usuario.getId());
+                usuario.setContrasena(usuarioActual.getContrasena());
+            } catch (PersistenciaException ex) {
+                Logger.getLogger(FrmEditarPerfil.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
             usuario.setContrasena(nuevaContrasena);
         }
 
-        usuario.setFotoPerfil(imagenPerfil);
-
         try {
-            this.usuariobo.actualizarUsuario(usuario); // Método para actualizar usuario
-            JOptionPane.showMessageDialog(this, "Se han guardado los cambios!", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-            Forms.cargarForm(new FrmPerfil(usuario), this); // Regresar a FrmPerfil
+            // Actualizar usuario
+            if (this.usuariobo.actualizarUsuario(usuario)) {
+                JOptionPane.showMessageDialog(this, "Se han guardado los cambios.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                Forms.cargarForm(new FrmPerfil(usuario), this);
+            } else {
+                JOptionPane.showMessageDialog(this, "No se realizaron cambios.", "Información", JOptionPane.INFORMATION_MESSAGE);
+            }
         } catch (NegocioException ex) {
-            JOptionPane.showMessageDialog(this, "Ocurrió un error al guardar los cambios!", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Ocurrió un error al guardar los cambios: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
-
+        
 
     }//GEN-LAST:event_bGuardarCambiosActionPerformed
 
@@ -286,17 +305,19 @@ public class FrmEditarPerfil extends javax.swing.JFrame {
         Forms.cargarForm(new FrmPerfil(usuario), this);
     }//GEN-LAST:event_bCancelarActionPerformed
 
+   
     private void elegirFotoPerfil() throws IOException {
         String path = this.obtenerPath();
 
         if (path != null) { // Si el usuario seleccionó una imagen válida
             File file = new File(path);
             this.imagenPerfil = GestorImagenesMongo.crearImagen("perfil", file); // Guardar la imagen en la variable
-            Icon imageIcon = GestorImagenesMongo.getImageIcon(
+
+            ImageIcon imageIcon = GestorImagenesMongo.getImageIcon(
                     this.imagenPerfil,
                     GestorImagenesMongo.SizeImage.MEDIUM
             );
-            lblImage.setIcon(imageIcon); // Mostrar la nueva imagen en el JLabel
+            ImagenCircular.setCircularImage(lblImage, imageIcon); // Mostrar la nueva imagen circular en el JLabel
         }
     }
 
@@ -350,28 +371,32 @@ public class FrmEditarPerfil extends javax.swing.JFrame {
     }
 
     private boolean validarPassword() {
-        String password = new String(txtPassword.getPassword());
-        String confirPassword = new String(txtConfirmarPassword.getPassword());
+        String password = new String(txtPassword.getPassword()).trim();
+        String confirPassword = new String(txtConfirmarPassword.getPassword()).trim();
 
-        boolean isVacias = password.isBlank() || confirPassword.isBlank();
-        boolean isDiferentes = !password.matches(confirPassword);
+        // Si ambos campos están vacíos, no se valida y se asume que no hay cambios
+        if (password.isEmpty() && confirPassword.isEmpty()) {
+            return true;
+        }
 
-        if (isVacias || isDiferentes) {
+        // Verificar si las contraseñas no coinciden
+        if (!password.equals(confirPassword)) {
             JOptionPane.showMessageDialog(this, "Las contraseñas no coinciden.", "Advertencia", JOptionPane.ERROR_MESSAGE);
             return false;
         }
 
+        // Verificar si la contraseña es segura
         if (!ValidadorFrames.isValidPassword(password)) {
             JOptionPane.showMessageDialog(this, "La contraseña no es lo suficiente segura.\n"
-                    + "Contraseña segura: Mayúscula, minúscula,\n "
-                    + "número, carácter especial, 8+ caracteres.", "Advertencia", JOptionPane.ERROR_MESSAGE);
-
-            return true;
+                    + "Debe incluir: Mayúscula, minúscula, número, carácter especial, 8+ caracteres.",
+                    "Advertencia", JOptionPane.ERROR_MESSAGE);
+            return false;
         }
+
         return true;
     }
 
-    // Método para cargar los datos del usuario en los campos del formulario
+    
     private void cargarDatosUsuario() {
         txtUsuario.setText(usuario.getNombreUsuario());
         txtCorreo.setText(usuario.getCorreo());
@@ -381,13 +406,76 @@ public class FrmEditarPerfil extends javax.swing.JFrame {
         // Cargar la foto de perfil si existe
         if (usuario.getFotoPerfil() != null) {
             imagenPerfil = usuario.getFotoPerfil(); // Asignar la imagen a la variable
-            Icon imageIcon = GestorImagenesMongo.getImageIcon(
+            ImageIcon imageIcon = GestorImagenesMongo.getImageIcon(
                     imagenPerfil,
                     GestorImagenesMongo.SizeImage.MEDIUM
             );
-            lblImage.setIcon(imageIcon); // Mostrar la imagen en el JLabel
+            ImagenCircular.setCircularImage(lblImage, imageIcon); // Mostrar la imagen circular en el JLabel
+        }
+    }
+
+    public class ImagenCircular {
+
+        public static void setCircularImage(JLabel label, String imagePath) {
+            try {
+                BufferedImage originalImage = ImageIO.read(new File(imagePath));
+
+                // Usa el tamaño del JLabel
+                int diameter = Math.min(label.getWidth(), label.getHeight());
+                BufferedImage circularImage = makeImageCircular(originalImage, diameter, diameter);
+
+                ImageIcon icon = new ImageIcon(circularImage);
+                label.setIcon(icon);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Error al procesar la imagen: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                e.printStackTrace();
+            }
         }
 
+        public static void setCircularImage(JLabel label, ImageIcon icon) {
+            try {
+                // Convertir el icono a BufferedImage
+                Image img = icon.getImage();
+                BufferedImage originalImage = new BufferedImage(img.getWidth(null), img.getHeight(null), BufferedImage.TYPE_INT_ARGB);
+                Graphics2D g = originalImage.createGraphics();
+                g.drawImage(img, 0, 0, null);
+                g.dispose();
+
+                // Crear la imagen circular
+                BufferedImage circularImage = makeImageCircular(originalImage, label.getWidth(), label.getHeight());
+                label.setIcon(new ImageIcon(circularImage));
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Error al procesar la imagen: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                e.printStackTrace();
+            }
+        }
+
+        private static BufferedImage makeImageCircular(BufferedImage originalImage, int width, int height) {
+            // Crear un BufferedImage escalado con mejor calidad
+            BufferedImage scaledImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+            Graphics2D g2d = scaledImage.createGraphics();
+
+            // Configuración de renderizado de alta calidad
+            g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BICUBIC);
+            g2d.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+            g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+            // Dibujar la imagen escalada
+            g2d.drawImage(originalImage, 0, 0, width, height, null);
+            g2d.dispose();
+
+            // Crear un BufferedImage circular
+            BufferedImage circularImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+            Graphics2D g = circularImage.createGraphics();
+
+            // Configuración de renderizado para la imagen circular
+            g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+            g.setClip(new Ellipse2D.Float(0, 0, width, height));
+            g.drawImage(scaledImage, 0, 0, null);
+            g.dispose();
+
+            return circularImage;
+        }
     }
 
 
