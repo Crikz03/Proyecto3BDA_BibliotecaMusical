@@ -49,35 +49,44 @@ public class UsuarioDAO implements IUsuarioDAO {
     }
 
     @Override
-    public boolean actualizar(Usuarios u) throws PersistenciaException {
-        try {
-            Bson filtroID = Filters.eq("_id", u.getId());
+    
+   public boolean actualizar(Usuarios u) throws PersistenciaException {
+    try {
+        Bson filtroID = Filters.eq("_id", u.getId());
 
-            List<Bson> updates = new ArrayList<>();
-            if (u.getNombreUsuario() != null) {
-                updates.add(Updates.set("nombreUsuario", u.getNombreUsuario()));
-            }
-            if (u.getCorreo() != null) {
-                updates.add(Updates.set("correo", u.getCorreo()));
-            }
-            if (u.getContrasena() != null) {
-                String contrasenaEncriptada = Encriptacion.encriptar(u.getContrasena());
-                updates.add(Updates.set("contrasena", contrasenaEncriptada));
-            }
-            if (u.getFotoPerfil() != null) {
-                updates.add(Updates.set("fotoPerfil", u.getFotoPerfil()));
-            }
-
-            if (!updates.isEmpty()) {
-                Bson actualizacionDatos = Updates.combine(updates);
-                UpdateResult resultado = this.coleccionUsuarios.updateOne(filtroID, actualizacionDatos);
-                return resultado.getModifiedCount() > 0;
-            }
-            return false;
-        } catch (MongoException e) {
-            throw new PersistenciaException("No se pudo actualizar el usuario: " + u.getId());
+        List<Bson> updates = new ArrayList<>();
+        if (u.getNombreUsuario() != null) {
+            updates.add(Updates.set("nombreUsuario", u.getNombreUsuario()));
         }
+        if (u.getCorreo() != null) {
+            updates.add(Updates.set("correo", u.getCorreo()));
+        }
+        if (u.getContrasena() != null) {
+            System.out.println("Contraseña original antes de encriptar: " + u.getContrasena());
+
+            // Validar si ya está encriptada
+            if (!u.getContrasena().matches("^[a-zA-Z0-9+/=]+$")) { // Ejemplo para verificar encriptación
+                String contrasenaEncriptada = Encriptacion.encriptar(u.getContrasena());
+                System.out.println("Contraseña encriptada: " + contrasenaEncriptada);
+                updates.add(Updates.set("contrasena", contrasenaEncriptada));
+            } else {
+                updates.add(Updates.set("contrasena", u.getContrasena()));
+            }
+        }
+        if (u.getFotoPerfil() != null) {
+            updates.add(Updates.set("fotoPerfil", u.getFotoPerfil()));
+        }
+
+        if (!updates.isEmpty()) {
+            Bson actualizacionDatos = Updates.combine(updates);
+            UpdateResult resultado = this.coleccionUsuarios.updateOne(filtroID, actualizacionDatos);
+            return resultado.getModifiedCount() > 0;
+        }
+        return false;
+    } catch (MongoException e) {
+        throw new PersistenciaException("No se pudo actualizar el usuario: " + u.getId());
     }
+}
 
     public boolean agregarAFavoritos(ObjectId idUsuario, Favorito favorito) throws PersistenciaException {
         try {
@@ -218,4 +227,12 @@ public class UsuarioDAO implements IUsuarioDAO {
         }
     }
 
+    public Usuarios consultarPorNombre(String nombreUsuario) throws PersistenciaException {
+    try {
+        // Consulta en MongoDB por el nombre de usuario
+        return coleccionUsuarios.find(eq("nombreUsuario", nombreUsuario)).first();
+    } catch (Exception e) {
+        throw new PersistenciaException("Error al consultar el usuario por nombre: " + e.getMessage());
+    }
+}
 }

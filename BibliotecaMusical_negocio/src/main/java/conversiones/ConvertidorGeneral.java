@@ -6,11 +6,13 @@ package conversiones;
 
 import dto.AlbumDTO;
 import dto.DetallesCancionDTO;
+import dto.UsuarioDTO;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 import objetos.Albumes;
 import objetos.DetallesCancion;
+import objetos.Usuarios;
 
 /**
  * Clase genérica que proporciona métodos de conversión entre objetos de tipo
@@ -153,6 +155,27 @@ public class ConvertidorGeneral {
             listaDtos.add(convertidoraDTO(entidad, claseDto));
         }
         return listaDtos;
+    }
+    
+    public static Usuarios convertirParaActualizacion(UsuarioDTO usuarioDTO, Usuarios usuarioActual) {
+        if (usuarioDTO == null || usuarioActual == null) {
+            throw new IllegalArgumentException("El DTO o el usuario actual no pueden ser nulos.");
+        }
+
+        Usuarios usuario = new Usuarios();
+        usuario.setId(usuarioActual.getId()); // Mantener el mismo ID
+        usuario.setNombreUsuario(usuarioDTO.getNombreUsuario() != null ? usuarioDTO.getNombreUsuario() : usuarioActual.getNombreUsuario());
+        usuario.setCorreo(usuarioDTO.getCorreo() != null ? usuarioDTO.getCorreo() : usuarioActual.getCorreo());
+        usuario.setFotoPerfil(usuarioDTO.getFotoPerfil() != null ? usuarioDTO.getFotoPerfil() : usuarioActual.getFotoPerfil());
+
+        // Preservar la contraseña actual si no se envía una nueva
+        if (usuarioDTO.getContrasena() != null && !usuarioDTO.getContrasena().isEmpty()) {
+            usuario.setContrasena(usuarioDTO.getContrasena());
+        } else {
+            usuario.setContrasena(usuarioActual.getContrasena());
+        }
+
+        return usuario;
     }
    
 }

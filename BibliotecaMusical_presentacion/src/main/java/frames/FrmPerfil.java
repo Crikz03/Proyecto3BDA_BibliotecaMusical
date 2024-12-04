@@ -24,10 +24,14 @@ import java.awt.RenderingHints;
 import java.awt.event.ActionListener;
 import java.awt.geom.Ellipse2D;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -41,6 +45,7 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 import recursos.Forms;
 import recursos.GestorImagenesMongo;
@@ -79,6 +84,7 @@ public class FrmPerfil extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         this.cargarDatosUsuario();
         this.inicializarListaGenerosBaneados();
+
     }
 
     /**
@@ -272,7 +278,7 @@ public class FrmPerfil extends javax.swing.JFrame {
 
         lblFoto.setText("jLabel5");
         jPanel1.add(lblFoto);
-        lblFoto.setBounds(350, 70, 146, 135);
+        lblFoto.setBounds(350, 70, 140, 140);
 
         btnEditarDatosPersonales1.setBackground(new java.awt.Color(255, 0, 153));
         btnEditarDatosPersonales1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -379,13 +385,17 @@ public class FrmPerfil extends javax.swing.JFrame {
         if (usuarioLoggeado != null) {
             lblNameUser.setText(usuarioLoggeado.getNombreUsuario());
             lblCorreo.setText(usuarioLoggeado.getCorreo());
-            ImageIcon imageIcon
-                    = GestorImagenesMongo
-                            .getImageIcon(
-                                    usuarioLoggeado.getFotoPerfil(),
-                                    GestorImagenesMongo.SizeImage.SMALL
-                            );
-            lblFoto.setIcon(imageIcon);
+
+            if (usuarioLoggeado.getFotoPerfil() != null) {
+                // Obtener el icono de la foto desde MongoDB
+                ImageIcon imageIcon = GestorImagenesMongo.getImageIcon(usuarioLoggeado.getFotoPerfil(), GestorImagenesMongo.SizeImage.LARGE);
+
+                // Usar el método para hacer la imagen circular
+                ImagenCircular.setCircularImage(lblFoto, imageIcon);
+            } else {
+                // Si no hay imagen, cargar una predeterminada circular
+                this.SetImageLabel(lblFoto, "images/perfildef1.png");
+            }
         }
     }
 
@@ -528,7 +538,7 @@ public class FrmPerfil extends javax.swing.JFrame {
         return btnVerTodos;
     }
 
-
+   
     private void inicializarListaGenerosBaneados() {
         if (usuarioLoggeado != null) {
             DefaultListModel<String> modeloLista = new DefaultListModel<>();
@@ -538,6 +548,13 @@ public class FrmPerfil extends javax.swing.JFrame {
             if (generosNoDeseados == null || generosNoDeseados.isEmpty()) {
                 modeloLista.addElement("Sin géneros baneados");
             } else {
+                // Eliminar valores nulos
+                generosNoDeseados.removeIf(Objects::isNull);
+
+                // Ordenar la lista ignorando mayúsculas/minúsculas
+                generosNoDeseados.sort(String.CASE_INSENSITIVE_ORDER);
+
+                // Agregar los géneros al modelo
                 for (String genero : generosNoDeseados) {
                     modeloLista.addElement(genero);
                 }
@@ -553,8 +570,73 @@ public class FrmPerfil extends javax.swing.JFrame {
                 listaGenerosBaneados.setModel(modeloLista);
             }
         }
+
         revalidate();
         repaint();
+    }
+
+    public class ImagenCircular {
+
+        public static void setCircularImage(JLabel label, String imagePath) {
+            try {
+                BufferedImage originalImage = ImageIO.read(new File(imagePath));
+
+                // Usa el tamaño del JLabel
+                int diameter = Math.min(label.getWidth(), label.getHeight());
+                BufferedImage circularImage = makeImageCircular(originalImage, diameter, diameter);
+
+                ImageIcon icon = new ImageIcon(circularImage);
+                label.setIcon(icon);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Error al procesar la imagen: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                e.printStackTrace();
+            }
+        }
+
+        public static void setCircularImage(JLabel label, ImageIcon icon) {
+            try {
+                // Convertir el icono a BufferedImage
+                Image img = icon.getImage();
+                BufferedImage originalImage = new BufferedImage(img.getWidth(null), img.getHeight(null), BufferedImage.TYPE_INT_ARGB);
+                Graphics2D g = originalImage.createGraphics();
+                g.drawImage(img, 0, 0, null);
+                g.dispose();
+
+                // Crear la imagen circular
+                BufferedImage circularImage = makeImageCircular(originalImage, label.getWidth(), label.getHeight());
+                label.setIcon(new ImageIcon(circularImage));
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Error al procesar la imagen: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                e.printStackTrace();
+            }
+        }
+
+        private static BufferedImage makeImageCircular(BufferedImage originalImage, int width, int height) {
+            // Crear un BufferedImage escalado con mejor calidad
+            BufferedImage scaledImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+            Graphics2D g2d = scaledImage.createGraphics();
+
+            // Configuración de renderizado de alta calidad
+            g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BICUBIC);
+            g2d.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+            g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+            // Dibujar la imagen escalada
+            g2d.drawImage(originalImage, 0, 0, width, height, null);
+            g2d.dispose();
+
+            // Crear un BufferedImage circular
+            BufferedImage circularImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+            Graphics2D g = circularImage.createGraphics();
+
+            // Configuración de renderizado para la imagen circular
+            g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+            g.setClip(new Ellipse2D.Float(0, 0, width, height));
+            g.drawImage(scaledImage, 0, 0, null);
+            g.dispose();
+
+            return circularImage;
+        }
     }
 
 

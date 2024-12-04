@@ -55,33 +55,32 @@ public class UsuarioBO implements IUsuarioBO {
     }
 
     public boolean actualizarUsuario(UsuarioDTO usuarioDTO) throws NegocioException {
-        try {
-            if (usuarioDTO == null || usuarioDTO.getId() == null) {
-                throw new NegocioException("El usuario o su ID no pueden ser nulos.");
-            }
-
-            // Convertir DTO a entidad usando ConvertidorGeneral
-            Usuarios usuario = ConvertidorGeneral.convertidorEntidad(usuarioDTO, Usuarios.class);
-            return usuarioDAO.actualizar(usuario);
-        } catch (PersistenciaException e) {
-            throw new NegocioException("Error al actualizar el usuario: " + e.getMessage(), e);
+    try {
+        if (usuarioDTO == null || usuarioDTO.getId() == null) {
+            throw new NegocioException("El usuario o su ID no pueden ser nulos.");
         }
+
+        // Obtener usuario actual de la base de datos utilizando el ID
+        Usuarios usuarioActual = usuarioDAO.consultarPorId(usuarioDTO.getId());
+        if (usuarioActual == null) {
+            throw new NegocioException("El usuario no existe en la base de datos.");
+        }
+
+        // Preservar la contraseña actual si no se proporciona una nueva
+        if (usuarioDTO.getContrasena() == null || usuarioDTO.getContrasena().isEmpty()) {
+            usuarioDTO.setContrasena(usuarioActual.getContrasena());
+        }
+
+        // Convertir DTO a entidad
+        Usuarios usuario = ConvertidorGeneral.convertirParaActualizacion(usuarioDTO, usuarioActual);
+
+        // Actualizar en la base de datos
+        return usuarioDAO.actualizar(usuario);
+    } catch (PersistenciaException e) {
+        throw new NegocioException("Error al actualizar el usuario: " + e.getMessage(), e);
     }
+}
 
-    /*
-    public UsuarioDTO obtenerUsuarioPorId(ObjectId idUsuario) throws NegocioException {
-        try {
-            Usuarios usuario = usuarioDAO.consultar(new Usuarios(idUsuario));//////////////////////////////////////////////////////////
-            if (usuario == null) {
-                throw new NegocioException("No se encontró el usuario con el ID: " + idUsuario);
-            }
-
-            // Convertir entidad a DTO usando ConvertidorGeneral
-            return ConvertidorGeneral.convertidoraDTO(usuario, UsuarioDTO.class);
-        } catch (PersistenciaException e) {
-            throw new NegocioException("Error al obtener el usuario por ID: " + e.getMessage(), e);
-        }
-    }*/
     public UsuarioDTO consultarUsuarioCorreo(String correo) throws NegocioException {
         if (correo == null || correo.isEmpty()) {
             throw new NegocioException("El correo del usuario es requerido para realizar la consulta.");
@@ -167,20 +166,26 @@ public class UsuarioBO implements IUsuarioBO {
         }
     }
 
-    /*
-    public boolean agregarGeneroNoDeseado(ObjectId idUsuario, String genero) throws NegocioException {
+   
+
+    public UsuarioDTO consultarUsuarioPorNombre(String nombreUsuario) throws NegocioException {
+        if (nombreUsuario == null || nombreUsuario.isEmpty()) {
+            throw new NegocioException("El nombre de usuario es requerido para realizar la consulta.");
+        }
+
         try {
-            return usuarioDAO.agregarGeneroNoDeseado(idUsuario, genero);//////////////////////////////////////////////////////////////
+            // Consulta en el DAO si existe el nombre de usuario
+            Usuarios usuario = usuarioDAO.consultarPorNombre(nombreUsuario);
+
+            // Si no se encuentra, devuelve null
+            if (usuario == null) {
+                throw new NegocioException("No se encontró un usuario con el nombre: " + nombreUsuario);
+            }
+
+            // Convierte la entidad Usuarios a DTO
+            return ConvertidorGeneral.convertidoraDTO(usuario, UsuarioDTO.class);
         } catch (PersistenciaException e) {
-            throw new NegocioException("Error al agregar el género no deseado: " + e.getMessage(), e);
+            throw new NegocioException("Error al consultar el nombre de usuario: " + e.getMessage(), e);
         }
     }
-
-    public boolean eliminarGeneroNoDeseado(ObjectId idUsuario, String genero) throws NegocioException {
-        try {
-            return usuarioDAO.eliminarGeneroNoDeseado(idUsuario, genero);/////////////////////////////////////////////////////////////
-        } catch (PersistenciaException e) {
-            throw new NegocioException("Error al eliminar el género no deseado: " + e.getMessage(), e);
-        }
-    }*/
 }

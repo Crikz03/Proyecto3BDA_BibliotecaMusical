@@ -33,4 +33,6 @@ public interface IUsuarioDAO {
     void actualizarGenerosNoDeseados(ObjectId usuarioId, List<String> generosBaneados) throws PersistenciaException;
 
     Usuarios consultarPorId(ObjectId idUsuario) throws PersistenciaException;
+
+    Usuarios consultarPorNombre(String nombreUsuario) throws PersistenciaException;
 }

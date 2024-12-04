@@ -82,5 +82,9 @@ public interface IUsuarioBO {
     throw new NegocioException("Error al eliminar el género no deseado: " + e.getMessage(), e);
     }
     }*/
+
+    UsuarioDTO consultarUsuarioPorNombre(String nombreUsuario) throws NegocioException;
+
+    UsuarioDTO consultarPorId(ObjectId idUsuario) throws PersistenciaException;
     
 }
