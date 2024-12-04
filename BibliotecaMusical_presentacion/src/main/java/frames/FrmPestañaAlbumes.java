@@ -43,7 +43,6 @@ public class FrmPestañaAlbumes extends javax.swing.JFrame {
     private IAlbumBO albumbo;
     private UsuarioDTO usuarioLoggeado;
 
-
     /**
      * Creates new form FrmPestañaAlbumes
      */
@@ -51,7 +50,6 @@ public class FrmPestañaAlbumes extends javax.swing.JFrame {
         initComponents();
         this.albumbo = new AlbumBO();
         this.usuarioLoggeado = usuarioLoggeado;
-
 
         this.configuraFrame();
     }
@@ -361,63 +359,63 @@ public class FrmPestañaAlbumes extends javax.swing.JFrame {
 
     private void obtieneAlbumes() {
         try {
-        // Obtiene la lista de géneros no deseados del usuario
-        List<String> generosNoDeseados = usuarioLoggeado.getGenerosNoDeseados();
+            // Obtiene la lista de géneros no deseados del usuario
+            List<String> generosNoDeseados = usuarioLoggeado.getGenerosNoDeseados();
 
-        // Obtiene todos los álbumes
-        List<AlbumDTO> albumes = this.albumbo.obtenerAlbumes();
+            // Obtiene todos los álbumes
+            List<AlbumDTO> albumes = this.albumbo.obtenerAlbumes();
 
-        // Filtra los álbumes basados en el género del artista
-        List<AlbumDTO> albumesFiltrados = albumes.stream()
-                .filter(album -> {
-                    try {
-                        // Buscar los álbumes del artista
-                        List<AlbumDTO> albumesArtista = albumbo.buscarPorArtista(album.getArtistaId());
-                        if (albumesArtista.isEmpty()) {
-                            return false; // No hay información sobre este artista
+            // Filtra los álbumes basados en el género del artista
+            List<AlbumDTO> albumesFiltrados = albumes.stream()
+                    .filter(album -> {
+                        try {
+                            // Buscar los álbumes del artista
+                            List<AlbumDTO> albumesArtista = albumbo.buscarPorArtista(album.getArtistaId());
+                            if (albumesArtista.isEmpty()) {
+                                return false; // No hay información sobre este artista
+                            }
+
+                            // Verificar si algún género del artista está en géneros no deseados
+                            List<String> generoArtista = albumesArtista.get(0).getGenero();
+                            return generoArtista.stream().noneMatch(generosNoDeseados::contains);
+                        } catch (NegocioException e) {
+                            e.printStackTrace();
+                            return false; // Si ocurre un error, excluye este álbum
                         }
+                    })
+                    .collect(Collectors.toList());
 
-                        // Verificar si algún género del artista está en géneros no deseados
-                        List<String> generoArtista = albumesArtista.get(0).getGenero();
-                        return generoArtista.stream().noneMatch(generosNoDeseados::contains);
-                    } catch (NegocioException e) {
-                        e.printStackTrace();
-                        return false; // Si ocurre un error, excluye este álbum
-                    }
-                })
-                .collect(Collectors.toList());
+            // Imprimir los álbumes que se van a mostrar
+            System.out.println("Álbumes que se mostrarán:");
+            albumesFiltrados.forEach(album -> System.out.println(
+                    "Nombre: " + album.getNombre() + ", Géneros del artista: " + album.getGenero()
+            ));
 
-        // Imprimir los álbumes que se van a mostrar
-        System.out.println("Álbumes que se mostrarán:");
-        albumesFiltrados.forEach(album -> System.out.println(
-                "Nombre: " + album.getNombre() + ", Géneros del artista: " + album.getGenero()
-        ));
+            // Mezclar y limitar los álbumes para mostrar
+            Collections.shuffle(albumesFiltrados);
+            int maxArtistas = 28;
+            List<AlbumDTO> albumesLimitados = albumesFiltrados.size() > maxArtistas
+                    ? albumesFiltrados.subList(0, maxArtistas)
+                    : albumesFiltrados;
 
-        // Mezclar y limitar los álbumes para mostrar
-        Collections.shuffle(albumesFiltrados);
-        int maxArtistas = 28;
-        List<AlbumDTO> albumesLimitados = albumesFiltrados.size() > maxArtistas
-                ? albumesFiltrados.subList(0, maxArtistas)
-                : albumesFiltrados;
+            // Configurar el layout con 4 filas y 7 columnas
+            panelCanciones.setLayout(new GridLayout(4, 7, 15, 15));
+            panelCanciones.setBackground(new Color(18, 18, 18));
 
-        // Configurar el layout con 4 filas y 7 columnas
-        panelCanciones.setLayout(new GridLayout(4, 7, 15, 15));
-        panelCanciones.setBackground(new Color(18, 18, 18));
+            // Crear paneles para los álbumes filtrados
+            for (AlbumDTO album : albumesLimitados) {
+                JPanel panelAlbum = creaPanel(album, album.getImagenPortada());
+                panelCanciones.add(panelAlbum);
+            }
 
-        // Crear paneles para los álbumes filtrados
-        for (AlbumDTO album : albumesLimitados) {
-            JPanel panelAlbum = creaPanel(album.getNombre(), album.getImagenPortada());
-            panelCanciones.add(panelAlbum);
+            panelCanciones.revalidate();
+            panelCanciones.repaint();
+        } catch (NegocioException e) {
+            e.printStackTrace();
         }
-
-        panelCanciones.revalidate();
-        panelCanciones.repaint();
-    } catch (NegocioException e) {
-        e.printStackTrace();
     }
-}
 
-    private JPanel creaPanel(String nombre, Imagen imagen) {
+    private JPanel creaPanel(AlbumDTO album, Imagen imagen) {
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         panel.setBackground(new Color(18, 18, 18));
@@ -445,9 +443,10 @@ public class FrmPestañaAlbumes extends javax.swing.JFrame {
         // Añadir un ActionListener al botón para manejar clics
         btnFoto.addActionListener(e -> {
             System.out.println("Nocausa");
+            Forms.cargarForm(new FrmDetallesAlbum(usuarioLoggeado, album), this);
         });
 
-        JLabel lblNombre = new JLabel(nombre);
+        JLabel lblNombre = new JLabel(album.getNombre());
         lblNombre.setFont(new Font("Arial", Font.PLAIN, 14));
         lblNombre.setForeground(Color.WHITE);
         lblNombre.setAlignmentX(Component.CENTER_ALIGNMENT);
