@@ -4,7 +4,7 @@
  */
 package pruebas;
 
-import datos.InsecionMasiva;
+import datos.InsercionMasivaDAO;
 import excepciones.PersistenciaException;
 
 /**
@@ -17,7 +17,7 @@ public class NewMain {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws PersistenciaException {
-        InsecionMasiva in = new InsecionMasiva();
+        InsercionMasivaDAO in = new InsercionMasivaDAO();
 
         in.insertarArtistasMasivos();
         in.insertarAlbumesMasivos();

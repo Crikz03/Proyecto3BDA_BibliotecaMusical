@@ -43,7 +43,7 @@ public class FavoritoBO implements IFavoritoBO {
             throw new NegocioException("El favorito o sus datos obligatorios no pueden ser nulos.");
         }
         // Convertir DTO a entidad
-        Favorito favorito = ConvertidorGeneral.convertidorEntidad(favoritoDTO, Favorito.class);
+        Favorito favorito = this.convierte(favoritoDTO);
         try {
             // Llamar al DAO para agregar el favorito
             if (!favoritoDAO.agregarFavorito(idUsuario, favorito)) {
@@ -52,6 +52,18 @@ public class FavoritoBO implements IFavoritoBO {
         } catch (PersistenciaException ex) {
             Logger.getLogger(FavoritoBO.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    public Favorito convierte(FavoritoDTO fav) {
+        Favorito favoritodto = new Favorito();
+        favoritodto.setId(fav.getIdReferencia());
+        favoritodto.setTitulo(fav.getTitulo());
+        favoritodto.setTipo(fav.getTipo());
+        favoritodto.setFechaAgregado(fav.getFechaAgregado());
+        favoritodto.setActivo(fav.isActivo());
+
+        return favoritodto;
+
     }
 
     /**

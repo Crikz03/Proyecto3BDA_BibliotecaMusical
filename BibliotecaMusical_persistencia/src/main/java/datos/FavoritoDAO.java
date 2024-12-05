@@ -44,7 +44,7 @@ public class FavoritoDAO implements IFavoritoDAO {
             boolean yaEsFavorito = coleccionUsuarios.find(
                     Filters.and(
                             Filters.eq("_id", idUsuario),
-                            Filters.elemMatch("favoritos", Filters.eq("IdReferecnia", favorito.getId()))
+                            Filters.elemMatch("favoritos", Filters.eq("_id", favorito.getId()))
                     )
             ).first() != null;
 

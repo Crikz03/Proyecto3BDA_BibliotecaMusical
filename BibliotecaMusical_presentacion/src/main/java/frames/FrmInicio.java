@@ -800,7 +800,7 @@ public class FrmInicio extends javax.swing.JFrame {
 
         // Crear paneles para las canciones
         for (DetallesCancionDTO cancion : cancionesLimitadas) {
-            JPanel panelCancion = creaPanel(cancion.getTitulo(), cancion.getFotoAlbum());
+            JPanel panelCancion = creaPanelCancion(cancion);
             panelCanciones.add(panelCancion);
         }
 
@@ -897,7 +897,7 @@ public class FrmInicio extends javax.swing.JFrame {
         panelArtistas.repaint();
     }
 
-    private JPanel creaPanel(String nombre, Imagen imagen) {
+    private JPanel creaPanelCancion(DetallesCancionDTO cancion) {
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         panel.setBackground(new Color(18, 18, 18));
@@ -911,8 +911,8 @@ public class FrmInicio extends javax.swing.JFrame {
         btnFoto.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         // Usa GestorImagenesMongo para convertir la imagen
-        if (imagen != null) {
-            ImageIcon icon = GestorImagenesMongo.getImageIcon(imagen, GestorImagenesMongo.SizeImage.MEDIUM);
+        if (cancion.getFotoAlbum() != null) {
+            ImageIcon icon = GestorImagenesMongo.getImageIcon(cancion.getFotoAlbum(), GestorImagenesMongo.SizeImage.MEDIUM);
             if (icon != null) {
                 btnFoto.setIcon(icon); // Asigna la imagen como icono
             } else {
@@ -924,10 +924,10 @@ public class FrmInicio extends javax.swing.JFrame {
 
         // Añadir un ActionListener al botón para manejar clics
         btnFoto.addActionListener(e -> {
-            System.out.println("Nocausa");
+            Forms.cargarForm(new FrmDetallesCanción(usuarioLoggeado, cancion), this);
         });
 
-        JLabel lblNombre = new JLabel(nombre);
+        JLabel lblNombre = new JLabel(cancion.getTitulo());
         lblNombre.setFont(new Font("Arial", Font.PLAIN, 14));
         lblNombre.setForeground(Color.WHITE);
         lblNombre.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -938,6 +938,7 @@ public class FrmInicio extends javax.swing.JFrame {
 
         return panel;
     }
+
 
     private JPanel creaPanelRedondo(ArtistaDTO artista) {
         JPanel panel = new JPanel();

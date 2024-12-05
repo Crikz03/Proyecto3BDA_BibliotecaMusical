@@ -6,7 +6,6 @@ package frames;
 
 import dto.AlbumDTO;
 import dto.ArtistaDTO;
-import dto.DetallesCancionDTO;
 import dto.UsuarioDTO;
 import excepciones.NegocioException;
 import interfaces.IAlbumBO;
@@ -20,7 +19,6 @@ import java.awt.Image;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -40,7 +38,6 @@ import negocio.AlbumBO;
 import negocio.ArtistaBO;
 import recursos.Forms;
 import recursos.GestorImagenesMongo;
-import recursos.Imagen;
 
 /**
  *

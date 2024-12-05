@@ -687,7 +687,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Coldplay", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Coldplay", ex);
             return null;
         }
     }
@@ -722,7 +722,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Coldplay", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Coldplay", ex);
             return null;
         }
     }
@@ -757,7 +757,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Coldplay", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Coldplay", ex);
             return null;
         }
     }
@@ -792,7 +792,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Coldplay", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Coldplay", ex);
             return null;
         }
     }
@@ -828,7 +828,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Arctic Monkeys", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Arctic Monkeys", ex);
             return null;
         }
     }
@@ -863,7 +863,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Arctic Monkeys", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Arctic Monkeys", ex);
             return null;
         }
     }
@@ -898,7 +898,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Arctic Monkeys", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Arctic Monkeys", ex);
             return null;
         }
     }
@@ -931,7 +931,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de The Beatles", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de The Beatles", ex);
             return null;
         }
     }
@@ -966,7 +966,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de The Beatles", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de The Beatles", ex);
             return null;
         }
     }
@@ -1001,7 +1001,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de The Beatles", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de The Beatles", ex);
             return null;
         }
     }
@@ -1035,7 +1035,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Green Day", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Green Day", ex);
             return null;
         }
     }
@@ -1070,7 +1070,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Green Day", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Green Day", ex);
             return null;
         }
     }
@@ -1105,7 +1105,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Green Day", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Green Day", ex);
             return null;
         }
     }
@@ -1139,7 +1139,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Twenty One Pilots", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Twenty One Pilots", ex);
             return null;
         }
     }
@@ -1174,7 +1174,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Twenty One Pilots", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Twenty One Pilots", ex);
             return null;
         }
     }
@@ -1209,7 +1209,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Twenty One Pilots", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Twenty One Pilots", ex);
             return null;
         }
     }
@@ -1245,7 +1245,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Queen", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Queen", ex);
             return null;
         }
     }
@@ -1280,7 +1280,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Queen", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Queen", ex);
             return null;
         }
     }
@@ -1315,7 +1315,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Queen", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Queen", ex);
             return null;
         }
     }
@@ -1351,7 +1351,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de The Rolling Stones", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de The Rolling Stones", ex);
             return null;
         }
     }
@@ -1386,7 +1386,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de The Rolling Stones", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de The Rolling Stones", ex);
             return null;
         }
     }
@@ -1421,7 +1421,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de The Rolling Stones", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de The Rolling Stones", ex);
             return null;
         }
     }
@@ -1457,7 +1457,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Nirvana", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Nirvana", ex);
             return null;
         }
     }
@@ -1492,7 +1492,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Nirvana", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Nirvana", ex);
             return null;
         }
     }
@@ -1527,7 +1527,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Nirvana", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Nirvana", ex);
             return null;
         }
     }
@@ -1563,7 +1563,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Red Hot Chili Peppers", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Red Hot Chili Peppers", ex);
             return null;
         }
     }
@@ -1598,7 +1598,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Red Hot Chili Peppers", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Red Hot Chili Peppers", ex);
             return null;
         }
     }
@@ -1633,7 +1633,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Red Hot Chili Peppers", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Red Hot Chili Peppers", ex);
             return null;
         }
     }
@@ -1669,7 +1669,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Imagine Dragons", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Imagine Dragons", ex);
             return null;
         }
     }
@@ -1704,7 +1704,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Imagine Dragons", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Imagine Dragons", ex);
             return null;
         }
     }
@@ -1739,7 +1739,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Imagine Dragons", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Imagine Dragons", ex);
             return null;
         }
     }
@@ -1775,7 +1775,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de OneRepublic", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de OneRepublic", ex);
             return null;
         }
     }
@@ -1810,7 +1810,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de OneRepublic", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de OneRepublic", ex);
             return null;
         }
     }
@@ -1845,7 +1845,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de OneRepublic", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de OneRepublic", ex);
             return null;
         }
     }
@@ -1881,7 +1881,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Maroon 5", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Maroon 5", ex);
             return null;
         }
     }
@@ -1916,7 +1916,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Maroon 5", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Maroon 5", ex);
             return null;
         }
     }
@@ -1951,7 +1951,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Maroon 5", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Maroon 5", ex);
             return null;
         }
     }
@@ -1987,7 +1987,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Morat", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Morat", ex);
             return null;
         }
     }
@@ -2022,7 +2022,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Morat", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Morat", ex);
             return null;
         }
     }
@@ -2057,7 +2057,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Morat", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Morat", ex);
             return null;
         }
     }
@@ -2093,7 +2093,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Maná", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Maná", ex);
             return null;
         }
     }
@@ -2128,7 +2128,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Maná", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Maná", ex);
             return null;
         }
     }
@@ -2163,7 +2163,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Maná", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Maná", ex);
             return null;
         }
     }
@@ -2199,7 +2199,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Aventura", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Aventura", ex);
             return null;
         }
     }
@@ -2234,7 +2234,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Aventura", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Aventura", ex);
             return null;
         }
     }
@@ -2269,7 +2269,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Aventura", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Aventura", ex);
             return null;
         }
     }
@@ -2305,7 +2305,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Los Ángeles Azules", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Los Ángeles Azules", ex);
             return null;
         }
     }
@@ -2340,7 +2340,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Los Ángeles Azules", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Los Ángeles Azules", ex);
             return null;
         }
     }
@@ -2375,7 +2375,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Los Ángeles Azules", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Los Ángeles Azules", ex);
             return null;
         }
     }
@@ -2411,7 +2411,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Enanitos Verdes", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Enanitos Verdes", ex);
             return null;
         }
     }
@@ -2446,7 +2446,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Enanitos Verdes", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Enanitos Verdes", ex);
             return null;
         }
     }
@@ -2481,7 +2481,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Enanitos Verdes", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Enanitos Verdes", ex);
             return null;
         }
     }
@@ -2517,7 +2517,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Caifanes Volumen 1", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Caifanes Volumen 1", ex);
             return null;
         }
     }
@@ -2552,7 +2552,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Caifanes Volumen 2", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Caifanes Volumen 2", ex);
             return null;
         }
     }
@@ -2587,7 +2587,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Caifanes El Silencio", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Caifanes El Silencio", ex);
             return null;
         }
     }
@@ -2623,7 +2623,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Panda: Arroz Con Leche", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Panda: Arroz Con Leche", ex);
             return null;
         }
     }
@@ -2658,7 +2658,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Panda: La Revancha Del Príncipe Charro", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Panda: La Revancha Del Príncipe Charro", ex);
             return null;
         }
     }
@@ -2693,7 +2693,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Panda: Para Ti Con Desprecio", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Panda: Para Ti Con Desprecio", ex);
             return null;
         }
     }
@@ -2729,7 +2729,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Allison: Allison", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Allison: Allison", ex);
             return null;
         }
     }
@@ -2764,7 +2764,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Allison: Memorama", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Allison: Memorama", ex);
             return null;
         }
     }
@@ -2799,7 +2799,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Allison: Todo Está Encendido", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Allison: Todo Está Encendido", ex);
             return null;
         }
     }
@@ -2835,7 +2835,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Bad Bunny: X 100PRE", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Bad Bunny: X 100PRE", ex);
             return null;
         }
     }
@@ -2870,7 +2870,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Bad Bunny: YHLQMDLG", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Bad Bunny: YHLQMDLG", ex);
             return null;
         }
     }
@@ -2905,7 +2905,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Bad Bunny: Un Verano Sin Ti", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Bad Bunny: Un Verano Sin Ti", ex);
             return null;
         }
     }
@@ -2941,7 +2941,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Dua Lipa: Dua Lipa", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Dua Lipa: Dua Lipa", ex);
             return null;
         }
     }
@@ -2976,7 +2976,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Dua Lipa: Future Nostalgia", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Dua Lipa: Future Nostalgia", ex);
             return null;
         }
     }
@@ -3011,7 +3011,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Dua Lipa: Club Future Nostalgia", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Dua Lipa: Club Future Nostalgia", ex);
             return null;
         }
     }
@@ -3047,7 +3047,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Taylor Swift: Fearless", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Taylor Swift: Fearless", ex);
             return null;
         }
     }
@@ -3082,7 +3082,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Taylor Swift: 1989", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Taylor Swift: 1989", ex);
             return null;
         }
     }
@@ -3117,7 +3117,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Taylor Swift: Folklore", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Taylor Swift: Folklore", ex);
             return null;
         }
     }
@@ -3153,7 +3153,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de The Weeknd: Beauty Behind the Madness", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de The Weeknd: Beauty Behind the Madness", ex);
             return null;
         }
     }
@@ -3188,7 +3188,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de The Weeknd: After Hours", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de The Weeknd: After Hours", ex);
             return null;
         }
     }
@@ -3223,7 +3223,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de The Weeknd: Starboy", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de The Weeknd: Starboy", ex);
             return null;
         }
     }
@@ -3259,7 +3259,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Billie Eilish: When We All Fall Asleep, Where Do We Go?", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Billie Eilish: When We All Fall Asleep, Where Do We Go?", ex);
             return null;
         }
     }
@@ -3294,7 +3294,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Billie Eilish: Happier Than Ever", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Billie Eilish: Happier Than Ever", ex);
             return null;
         }
     }
@@ -3329,7 +3329,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Billie Eilish: Don't Smile at Me", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Billie Eilish: Don't Smile at Me", ex);
             return null;
         }
     }
@@ -3365,7 +3365,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Harry Styles: Harry Styles", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Harry Styles: Harry Styles", ex);
             return null;
         }
     }
@@ -3400,7 +3400,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Harry Styles: Fine Line", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Harry Styles: Fine Line", ex);
             return null;
         }
     }
@@ -3435,7 +3435,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Harry Styles: Harry's House", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Harry Styles: Harry's House", ex);
             return null;
         }
     }
@@ -3471,7 +3471,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Ed Sheeran: + (Plus)", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Ed Sheeran: + (Plus)", ex);
             return null;
         }
     }
@@ -3506,7 +3506,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Ed Sheeran: × (Multiply)", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Ed Sheeran: × (Multiply)", ex);
             return null;
         }
     }
@@ -3541,7 +3541,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Ed Sheeran: ÷ (Divide)", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Ed Sheeran: ÷ (Divide)", ex);
             return null;
         }
     }
@@ -3577,7 +3577,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Adele: 19", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Adele: 19", ex);
             return null;
         }
     }
@@ -3612,7 +3612,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Adele: 21", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Adele: 21", ex);
             return null;
         }
     }
@@ -3647,7 +3647,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Adele: 25", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Adele: 25", ex);
             return null;
         }
     }
@@ -3683,7 +3683,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Rosalía: Los Ángeles", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Rosalía: Los Ángeles", ex);
             return null;
         }
     }
@@ -3718,7 +3718,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Rosalía: El Mal Querer", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Rosalía: El Mal Querer", ex);
             return null;
         }
     }
@@ -3753,7 +3753,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Rosalía: Motomami", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Rosalía: Motomami", ex);
             return null;
         }
     }
@@ -3789,7 +3789,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Shakira: Pies Descalzos", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Shakira: Pies Descalzos", ex);
             return null;
         }
     }
@@ -3824,7 +3824,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Shakira: ¿Dónde Están los Ladrones?", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Shakira: ¿Dónde Están los Ladrones?", ex);
             return null;
         }
     }
@@ -3859,7 +3859,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Shakira: Loba", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Shakira: Loba", ex);
             return null;
         }
     }
@@ -3895,7 +3895,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Karol G: Unstoppable", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Karol G: Unstoppable", ex);
             return null;
         }
     }
@@ -3930,7 +3930,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Karol G: Ocean", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Karol G: Ocean", ex);
             return null;
         }
     }
@@ -3965,7 +3965,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Karol G: KG0516", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Karol G: KG0516", ex);
             return null;
         }
     }
@@ -4001,7 +4001,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Olivia Rodrigo: SOUR", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Olivia Rodrigo: SOUR", ex);
             return null;
         }
     }
@@ -4036,7 +4036,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Olivia Rodrigo: GUTS", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Olivia Rodrigo: GUTS", ex);
             return null;
         }
     }
@@ -4071,7 +4071,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Olivia Rodrigo: Live from SOUR Tour", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Olivia Rodrigo: Live from SOUR Tour", ex);
             return null;
         }
     }
@@ -4107,7 +4107,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Bruno Mars: Doo-Wops & Hooligans", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Bruno Mars: Doo-Wops & Hooligans", ex);
             return null;
         }
     }
@@ -4142,7 +4142,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Bruno Mars: Unorthodox Jukebox", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Bruno Mars: Unorthodox Jukebox", ex);
             return null;
         }
     }
@@ -4177,7 +4177,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Bruno Mars: 24K Magic", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Bruno Mars: 24K Magic", ex);
             return null;
         }
     }
@@ -4213,7 +4213,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Ariana Grande: Yours Truly", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Ariana Grande: Yours Truly", ex);
             return null;
         }
     }
@@ -4248,7 +4248,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Ariana Grande: My Everything", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Ariana Grande: My Everything", ex);
             return null;
         }
     }
@@ -4283,7 +4283,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Ariana Grande: Thank U, Next", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Ariana Grande: Thank U, Next", ex);
             return null;
         }
     }
@@ -4319,7 +4319,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de J Balvin: Energía", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de J Balvin: Energía", ex);
             return null;
         }
     }
@@ -4354,7 +4354,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de J Balvin: Vibras", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de J Balvin: Vibras", ex);
             return null;
         }
     }
@@ -4389,7 +4389,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de J Balvin: Colores", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de J Balvin: Colores", ex);
             return null;
         }
     }
@@ -4425,7 +4425,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Elvis Presley: Elvis Presley", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Elvis Presley: Elvis Presley", ex);
             return null;
         }
     }
@@ -4460,7 +4460,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Elvis Presley: 50,000,000 Elvis Fans Can't Be Wrong", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Elvis Presley: 50,000,000 Elvis Fans Can't Be Wrong", ex);
             return null;
         }
     }
@@ -4495,7 +4495,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Elvis Presley: From Elvis in Memphis", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Elvis Presley: From Elvis in Memphis", ex);
             return null;
         }
     }
@@ -4531,7 +4531,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Bob Dylan: The Freewheelin' Bob Dylan", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Bob Dylan: The Freewheelin' Bob Dylan", ex);
             return null;
         }
     }
@@ -4566,7 +4566,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Bob Dylan: Highway 61 Revisited", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Bob Dylan: Highway 61 Revisited", ex);
             return null;
         }
     }
@@ -4601,7 +4601,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Bob Dylan: Blood on the Tracks", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Bob Dylan: Blood on the Tracks", ex);
             return null;
         }
     }
@@ -4637,7 +4637,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Janis Joplin: Pearl", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Janis Joplin: Pearl", ex);
             return null;
         }
     }
@@ -4672,7 +4672,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Janis Joplin: Cheap Thrills", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Janis Joplin: Cheap Thrills", ex);
             return null;
         }
     }
@@ -4707,7 +4707,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Janis Joplin: I Got Dem Ol' Kozmic Blues Again Mama!", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Janis Joplin: I Got Dem Ol' Kozmic Blues Again Mama!", ex);
             return null;
         }
     }
@@ -4743,7 +4743,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Jimi Hendrix: Are You Experienced", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Jimi Hendrix: Are You Experienced", ex);
             return null;
         }
     }
@@ -4778,7 +4778,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Jimi Hendrix: Axis: Bold as Love", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Jimi Hendrix: Axis: Bold as Love", ex);
             return null;
         }
     }
@@ -4813,7 +4813,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Jimi Hendrix: Electric Ladyland", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Jimi Hendrix: Electric Ladyland", ex);
             return null;
         }
     }
@@ -4849,7 +4849,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de David Bowie: The Rise and Fall of Ziggy Stardust", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de David Bowie: The Rise and Fall of Ziggy Stardust", ex);
             return null;
         }
     }
@@ -4884,7 +4884,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de David Bowie: Low", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de David Bowie: Low", ex);
             return null;
         }
     }
@@ -4919,7 +4919,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de David Bowie: Let's Dance", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de David Bowie: Let's Dance", ex);
             return null;
         }
     }
@@ -4955,7 +4955,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Prince: Purple Rain", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Prince: Purple Rain", ex);
             return null;
         }
     }
@@ -4990,7 +4990,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Prince: Sign o' the Times", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Prince: Sign o' the Times", ex);
             return null;
         }
     }
@@ -5025,7 +5025,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Prince: 1999", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Prince: 1999", ex);
             return null;
         }
     }
@@ -5061,7 +5061,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Freddie Mercury: Mr. Bad Guy", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Freddie Mercury: Mr. Bad Guy", ex);
             return null;
         }
     }
@@ -5096,7 +5096,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Freddie Mercury: Barcelona", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Freddie Mercury: Barcelona", ex);
             return null;
         }
     }
@@ -5131,7 +5131,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Freddie Mercury: The Great Pretender", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Freddie Mercury: The Great Pretender", ex);
             return null;
         }
     }
@@ -5167,7 +5167,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Michael Jackson: Thriller", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Michael Jackson: Thriller", ex);
             return null;
         }
     }
@@ -5202,7 +5202,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Michael Jackson: Bad", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Michael Jackson: Bad", ex);
             return null;
         }
     }
@@ -5237,7 +5237,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Michael Jackson: Dangerous", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Michael Jackson: Dangerous", ex);
             return null;
         }
     }
@@ -5273,7 +5273,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Amy Winehouse: Frank", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Amy Winehouse: Frank", ex);
             return null;
         }
     }
@@ -5308,7 +5308,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Amy Winehouse: Back to Black", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Amy Winehouse: Back to Black", ex);
             return null;
         }
     }
@@ -5343,7 +5343,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Amy Winehouse: Lioness: Hidden Treasures", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Amy Winehouse: Lioness: Hidden Treasures", ex);
             return null;
         }
     }
@@ -5379,7 +5379,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Chris Stapleton: Traveler", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Chris Stapleton: Traveler", ex);
             return null;
         }
     }
@@ -5414,7 +5414,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Chris Stapleton: From A Room: Volume 1", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Chris Stapleton: From A Room: Volume 1", ex);
             return null;
         }
     }
@@ -5449,7 +5449,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Chris Stapleton: From A Room: Volume 2", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Chris Stapleton: From A Room: Volume 2", ex);
             return null;
         }
     }
@@ -5485,7 +5485,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Sam Smith: In The Lonely Hour", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Sam Smith: In The Lonely Hour", ex);
             return null;
         }
     }
@@ -5520,7 +5520,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Sam Smith: The Thrill Of It All", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Sam Smith: The Thrill Of It All", ex);
             return null;
         }
     }
@@ -5555,7 +5555,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Sam Smith: Gloria", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Sam Smith: Gloria", ex);
             return null;
         }
     }
@@ -5591,7 +5591,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Hozier: Hozier", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Hozier: Hozier", ex);
             return null;
         }
     }
@@ -5626,7 +5626,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Hozier: Wasteland, Baby!", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Hozier: Wasteland, Baby!", ex);
             return null;
         }
     }
@@ -5661,7 +5661,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Hozier: Unreal Unearth", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Hozier: Unreal Unearth", ex);
             return null;
         }
     }
@@ -5697,7 +5697,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Lana Del Rey: Born to Die", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Lana Del Rey: Born to Die", ex);
             return null;
         }
     }
@@ -5732,7 +5732,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Lana Del Rey: Norman Fucking Rockwell!", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Lana Del Rey: Norman Fucking Rockwell!", ex);
             return null;
         }
     }
@@ -5767,7 +5767,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Lana Del Rey: Chemtrails Over the Country Club", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Lana Del Rey: Chemtrails Over the Country Club", ex);
             return null;
         }
     }
@@ -5803,7 +5803,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Post Malone: Stoney", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Post Malone: Stoney", ex);
             return null;
         }
     }
@@ -5838,7 +5838,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Post Malone: Beerbongs & Bentleys", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Post Malone: Beerbongs & Bentleys", ex);
             return null;
         }
     }
@@ -5873,7 +5873,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Post Malone: Hollywood's Bleeding", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Post Malone: Hollywood's Bleeding", ex);
             return null;
         }
     }
@@ -5909,7 +5909,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Shawn Mendes: Handwritten", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Shawn Mendes: Handwritten", ex);
             return null;
         }
     }
@@ -5944,7 +5944,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Shawn Mendes: Illuminate", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Shawn Mendes: Illuminate", ex);
             return null;
         }
     }
@@ -5979,7 +5979,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Shawn Mendes: Shawn Mendes", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Shawn Mendes: Shawn Mendes", ex);
             return null;
         }
     }
@@ -6015,7 +6015,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Miley Cyrus: Bangerz", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Miley Cyrus: Bangerz", ex);
             return null;
         }
     }
@@ -6050,7 +6050,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Miley Cyrus: Plastic Hearts", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Miley Cyrus: Plastic Hearts", ex);
             return null;
         }
     }
@@ -6085,7 +6085,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Miley Cyrus: Endless Summer Vacation", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Miley Cyrus: Endless Summer Vacation", ex);
             return null;
         }
     }
@@ -6118,7 +6118,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Daddy Yankee: Barrio Fino", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Daddy Yankee: Barrio Fino", ex);
             return null;
         }
     }
@@ -6150,7 +6150,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Daddy Yankee: El Cartel: The Big Boss", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Daddy Yankee: El Cartel: The Big Boss", ex);
             return null;
         }
     }
@@ -6182,7 +6182,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Daddy Yankee: Legendaddy", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Daddy Yankee: Legendaddy", ex);
             return null;
         }
     }
@@ -6215,7 +6215,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Ozuna: Odisea", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Ozuna: Odisea", ex);
             return null;
         }
     }
@@ -6247,7 +6247,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Ozuna: Aura", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Ozuna: Aura", ex);
             return null;
         }
     }
@@ -6279,7 +6279,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Ozuna: ENOC", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Ozuna: ENOC", ex);
             return null;
         }
     }
@@ -6312,7 +6312,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Anuel AA: Real Hasta La Muerte", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Anuel AA: Real Hasta La Muerte", ex);
             return null;
         }
     }
@@ -6344,7 +6344,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Anuel AA: Emmanuel", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Anuel AA: Emmanuel", ex);
             return null;
         }
     }
@@ -6376,7 +6376,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Anuel AA: Las Leyendas Nunca Mueren", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Anuel AA: Las Leyendas Nunca Mueren", ex);
             return null;
         }
     }
@@ -6409,7 +6409,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Maluma: F.A.M.E.", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Maluma: F.A.M.E.", ex);
             return null;
         }
     }
@@ -6441,7 +6441,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Maluma: 11:11", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Maluma: 11:11", ex);
             return null;
         }
     }
@@ -6473,7 +6473,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Maluma: Papi Juancho", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Maluma: Papi Juancho", ex);
             return null;
         }
     }
@@ -6506,7 +6506,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Natti Natasha: Iluminatti", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Natti Natasha: Iluminatti", ex);
             return null;
         }
     }
@@ -6538,7 +6538,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Natti Natasha: Nattividad", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Natti Natasha: Nattividad", ex);
             return null;
         }
     }
@@ -6570,7 +6570,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Natti Natasha: All About Me", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Natti Natasha: All About Me", ex);
             return null;
         }
     }
@@ -6603,7 +6603,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Becky G: Mala Santa", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Becky G: Mala Santa", ex);
             return null;
         }
     }
@@ -6635,7 +6635,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Becky G: Esquemas", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Becky G: Esquemas", ex);
             return null;
         }
     }
@@ -6668,7 +6668,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Farruko: Visionary", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Farruko: Visionary", ex);
             return null;
         }
     }
@@ -6700,7 +6700,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Farruko: Gangalee", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Farruko: Gangalee", ex);
             return null;
         }
     }
@@ -6732,7 +6732,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Farruko: La 167", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Farruko: La 167", ex);
             return null;
         }
     }
@@ -6765,7 +6765,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Sech: Sueños", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Sech: Sueños", ex);
             return null;
         }
     }
@@ -6797,7 +6797,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Sech: 1 of 1", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Sech: 1 of 1", ex);
             return null;
         }
     }
@@ -6829,7 +6829,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Sech: 42", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Sech: 42", ex);
             return null;
         }
     }
@@ -6862,7 +6862,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Danny Ocean: 54+1", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Danny Ocean: 54+1", ex);
             return null;
         }
     }
@@ -6917,7 +6917,7 @@ public class AlbumDAO implements IAlbumDAO {
 
             return album;
         } catch (Exception ex) {
-            Logger.getLogger(InsecionMasiva.class.getName()).log(Level.SEVERE, "Error al crear álbum de Danny Ocean: @dannocean", ex);
+            Logger.getLogger(InsercionMasivaDAO.class.getName()).log(Level.SEVERE, "Error al crear álbum de Danny Ocean: @dannocean", ex);
             return null;
         }
     }

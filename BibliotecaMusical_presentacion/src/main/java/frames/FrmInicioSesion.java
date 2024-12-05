@@ -7,6 +7,7 @@ package frames;
 import dto.UsuarioDTO;
 import excepciones.NegocioException;
 import interfaces.IUsuarioBO;
+import interfaces.IinsercionMasivaBO;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
@@ -24,15 +25,12 @@ import recursos.Forms;
 import recursos.GestorImagenesMongo;
 import recursos.Imagen;
 import recursos.ValidadorFrames;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
-import javax.swing.JPanel;
 import javax.swing.UIManager;
+import negocio.InsercionMasivaBO;
 
 /**
  *
@@ -43,6 +41,7 @@ public class FrmInicioSesion extends javax.swing.JFrame {
     private IUsuarioBO usuariobo;
     private Imagen imagenPerfil;
     private UsuarioDTO usuario;
+    private IinsercionMasivaBO insercionbo;
 
     /**
      * Creates new form FrmInicioSesion
@@ -50,6 +49,7 @@ public class FrmInicioSesion extends javax.swing.JFrame {
     public FrmInicioSesion() {
         initComponents();
         this.usuariobo = new UsuarioBO();
+        this.insercionbo = new InsercionMasivaBO();
         setLocationRelativeTo(null);
         this.cargarImagenDefault();
 
@@ -370,31 +370,31 @@ public class FrmInicioSesion extends javax.swing.JFrame {
 
     private void bRegistraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bRegistraActionPerformed
         if (!this.validarTodosLosCamposRegistro()) {
-        return;
-    }
+            return;
+        }
 
-    usuario = new UsuarioDTO();
-    usuario.setNombreUsuario(txtUsuarioReg.getText().trim());
-    usuario.setCorreo(txtCorreoReg.getText().trim());
-    usuario.setContrasena(txtPassword.getText().trim());
-    usuario.setFotoPerfil(imagenPerfil);
+        usuario = new UsuarioDTO();
+        usuario.setNombreUsuario(txtUsuarioReg.getText().trim());
+        usuario.setCorreo(txtCorreoReg.getText().trim());
+        usuario.setContrasena(txtPassword.getText().trim());
+        usuario.setFotoPerfil(imagenPerfil);
 
-    try {
-        this.usuariobo.registrarUsuario(usuario);
-        JOptionPane.showMessageDialog(this, "¡Registro exitoso! Ahora puedes iniciar sesión.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+        try {
+            this.usuariobo.registrarUsuario(usuario);
+            JOptionPane.showMessageDialog(this, "¡Registro exitoso! Ahora puedes iniciar sesión.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
 
-        // Limpiar los campos del formulario
-        txtUsuarioReg.setText("");
-        txtCorreoReg.setText("");
-        txtPassword.setText("");
-        txtConfirmarPassword.setText("");
-        this.SetImageLabelCircular(lblImage, "images/perfildef1.png");
+            // Limpiar los campos del formulario
+            txtUsuarioReg.setText("");
+            txtCorreoReg.setText("");
+            txtPassword.setText("");
+            txtConfirmarPassword.setText("");
+            this.SetImageLabelCircular(lblImage, "images/perfildef1.png");
 
-        // Cambiar a la pestaña de inicio de sesión
-        jTabbedPane1.setSelectedIndex(1); 
-    } catch (NegocioException ex) {
-        JOptionPane.showMessageDialog(this, "Ocurrió un error durante el registro: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-    }
+            // Cambiar a la pestaña de inicio de sesión
+            jTabbedPane1.setSelectedIndex(1);
+        } catch (NegocioException ex) {
+            JOptionPane.showMessageDialog(this, "Ocurrió un error durante el registro: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_bRegistraActionPerformed
 
     private void txtConfirmarPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtConfirmarPasswordActionPerformed
@@ -402,11 +402,11 @@ public class FrmInicioSesion extends javax.swing.JFrame {
     }//GEN-LAST:event_txtConfirmarPasswordActionPerformed
 
     private void beligeFotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_beligeFotoActionPerformed
-              try {
-        this.elegirFotoPerfil();
-    } catch (IOException ex) {
-        Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
-    }
+        try {
+            this.elegirFotoPerfil();
+        } catch (IOException ex) {
+            Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
+        }
 
     }//GEN-LAST:event_beligeFotoActionPerformed
 
@@ -516,8 +516,17 @@ public class FrmInicioSesion extends javax.swing.JFrame {
         }
     }
 
-
     private void intentarIniciarSesion() {
+
+        try {
+
+            // Insertar artistas y álbumes con validación
+            insercionbo.insertarArtistasMasivos();
+            insercionbo.insertarAlbumesMasivos();
+
+        } catch (NegocioException e) {
+            JOptionPane.showMessageDialog(this, "Ocurrió un error al realizar la inserción masiva: ", "Error", JOptionPane.ERROR_MESSAGE);
+        }
 
         try {
 
@@ -618,7 +627,6 @@ public class FrmInicioSesion extends javax.swing.JFrame {
         return validarCorreoRegistro() && validarUsername() && validarPassword();
     }
 
-    
     private boolean validarUsername() {
         String username = txtUsuarioReg.getText().trim();
 
@@ -646,7 +654,6 @@ public class FrmInicioSesion extends javax.swing.JFrame {
         return true; // Si no hay errores, el nombre de usuario es válido
     }
 
-   
     private boolean validarCorreoRegistro() {
         String correo = txtCorreoReg.getText().trim();
         System.out.println("Correo ingresado en registro: [" + correo + "]");
@@ -680,7 +687,6 @@ public class FrmInicioSesion extends javax.swing.JFrame {
     private boolean validarCorreoInicioSesion() {
         String correo = txtCorreoInicio.getText().trim();
 
-
         if (!ValidadorFrames.isValidEmail(correo)) {
             JOptionPane.showMessageDialog(this, "Correo inválido.", "Advertencia", JOptionPane.ERROR_MESSAGE);
             return false;
@@ -694,7 +700,6 @@ public class FrmInicioSesion extends javax.swing.JFrame {
         return true;
     }
 
-    
     private boolean validarPassword() {
         // Obtener las contraseñas desde los campos
         String password = new String(txtPassword.getPassword()).trim();
