@@ -1,5 +1,6 @@
 frames\FrmDetallesArtistas$3.class
 frames\FrmEditarGenerosBaneados$GenerosTableModel.class
+frames\FrmPestañaCanciones$10.class
 frames\FrmDetallesAlbum$6.class
 com\mycompany\bibliotecamusical_presentacion\BibliotecaMusical_presentacion.class
 recursos\JFormActualizado.class
@@ -9,10 +10,13 @@ frames\FrmEditarPerfil.class
 frames\FrmInicioSesion$1.class
 frames\FrmInicioSesion$5.class
 frames\FrmPestañaAlbumes$5.class
+frames\FrmPestañaArtistas$8.class
 frames\FrmDetallesArtistas$6.class
 frames\FrmPestañaArtistas$5.class
+frames\FrmPestañaAlbumes$9.class
 frames\FrmDetallesAlbum$3.class
 frames\FrmPestañaAlbumes$2.class
+frames\FrmPestañaCanciones$8.class
 frames\FrmEditarPerfil$3.class
 frames\FrmEditarGenerosBaneados$2.class
 frames\FrmPestañaCanciones$5.class
@@ -24,9 +28,11 @@ frames\FrmPerfil$ImagenCircular.class
 frames\FrmPestañaArtistas$2.class
 frames\FrmPestañaAlbumes$6.class
 frames\FrmInicioSesion$2.class
+frames\FrmPestañaArtistas$9.class
 frames\FrmPerfil$9.class
 frames\FrmDetallesAlbum$7.class
 frames\FrmInicio$5.class
+frames\FrmPestañaAlbumes$10.class
 frames\FrmPerfil$2.class
 frames\FrmPestañaAlbumes.class
 frames\FrmDetallesAlbum.class
@@ -52,6 +58,7 @@ frames\FrmPestañaArtistas$3.class
 frames\FrmPestañaCanciones$3.class
 frames\FrmEditarPerfil$1.class
 frames\FrmInicio$1.class
+frames\FrmPestañaAlbumes$11.class
 frames\FrmPestañaCanciones$7.class
 frames\FrmInicioSesion$6.class
 frames\FrmInicioSesion.class
@@ -77,6 +84,8 @@ frames\FrmDetallesAlbum$2.class
 frames\FrmDetallesArtistas$7.class
 frames\FrmPerfil$1.class
 frames\FrmPerfil$7.class
+frames\FrmPestañaAlbumes$8.class
+frames\FrmPestañaArtistas$10.class
 frames\FrmInicio.class
 frames\FrmInicioSesion$ImagenCircular.class
 frames\FrmPestañaCanciones$6.class
@@ -84,3 +93,4 @@ frames\FrmInicio$4.class
 frames\FrmPestañaArtistas.class
 frames\FrmPestañaArtistas$1.class
 frames\FrmInicio$7.class
+frames\FrmPestañaCanciones$9.class

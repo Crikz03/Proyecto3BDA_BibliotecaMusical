@@ -17,7 +17,16 @@ public class DetallesCancionDTO {
     private Integer duracion;       // Duración en segundos
     private ObjectId idReferenciaAlbum;     // ID del artista
     private Imagen fotoAlbum;
-    private String nombreArtista;   // Nombre del artista
+    private String nombreArtista;// Nombre del artista
+    private ObjectId idArtista;
+
+    public ObjectId getIdReferenciaAlbum() {
+        return idReferenciaAlbum;
+    }
+
+    public void setIdReferenciaAlbum(ObjectId idReferenciaAlbum) {
+        this.idReferenciaAlbum = idReferenciaAlbum;
+    }
 
     public DetallesCancionDTO() {
     }
@@ -28,6 +37,15 @@ public class DetallesCancionDTO {
         this.duracion = duracion;
         this.idReferenciaAlbum = idReferenciaAlbum;
         this.nombreArtista = nombreArtista;
+    }
+
+    public DetallesCancionDTO(String titulo, Integer duracion, ObjectId idReferenciaAlbum, String nombreArtista,ObjectId idArtista) {
+        this.titulo = titulo;
+        this.duracion = duracion;
+        this.duracion = duracion;
+        this.idReferenciaAlbum = idReferenciaAlbum;
+        this.nombreArtista = nombreArtista;
+        this.idArtista=idArtista;
     }
 
     // Getters y Setters
@@ -44,11 +62,11 @@ public class DetallesCancionDTO {
     }
 
     public ObjectId getIdArtista() {
-        return idReferenciaAlbum;
+        return idArtista;
     }
 
-    public void setIdArtista(ObjectId idReferenciaAlbum) {
-        this.idReferenciaAlbum = idReferenciaAlbum;
+    public void setIdArtista(ObjectId idArtista) {
+        this.idArtista = idArtista;
     }
 
     public String getNombreArtista() {
@@ -83,11 +101,11 @@ public class DetallesCancionDTO {
 
     @Override
     public String toString() {
-        return "DetallesDTO{" +
-                "titulo='" + titulo + '\'' +
-                ", duracion=" + duracion +
-                ", idArtista=" + idReferenciaAlbum +
-                ", nombreArtista='" + nombreArtista + '\'' +
-                '}';
+        return "DetallesDTO{"
+                + "titulo='" + titulo + '\''
+                + ", duracion=" + duracion
+                + ", idArtista=" + idReferenciaAlbum
+                + ", nombreArtista='" + nombreArtista + '\''
+                + '}';
     }
 }

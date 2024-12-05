@@ -263,7 +263,7 @@ public class FrmEditarPerfil extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCambiarFotoActionPerformed
 
     private void bGuardarCambiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bGuardarCambiosActionPerformed
-        
+
         if (!this.validarTodosLosCampos()) {
             return;
         }
@@ -286,18 +286,23 @@ public class FrmEditarPerfil extends javax.swing.JFrame {
             usuario.setContrasena(nuevaContrasena);
         }
 
+        // Manejo de la foto de perfil
+        if (imagenPerfil != null) {
+            usuario.setFotoPerfil(imagenPerfil); // Actualizar solo si hay una nueva imagen
+        }
+
         try {
             // Actualizar usuario
             if (this.usuariobo.actualizarUsuario(usuario)) {
                 JOptionPane.showMessageDialog(this, "Se han guardado los cambios.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-                Forms.cargarForm(new FrmPerfil(usuario), this);
+                Forms.cargarForm(new FrmPerfil(usuario), this); // Redirigir al perfil actualizado
             } else {
                 JOptionPane.showMessageDialog(this, "No se realizaron cambios.", "Información", JOptionPane.INFORMATION_MESSAGE);
             }
         } catch (NegocioException ex) {
             JOptionPane.showMessageDialog(this, "Ocurrió un error al guardar los cambios: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
-        
+
 
     }//GEN-LAST:event_bGuardarCambiosActionPerformed
 
@@ -305,7 +310,6 @@ public class FrmEditarPerfil extends javax.swing.JFrame {
         Forms.cargarForm(new FrmPerfil(usuario), this);
     }//GEN-LAST:event_bCancelarActionPerformed
 
-   
     private void elegirFotoPerfil() throws IOException {
         String path = this.obtenerPath();
 
@@ -396,7 +400,6 @@ public class FrmEditarPerfil extends javax.swing.JFrame {
         return true;
     }
 
-    
     private void cargarDatosUsuario() {
         txtUsuario.setText(usuario.getNombreUsuario());
         txtCorreo.setText(usuario.getCorreo());

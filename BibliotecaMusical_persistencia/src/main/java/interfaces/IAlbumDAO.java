@@ -40,4 +40,8 @@ public interface IAlbumDAO {
 
     List<DetallesCancion> buscarCancionesPorNombre(String nombre) throws PersistenciaException;
 
+    List<Artistas> buscarArtistasPorNombre(String nombreArtista) throws PersistenciaException;
+
+    List<Albumes> buscarAlbumesPorNombreDeCancion(String nombreCancion) throws PersistenciaException;
+
 }

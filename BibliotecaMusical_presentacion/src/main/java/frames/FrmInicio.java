@@ -66,6 +66,9 @@ public class FrmInicio extends javax.swing.JFrame {
     private IArtistaBO abo;
     private IAlbumBO albumbo;
     private UsuarioDTO usuarioLoggeado;
+    private List<DetallesCancionDTO> cancionesBuscadas;
+    private List<AlbumDTO> albumesBuscados;
+    private List<ArtistaDTO> artistasBuscados;
 
     private boolean isUpdatingComboBox = false;
 
@@ -79,6 +82,7 @@ public class FrmInicio extends javax.swing.JFrame {
         this.abo = new ArtistaBO();
         this.albumbo = new AlbumBO();
         this.usuarioLoggeado = usuarioLoggeado;
+        this.cancionesBuscadas = cancionesBuscadas;
 
         this.configuraFrame();
 
@@ -530,7 +534,112 @@ public class FrmInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_bCerrarSesionActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        // TODO add your handling code here:
+
+        String termino = txtBuscar.getText().trim();
+
+        if (termino.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor, ingresa un término de búsqueda.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        // Inicializar las listas de resultados
+        cancionesBuscadas = new ArrayList<>();
+        List<AlbumDTO> albumesBuscados = new ArrayList<>();
+        List<ArtistaDTO> artistasBuscados = new ArrayList<>();
+        try {
+            // Buscar canciones relacionadas
+            // 1. Canciones por nombre
+            List<DetallesCancionDTO> cancionesPorNombre = albumbo.buscarCancionesPorNombre(termino);
+            cancionesBuscadas.addAll(cancionesPorNombre);
+
+            // 2. Canciones de álbumes relacionados
+            List<AlbumDTO> albumesRelacionados = albumbo.buscarPorNombre(termino);
+            for (AlbumDTO album : albumesRelacionados) {
+                if (album.getCanciones() != null) {
+                    cancionesBuscadas.addAll(album.getCanciones());
+                }
+            }
+
+            // 3. Canciones de artistas relacionados
+            List<ArtistaDTO> artistasRelacionados = abo.buscarArtistasPorNombre(termino);
+            for (ArtistaDTO artista : artistasRelacionados) {
+                List<DetallesCancionDTO> cancionesDelArtista = albumbo.buscarCancionesPorArtista(artista.getId());
+                cancionesBuscadas.addAll(cancionesDelArtista);
+            }
+
+            // Filtrar duplicados en canciones
+            // Buscar álbumes relacionados
+            // 1. Álbumes por nombre
+            albumesBuscados.addAll(albumbo.buscarPorNombre(termino));
+
+            // 2. Álbumes de artistas relacionados
+            for (ArtistaDTO artista : artistasRelacionados) {
+                List<AlbumDTO> albumesDelArtista = albumbo.buscarPorArtista(artista.getId());
+                albumesBuscados.addAll(albumesDelArtista);
+            }
+
+            // 3. Álbumes relacionados por canciones
+            for (DetallesCancionDTO cancion : cancionesBuscadas) {
+                List<AlbumDTO> albumesPorCancion = albumbo.buscarAlbumesPorNombreDeCancion(cancion.getTitulo());
+                albumesBuscados.addAll(albumesPorCancion);
+            }
+
+            // Filtrar duplicados en álbumes
+            albumesBuscados = albumesBuscados.stream()
+                    .collect(Collectors.toMap(
+                            AlbumDTO::getNombre, // Clave: Nombre del álbum
+                            album -> album, // Valor: El álbum completo
+                            (albumExistente, nuevoAlbum) -> albumExistente // Resolver conflictos: Mantener el primero
+                    ))
+                    .values()
+                    .stream()
+                    .collect(Collectors.toList());
+
+            // Agregar artistas relacionados por álbum
+            for (AlbumDTO album : albumesBuscados) {
+                ArtistaDTO artista = abo.obtenerArtistaPorId(album.getArtistaId());
+                if (artista != null) {
+                    artistasBuscados.add(artista);
+                }
+            }
+            // Agregar artistas relacionados por canciones
+            for (DetallesCancionDTO cancion : cancionesBuscadas) {
+                ArtistaDTO artista = abo.obtenerArtistaPorId(cancion.getIdArtista());
+                if (artista != null) {
+                    artistasBuscados.add(artista);
+                }
+            }
+
+            // Filtrar duplicados en artistas
+            artistasBuscados = artistasBuscados.stream()
+                    .collect(Collectors.toMap(
+                            ArtistaDTO::getNombre, // Clave: Nombre del artista
+                            artista -> artista, // Valor: El objeto ArtistaDTO completo
+                            (artistaExistente, nuevoArtista) -> artistaExistente // Resolver conflictos manteniendo el primero
+                    ))
+                    .values()
+                    .stream()
+                    .collect(Collectors.toList());
+
+            for (AlbumDTO album : albumesBuscados) {
+                if (album.getCanciones() != null) {
+                    cancionesBuscadas.addAll(album.getCanciones());
+                }
+            }
+
+            cancionesBuscadas = cancionesBuscadas.stream()
+                    .distinct()
+                    .collect(Collectors.toList());
+            this.albumesBuscados = albumesBuscados;
+            this.artistasBuscados = artistasBuscados;
+
+            llenarPanelAlbum(this.albumesBuscados);
+            actualizarPanelCanciones(this.cancionesBuscadas);
+            llenaPanelArtistas(this.artistasBuscados);
+        } catch (NegocioException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Ocurrió un error durante la búsqueda.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void SetImageLabel(JLabel labelname, String root) {
@@ -589,33 +698,49 @@ public class FrmInicio extends javax.swing.JFrame {
             // Mezclar y limitar a 5 álbumes
             Collections.shuffle(albumesFiltrados);
             List<AlbumDTO> albumesAMostrar = albumesFiltrados.subList(0, Math.min(5, albumesFiltrados.size()));
+            llenarPanelAlbum(albumesAMostrar);
 
-            // Configurar el layout
-            panelAlbumes.setLayout(new GridLayout(1, albumesAMostrar.size(), 10, 10));
-            panelAlbumes.setBackground(new Color(18, 18, 18));
-
-            // Crear paneles para los álbumes
-            for (AlbumDTO album : albumesAMostrar) {
-                JPanel panelAlbum = creaPanel(album, album.getImagenPortada());
-                panelAlbumes.add(panelAlbum);
-            }
-
-            // Crear y agregar el botón "Ver Todos"
-            JButton btnVerTodos = crearBotonVerTodos("Ver todos los álbumes", e -> {
-                Forms.cargarForm(new FrmPestañaAlbumes(usuarioLoggeado), this);
-            });
-            JPanel panelBoton = new JPanel();
-            panelBoton.setBackground(new Color(18, 18, 18));
-            panelBoton.setLayout(new GridBagLayout());
-            panelBoton.add(btnVerTodos);
-
-            panelAlbumes.add(panelBoton);
-
-            panelAlbumes.revalidate();
-            panelAlbumes.repaint();
         } catch (NegocioException e) {
             e.printStackTrace();
         }
+    }
+
+    private void llenarPanelAlbum(List<AlbumDTO> albumes) {
+        // Limpiar el panel antes de agregar nuevos álbumes
+        panelAlbumes.removeAll();
+
+        // Limitar la cantidad de álbumes a mostrar a 5
+        List<AlbumDTO> albumesAMostrar = albumes.subList(0, Math.min(5, albumes.size()));
+
+        // Configurar el layout dinámico basado en la cantidad de álbumes a mostrar
+        panelAlbumes.setLayout(new GridLayout(1, albumesAMostrar.size(), 10, 10));
+        panelAlbumes.setBackground(new Color(18, 18, 18));
+
+        // Crear paneles para los álbumes
+        for (AlbumDTO album : albumesAMostrar) {
+            JPanel panelAlbum = creaPanel(album, album.getImagenPortada());
+            panelAlbumes.add(panelAlbum);
+        }
+
+        // Crear y agregar el botón "Ver Todos"
+        JButton btnVerTodos = crearBotonVerTodos("Ver todos los álbumes", e -> {
+            if (albumesBuscados != null && !albumesBuscados.isEmpty()) {
+                Forms.cargarForm(new FrmPestañaAlbumes(usuarioLoggeado, albumesBuscados), this);
+            } else {
+                Forms.cargarForm(new FrmPestañaAlbumes(usuarioLoggeado), this);
+            }
+        });
+
+        // Agregar el botón "Ver Todos" al panel
+        JPanel panelBoton = new JPanel();
+        panelBoton.setBackground(new Color(18, 18, 18));
+        panelBoton.setLayout(new GridBagLayout());
+        panelBoton.add(btnVerTodos);
+        panelAlbumes.add(panelBoton);
+
+        // Revalidar y repintar el panel
+        panelAlbumes.revalidate();
+        panelAlbumes.repaint();
     }
 
     private void obtieneCanciones() {
@@ -655,33 +780,53 @@ public class FrmInicio extends javax.swing.JFrame {
             // Mezclar y limitar a 5 canciones
             Collections.shuffle(cancionesFiltradas);
             List<DetallesCancionDTO> cancionesAMostrar = cancionesFiltradas.subList(0, Math.min(5, cancionesFiltradas.size()));
+            actualizarPanelCanciones(cancionesAMostrar);
 
-            // Configurar el layout
-            panelCanciones.setLayout(new GridLayout(1, cancionesAMostrar.size(), 10, 10));
-            panelCanciones.setBackground(new Color(18, 18, 18));
-
-            // Crear paneles para las canciones
-            for (DetallesCancionDTO cancion : cancionesAMostrar) {
-                JPanel panelCancion = creaPanel(cancion.getTitulo(), cancion.getFotoAlbum());
-                panelCanciones.add(panelCancion);
-            }
-
-            // Crear y agregar el botón "Ver Todos"
-            JButton btnVerTodos = crearBotonVerTodos("Ver todas las canciones", e -> {
-                Forms.cargarForm(new FrmPestañaCanciones(usuarioLoggeado), this);
-            });
-            JPanel panelBoton = new JPanel();
-            panelBoton.setBackground(new Color(18, 18, 18));
-            panelBoton.setLayout(new GridBagLayout());
-            panelBoton.add(btnVerTodos);
-
-            panelCanciones.add(panelBoton);
-
-            panelCanciones.revalidate();
-            panelCanciones.repaint();
         } catch (NegocioException e) {
             e.printStackTrace();
         }
+    }
+
+    private void actualizarPanelCanciones(List<DetallesCancionDTO> cancionesAMostrar) {
+        // Limitar las canciones a mostrar a un máximo de 5
+        List<DetallesCancionDTO> cancionesLimitadas = cancionesAMostrar.subList(0, Math.min(5, cancionesAMostrar.size()));
+
+        // Limpiar el panel antes de agregar nuevas canciones
+        panelCanciones.removeAll();
+
+        // Configurar el layout
+        panelCanciones.setLayout(new GridLayout(1, cancionesLimitadas.size(), 10, 10));
+        panelCanciones.setBackground(new Color(18, 18, 18));
+
+        // Crear paneles para las canciones
+        for (DetallesCancionDTO cancion : cancionesLimitadas) {
+            JPanel panelCancion = creaPanel(cancion.getTitulo(), cancion.getFotoAlbum());
+            panelCanciones.add(panelCancion);
+        }
+
+        // Crear y agregar el botón "Ver Todos"
+        JButton btnVerTodos = crearBotonVerTodos("Ver todas las canciones", e -> {
+            if (cancionesBuscadas != null) {
+                if (cancionesBuscadas.size() > 0) {
+                    Forms.cargarForm(new FrmPestañaCanciones(usuarioLoggeado, cancionesBuscadas), this);
+                } else {
+                    Forms.cargarForm(new FrmPestañaCanciones(usuarioLoggeado), this);
+                }
+            } else {
+                Forms.cargarForm(new FrmPestañaCanciones(usuarioLoggeado), this);
+            }
+        });
+
+        JPanel panelBoton = new JPanel();
+        panelBoton.setBackground(new Color(18, 18, 18));
+        panelBoton.setLayout(new GridBagLayout());
+        panelBoton.add(btnVerTodos);
+
+        panelCanciones.add(panelBoton);
+
+        // Revalidar y repintar el panel para reflejar los cambios
+        panelCanciones.revalidate();
+        panelCanciones.repaint();
     }
 
     private void obtieneArtistas() {
@@ -702,33 +847,54 @@ public class FrmInicio extends javax.swing.JFrame {
             // Mezclar y limitar a 5 artistas
             Collections.shuffle(artistasFiltrados);
             List<ArtistaDTO> artistasAMostrar = artistasFiltrados.subList(0, Math.min(5, artistasFiltrados.size()));
+            llenaPanelArtistas(artistasAMostrar);
 
-            // Configurar el layout
-            panelArtistas.setLayout(new GridLayout(1, artistasAMostrar.size(), 10, 10));
-            panelArtistas.setBackground(new Color(18, 18, 18));
-
-            // Crear paneles para los artistas
-            for (ArtistaDTO artista : artistasAMostrar) {
-                JPanel panelArtista = creaPanelRedondo(artista);
-                panelArtistas.add(panelArtista);
-            }
-
-            // Crear y agregar el botón "Ver Todos"
-            JButton btnVerTodos = crearBotonVerTodos("Ver todos los artistas", e -> {
-                Forms.cargarForm(new FrmPestañaArtistas(usuarioLoggeado), this);
-            });
-            JPanel panelBoton = new JPanel();
-            panelBoton.setBackground(new Color(18, 18, 18));
-            panelBoton.setLayout(new GridBagLayout());
-            panelBoton.add(btnVerTodos);
-
-            panelArtistas.add(panelBoton);
-
-            panelArtistas.revalidate();
-            panelArtistas.repaint();
         } catch (NegocioException e) {
             e.printStackTrace();
         }
+    }
+
+    public void llenaPanelArtistas(List<ArtistaDTO> artistasAMostrar) {
+        // Limitar los artistas a mostrar a un máximo de 5
+        List<ArtistaDTO> artistasLimitados = artistasAMostrar.subList(0, Math.min(5, artistasAMostrar.size()));
+
+        // Limpiar el panel antes de agregar nuevos artistas
+        panelArtistas.removeAll();
+
+        // Configurar el layout
+        panelArtistas.setLayout(new GridLayout(1, artistasLimitados.size(), 10, 10));
+        panelArtistas.setBackground(new Color(18, 18, 18));
+
+        // Crear paneles para los artistas
+        for (ArtistaDTO artista : artistasLimitados) {
+            JPanel panelArtista = creaPanelRedondo(artista);
+            panelArtistas.add(panelArtista);
+        }
+
+        // Crear y agregar el botón "Ver Todos"
+        JButton btnVerTodos = crearBotonVerTodos("Ver todos los artistas", e -> {
+            if (this.artistasBuscados != null) {
+                if (this.artistasBuscados.size() > 0) {
+                    Forms.cargarForm(new FrmPestañaArtistas(usuarioLoggeado, this.artistasBuscados), this);
+                } else {
+                    Forms.cargarForm(new FrmPestañaArtistas(usuarioLoggeado), this);
+                }
+            } else {
+                Forms.cargarForm(new FrmPestañaArtistas(usuarioLoggeado), this);
+            }
+
+        });
+
+        JPanel panelBoton = new JPanel();
+        panelBoton.setBackground(new Color(18, 18, 18));
+        panelBoton.setLayout(new GridBagLayout());
+        panelBoton.add(btnVerTodos);
+
+        panelArtistas.add(panelBoton);
+
+        // Revalidar y repintar el panel para reflejar los cambios
+        panelArtistas.revalidate();
+        panelArtistas.repaint();
     }
 
     private JPanel creaPanel(String nombre, Imagen imagen) {
@@ -961,13 +1127,14 @@ public class FrmInicio extends javax.swing.JFrame {
             if (!isUpdatingComboBox) { // Solo permitir la selección si no está actualizando
                 String seleccionado = (String) comboResultados.getSelectedItem();
                 if (seleccionado != null && !seleccionado.isEmpty()) {
-                    JOptionPane.showMessageDialog(this, "Seleccionaste: " + seleccionado);
+                     llenaPanelArtistas(this.artistasBuscados);
+                     llenarPanelAlbum(this.albumesBuscados);
+                     actualizarPanelCanciones(this.cancionesBuscadas);
                 }
             }
         });
 
         // Evento para el botón "Buscar"
-        btnBuscar.addActionListener(e -> buscar());
     }
 
     private void buscar() {
@@ -1066,6 +1233,8 @@ public class FrmInicio extends javax.swing.JFrame {
                 artistas.stream()
                         .filter(artista -> !generosNoDeseados.contains(artista.getGenero()))
                         .forEach(artista -> coincidencias.add("Artista: " + artista.getNombre()));
+                this.artistasBuscados = artistas;
+               
             }
 
             // Buscar en Álbumes
@@ -1082,11 +1251,14 @@ public class FrmInicio extends javax.swing.JFrame {
                             }
                         })
                         .forEach(album -> coincidencias.add("Álbum: " + album.getNombre()));
+                this.albumesBuscados = albumes;
+                
             }
 
             /// Buscar en Canciones
             if (checkCanciones.isSelected() || (!checkArtistas.isSelected() && !checkAlbumes.isSelected())) {
                 List<AlbumDTO> albumes = albumbo.obtenerAlbumes(); // Obtén todos los álbumes
+                List<DetallesCancionDTO> cancionesEncontradas = new ArrayList<>();
                 albumes.stream()
                         .filter(album -> {
                             try {
@@ -1101,9 +1273,16 @@ public class FrmInicio extends javax.swing.JFrame {
                             if (album.getCanciones() != null) { // Asegúrate de que el álbum tiene canciones
                                 album.getCanciones().stream()
                                         .filter(cancion -> cancion.getTitulo() != null && cancion.getTitulo().toLowerCase().contains(termino)) // Filtra canciones por el término de búsqueda
-                                        .forEach(cancion -> coincidencias.add("Canción: " + cancion.getTitulo()));
+                                        .forEach(cancion -> {
+                                            coincidencias.add("Canción: " + cancion.getTitulo());
+                                            cancionesEncontradas.add(cancion); // Agrega la canción a la lista
+                                        });
                             }
                         });
+
+                this.cancionesBuscadas = cancionesEncontradas; // Actualiza la lista global de canciones encontradas
+               
+
             }
 
             // Actualizar el comboResultados
@@ -1123,6 +1302,7 @@ public class FrmInicio extends javax.swing.JFrame {
 
         isUpdatingComboBox = false; // Reactivar el evento de selección
     }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bAlbumes;

@@ -4,7 +4,9 @@
  */
 package frames;
 
+import dto.AlbumDTO;
 import dto.ArtistaDTO;
+import dto.DetallesCancionDTO;
 import dto.UsuarioDTO;
 import excepciones.NegocioException;
 import interfaces.IArtistaBO;
@@ -16,8 +18,11 @@ import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.RenderingHints;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.geom.Ellipse2D;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -28,7 +33,10 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import negocio.ArtistaBO;
 import recursos.Forms;
 import recursos.GestorImagenesMongo;
@@ -42,7 +50,8 @@ public class FrmPestañaArtistas extends javax.swing.JFrame {
 
     private IArtistaBO abo;
     private UsuarioDTO usuarioLoggeado;
-
+    private List<ArtistaDTO> artistasBuscados;
+     private boolean isUpdatingComboBox = false;
     /**
      * Creates new form FrmPestañaArtistas
      *
@@ -55,12 +64,19 @@ public class FrmPestañaArtistas extends javax.swing.JFrame {
 
         this.configuraFrame();
     }
-
+     public FrmPestañaArtistas(UsuarioDTO usuarioLoggeado,List<ArtistaDTO> artistasBuscados) {
+        initComponents();
+        this.abo = new ArtistaBO();
+        this.usuarioLoggeado = usuarioLoggeado;
+        this.artistasBuscados=artistasBuscados;
+        this.configuraFrame();
+    }
     private void configuraFrame() {
         setSize(1830, 1000);
         this.SetImageLabel(jLabel1, "images/logo.png");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
+        inicializarBuscador();
         this.obtieneArtistas();
         this.cargarDatosUsuario();
     }
@@ -71,7 +87,103 @@ public class FrmPestañaArtistas extends javax.swing.JFrame {
         labelname.setIcon(icon);
         this.repaint();
     }
+    private void inicializarBuscador() {
 
+        // ComboBox para mostrar los resultados
+        comboResultados4.setEditable(false); // No editable
+        comboResultados4.setVisible(false); // Oculto al inicio
+
+        txtBuscar4.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (txtBuscar4.getText().equals("Buscar por...")) {
+                    txtBuscar4.setText(""); // Limpiar el texto
+                    txtBuscar4.setForeground(Color.WHITE); // Cambiar el color a texto normal
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (txtBuscar4.getText().trim().isEmpty()) {
+                    txtBuscar4.setText("Buscar por..."); // Restaurar el placeholder
+                    txtBuscar4.setForeground(Color.WHITE); // Cambiar el color a gris
+                }
+            }
+        });
+
+        // Eventos
+        // Eventos para buscar dinámicamente
+        txtBuscar4.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                actualizarComboResultados();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                actualizarComboResultados();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                actualizarComboResultados();
+            }
+        });
+
+        // Evento de selección del JComboBox
+        comboResultados4.addActionListener(e -> {
+            if (!isUpdatingComboBox) { // Solo permitir la selección si no está actualizando
+                String seleccionado = (String) comboResultados4.getSelectedItem();
+                if (seleccionado != null && !seleccionado.isEmpty()) {
+                    llenarArtistaPanel(this.artistasBuscados);
+                }
+            }
+        });
+
+    }
+    private void actualizarComboResultados() {
+        String termino = txtBuscar4.getText().trim().toLowerCase();
+
+        if (termino.isEmpty()) {
+            comboResultados4.setVisible(false); // Ocultar si no hay término
+            comboResultados4.setPopupVisible(false); // Ocultar el desplegable
+            return;
+        }
+
+        isUpdatingComboBox = true; // Desactivar temporalmente el evento de selección
+
+        List<String> coincidencias = new ArrayList<>();
+        try {
+            List<String> generosNoDeseados = usuarioLoggeado.getGenerosNoDeseados();
+
+            // Buscar en Artistas
+            if (checkNombre.isSelected() || (!checkGenero.isSelected())) {
+                List<ArtistaDTO> artistas = abo.buscarArtistasPorNombre(termino);
+                artistas.stream()
+                        .filter(artista -> !generosNoDeseados.contains(artista.getGenero()))
+                        .forEach(artista -> coincidencias.add("Artista: " + artista.getNombre()));
+                this.artistasBuscados = artistas;
+            }
+
+            
+
+            // Actualizar el comboResultados
+            comboResultados4.removeAllItems();
+            if (!coincidencias.isEmpty()) {
+                coincidencias.forEach(comboResultados4::addItem);
+                comboResultados4.setVisible(true); // Mostrar si hay resultados
+                comboResultados4.setPopupVisible(true); // Desplegar automáticamente
+            } else {
+                comboResultados4.setVisible(false); // Ocultar si no hay resultados
+                comboResultados4.setPopupVisible(false); // Ocultar el desplegable
+            }
+
+        } catch (NegocioException e) {
+            e.printStackTrace();
+        }
+
+        isUpdatingComboBox = false; // Reactivar el evento de selección
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -96,6 +208,13 @@ public class FrmPestañaArtistas extends javax.swing.JFrame {
         lblNameUser = new javax.swing.JLabel();
         lblFoto = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        jPanel8 = new javax.swing.JPanel();
+        btnBuscar4 = new javax.swing.JButton();
+        checkGenero = new javax.swing.JCheckBox();
+        checkNombre = new javax.swing.JCheckBox();
+        comboResultados4 = new javax.swing.JComboBox<>();
+        txtBuscar4 = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -176,7 +295,6 @@ public class FrmPestañaArtistas extends javax.swing.JFrame {
         bCerrarSesion.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         bCerrarSesion.setForeground(new java.awt.Color(255, 0, 153));
         bCerrarSesion.setText("Cerrar Sesión");
-        bCerrarSesion.setActionCommand("Cerrar Sesión");
         bCerrarSesion.setContentAreaFilled(false);
         bCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -278,6 +396,74 @@ public class FrmPestañaArtistas extends javax.swing.JFrame {
         jLabel6.setAlignmentX(0.5F);
         jLabel6.setOpaque(true);
 
+        jPanel8.setBackground(new java.awt.Color(0, 0, 0));
+
+        btnBuscar4.setBackground(new java.awt.Color(255, 0, 153));
+        btnBuscar4.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        btnBuscar4.setForeground(new java.awt.Color(255, 255, 255));
+        btnBuscar4.setText("Buscar");
+        btnBuscar4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscar4ActionPerformed(evt);
+            }
+        });
+
+        checkGenero.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        checkGenero.setForeground(new java.awt.Color(255, 255, 255));
+        checkGenero.setText("Genero");
+
+        checkNombre.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        checkNombre.setForeground(new java.awt.Color(255, 255, 255));
+        checkNombre.setText("Nombre");
+
+        comboResultados4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        txtBuscar4.setBackground(new java.awt.Color(51, 51, 51));
+        txtBuscar4.setForeground(new java.awt.Color(255, 255, 255));
+        txtBuscar4.setText("Buscar por canciones, álbumes, artistas...");
+
+        jLabel10.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setText("Buscar");
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addComponent(jLabel10)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtBuscar4, javax.swing.GroupLayout.PREFERRED_SIZE, 467, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(comboResultados4, javax.swing.GroupLayout.PREFERRED_SIZE, 467, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
+                        .addComponent(checkNombre)
+                        .addGap(18, 18, 18)
+                        .addComponent(checkGenero)
+                        .addGap(113, 113, 113)
+                        .addComponent(btnBuscar4, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(39, 39, 39))))
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addComponent(jLabel10)
+                .addGap(12, 12, 12)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnBuscar4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(checkGenero)
+                        .addComponent(checkNombre))
+                    .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(comboResultados4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtBuscar4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(19, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -286,14 +472,18 @@ public class FrmPestañaArtistas extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(panelArtistas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 733, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(panelArtistas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap())))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -302,6 +492,8 @@ public class FrmPestañaArtistas extends javax.swing.JFrame {
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 3, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(panelArtistas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31))
@@ -349,6 +541,33 @@ public class FrmPestañaArtistas extends javax.swing.JFrame {
         Forms.cargarForm(new FrmInicioSesion(), this);
     }//GEN-LAST:event_bCerrarSesionActionPerformed
 
+    private void btnBuscar4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar4ActionPerformed
+
+        String termino = txtBuscar4.getText().trim();
+
+        if (termino.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor, ingresa un término de búsqueda.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        try {
+            List<String> generosNoDeseados = usuarioLoggeado.getGenerosNoDeseados();
+
+            // Buscar en Artistas
+            if (checkNombre.isSelected() || (!checkGenero.isSelected())) {
+                List<ArtistaDTO> artistas = abo.buscarArtistasPorNombre(termino);
+               List<ArtistaDTO> artistasFiltrados = artistas.stream()
+                    .filter(artista -> !generosNoDeseados.contains(artista.getGenero()))
+                    .collect(Collectors.toList());
+                this.artistasBuscados = artistasFiltrados;
+                llenarArtistaPanel(this.artistasBuscados);
+            }
+
+        } catch (NegocioException e) {
+            e.printStackTrace();
+        }
+       
+    }//GEN-LAST:event_btnBuscar4ActionPerformed
+
     private void cargarDatosUsuario() {
         if (usuarioLoggeado != null) {
             lblNameUser.setText(usuarioLoggeado.getNombreUsuario());
@@ -368,7 +587,17 @@ public class FrmPestañaArtistas extends javax.swing.JFrame {
             List<String> generosNoDeseados = usuarioLoggeado.getGenerosNoDeseados();
 
             // Obtener la lista de artistas
-            List<ArtistaDTO> artistas = this.abo.obtenerArtistas();
+            List<ArtistaDTO> artistas;
+            if(this.artistasBuscados!=null){
+                if(this.artistasBuscados.size()>0){
+                    artistas=this.artistasBuscados;
+                }else{
+                     artistas= this.abo.obtenerArtistas();
+                }
+            }else{
+                artistas= this.abo.obtenerArtistas();
+            }
+             
 
             // Filtrar artistas cuyo género no esté en la lista de géneros no deseados
             List<ArtistaDTO> artistasFiltrados = artistas.stream()
@@ -387,8 +616,15 @@ public class FrmPestañaArtistas extends javax.swing.JFrame {
             List<ArtistaDTO> artistasLimitados = artistasFiltrados.size() > maxArtistas
                     ? artistasFiltrados.subList(0, maxArtistas)
                     : artistasFiltrados;
-
-            // Configurar el layout con 4 filas y 7 columnas
+            llenarArtistaPanel(artistasLimitados);
+           
+        } catch (NegocioException e) {
+            e.printStackTrace();
+        }
+    }
+    private void llenarArtistaPanel( List<ArtistaDTO> artistasLimitados){
+        panelArtistas.removeAll();
+         // Configurar el layout con 4 filas y 7 columnas
             panelArtistas.setLayout(new GridLayout(4, 7, 20, 20));
             panelArtistas.setBackground(new Color(18, 18, 18));
 
@@ -400,9 +636,6 @@ public class FrmPestañaArtistas extends javax.swing.JFrame {
 
             panelArtistas.revalidate();
             panelArtistas.repaint();
-        } catch (NegocioException e) {
-            e.printStackTrace();
-        }
     }
 
     private JPanel creaPanelRedondo(ArtistaDTO artista) {
@@ -469,13 +702,52 @@ public class FrmPestañaArtistas extends javax.swing.JFrame {
     private javax.swing.JButton bAlbumes4;
     private javax.swing.JButton bCerrarSesion;
     private javax.swing.JButton bHome;
+    private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnBuscar1;
+    private javax.swing.JButton btnBuscar2;
+    private javax.swing.JButton btnBuscar3;
+    private javax.swing.JButton btnBuscar4;
+    private javax.swing.JCheckBox checkAlbumes;
+    private javax.swing.JCheckBox checkAlbumes1;
+    private javax.swing.JCheckBox checkAlbumes2;
+    private javax.swing.JCheckBox checkAlbumes3;
+    private javax.swing.JCheckBox checkArtistas;
+    private javax.swing.JCheckBox checkArtistas1;
+    private javax.swing.JCheckBox checkArtistas2;
+    private javax.swing.JCheckBox checkArtistas3;
+    private javax.swing.JCheckBox checkCanciones;
+    private javax.swing.JCheckBox checkCanciones1;
+    private javax.swing.JCheckBox checkCanciones2;
+    private javax.swing.JCheckBox checkCanciones3;
+    private javax.swing.JCheckBox checkGenero;
+    private javax.swing.JCheckBox checkNombre;
+    private javax.swing.JComboBox<String> comboResultados;
+    private javax.swing.JComboBox<String> comboResultados1;
+    private javax.swing.JComboBox<String> comboResultados2;
+    private javax.swing.JComboBox<String> comboResultados3;
+    private javax.swing.JComboBox<String> comboResultados4;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
     private javax.swing.JLabel lblFoto;
     private javax.swing.JLabel lblNameUser;
     private javax.swing.JPanel panelArtistas;
+    private javax.swing.JTextField txtBuscar;
+    private javax.swing.JTextField txtBuscar1;
+    private javax.swing.JTextField txtBuscar2;
+    private javax.swing.JTextField txtBuscar3;
+    private javax.swing.JTextField txtBuscar4;
     // End of variables declaration//GEN-END:variables
 }

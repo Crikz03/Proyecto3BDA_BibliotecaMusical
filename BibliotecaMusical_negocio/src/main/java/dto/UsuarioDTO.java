@@ -4,6 +4,7 @@
  */
 package dto;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.bson.types.ObjectId;
 import recursos.Imagen;
@@ -87,7 +88,7 @@ public class UsuarioDTO {
     }
 
     public List<String> getGenerosNoDeseados() {
-        return generosNoDeseados;
+         return generosNoDeseados != null ? generosNoDeseados : new ArrayList<>();
     }
 
     public void setGenerosNoDeseados(List<String> generosNoDeseados) {
