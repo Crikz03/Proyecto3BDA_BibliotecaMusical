@@ -565,6 +565,7 @@ public class FrmInicio extends javax.swing.JFrame {
         List<AlbumDTO> albumesBuscados = new ArrayList<>();
         List<ArtistaDTO> artistasBuscados = new ArrayList<>();
         try {
+            List<String> generosNoDeseados = usuarioLoggeado.getGenerosNoDeseados();
             // Buscar canciones relacionadas
             // 1. Canciones por nombre
             List<DetallesCancionDTO> cancionesPorNombre = albumbo.buscarCancionesPorNombre(termino);
@@ -585,6 +586,7 @@ public class FrmInicio extends javax.swing.JFrame {
                 cancionesBuscadas.addAll(cancionesDelArtista);
             }
 
+            
             // Filtrar duplicados en canciones
             // Buscar álbumes relacionados
             // 1. Álbumes por nombre
@@ -648,9 +650,41 @@ public class FrmInicio extends javax.swing.JFrame {
             cancionesBuscadas = cancionesBuscadas.stream()
                     .distinct()
                     .collect(Collectors.toList());
+            
+            cancionesBuscadas = cancionesBuscadas.stream()
+                .filter(cancion -> {
+                    try {
+                        ArtistaDTO artista = abo.obtenerArtistaPorId(cancion.getIdArtista());
+                        return !generosNoDeseados.contains(artista.getGenero()); // Excluir canciones de géneros no deseados
+                    } catch (NegocioException e) {
+                        e.printStackTrace();
+                        return false;
+                    }
+                })
+                .distinct()
+                .collect(Collectors.toList());
+            albumesBuscados = albumesBuscados.stream()
+                .filter(album -> {
+                    try {
+                        ArtistaDTO artista = abo.obtenerArtistaPorId(album.getArtistaId());
+                        return !generosNoDeseados.contains(artista.getGenero()); // Excluir álbumes de géneros no deseados
+                    } catch (NegocioException e) {
+                        e.printStackTrace();
+                        return false;
+                    }
+                })
+                .distinct()
+                .collect(Collectors.toList());
+            
+            artistasBuscados = artistasBuscados.stream()
+                .filter(artista -> !generosNoDeseados.contains(artista.getGenero()))
+                .collect(Collectors.toList());
+            
             this.albumesBuscados = albumesBuscados;
             this.artistasBuscados = artistasBuscados;
-
+            
+            
+            
             llenarPanelAlbum(this.albumesBuscados);
             actualizarPanelCanciones(this.cancionesBuscadas);
             llenaPanelArtistas(this.artistasBuscados);

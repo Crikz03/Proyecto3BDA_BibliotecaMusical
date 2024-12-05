@@ -274,6 +274,7 @@ private boolean isUpdatingComboBox = false;
         comboResultados1 = new javax.swing.JComboBox<>();
         txtBuscar1 = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -507,6 +508,10 @@ private boolean isUpdatingComboBox = false;
                 .addContainerGap(19, Short.MAX_VALUE))
         );
 
+        jLabel2.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 0, 153));
+        jLabel2.setText("Canciones");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -516,7 +521,9 @@ private boolean isUpdatingComboBox = false;
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 736, Short.MAX_VALUE)
+                        .addGap(20, 20, 20)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -525,14 +532,18 @@ private boolean isUpdatingComboBox = false;
                             .addComponent(panelCanciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))
+                                .addGap(0, 113, Short.MAX_VALUE)))
                         .addContainerGap())))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addComponent(jLabel2)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 3, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -597,10 +608,25 @@ private boolean isUpdatingComboBox = false;
         this.cancionesGlobal = new ArrayList<>();
        
         try {
-            // Buscar canciones relacionadas
-            // 1. Canciones por nombre
+            List<String> generosNoDeseados = usuarioLoggeado.getGenerosNoDeseados();
             List<DetallesCancionDTO> cancionesPorNombre = albumbo.buscarCancionesPorNombre(termino);
-            cancionesGlobal.addAll(cancionesPorNombre);
+            List<DetallesCancionDTO> cancionesFiltradas = cancionesPorNombre.stream()
+                    .filter(cancion -> {
+                        try {
+                            // Obtener el artista asociado a la canción usando ObjectId
+                            ArtistaDTO artista = this.artistabo.obtenerArtistaPorId(cancion.getIdArtista());
+                            if (!generosNoDeseados.contains(artista.getGenero())) {
+                                // Asignar el nombre del artista al DTO de la canción
+                                cancion.setNombreArtista(artista.getNombre());
+                                return true;
+                            }
+                        } catch (NegocioException e) {
+                            e.printStackTrace();
+                        }
+                        return false; // Excluir canción si ocurre un error o está en géneros no deseados
+                    })
+                    .collect(Collectors.toList());
+            cancionesGlobal.addAll(cancionesFiltradas);
 
             llenarCancionesPanel(this.cancionesGlobal);
         } catch (NegocioException e) {
@@ -771,26 +797,19 @@ private boolean isUpdatingComboBox = false;
     private javax.swing.JButton bAlbumes4;
     private javax.swing.JButton bCerrarSesion;
     private javax.swing.JButton bHome;
-    private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnBuscar1;
-    private javax.swing.JCheckBox checkAlbumes;
-    private javax.swing.JCheckBox checkArtistas;
-    private javax.swing.JCheckBox checkCanciones;
-    private javax.swing.JComboBox<String> comboResultados;
     private javax.swing.JComboBox<String> comboResultados1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JLabel lblFoto;
     private javax.swing.JLabel lblNameUser;
     private javax.swing.JPanel panelCanciones;
-    private javax.swing.JTextField txtBuscar;
     private javax.swing.JTextField txtBuscar1;
     // End of variables declaration//GEN-END:variables
 }
