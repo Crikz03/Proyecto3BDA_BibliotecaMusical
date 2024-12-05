@@ -46,6 +46,7 @@ import javax.swing.JLabel;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.border.LineBorder;
@@ -92,15 +93,32 @@ public class FrmInicio extends javax.swing.JFrame {
     }
 
     private void configuraFrame() {
-        setSize(1830, 1000);
-        this.SetImageLabel(jLabel1, "images/logo.png");
+        // Maximiza el frame al tamaño de la pantalla
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
+
+        // Crea un JScrollPane alrededor de jPanel1
+        JScrollPane scrollPane = new JScrollPane(jPanel1);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+
+        // Configura el layout del contenido principal
+        getContentPane().setLayout(new BorderLayout());
+        getContentPane().add(scrollPane, BorderLayout.CENTER);
+
+        // Configuraciones adicionales del frame
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
+        this.SetImageLabel(jLabel1, "images/logo.png");
+
+        // Lógica personalizada
         this.obtieneArtistas();
         this.obtieneAlbumes();
         this.obtieneCanciones();
         this.cargarDatosUsuario();
 
+        // Revalida y repinta
+        jPanel1.revalidate();
+        jPanel1.repaint();
     }
 
     /**
@@ -939,7 +957,6 @@ public class FrmInicio extends javax.swing.JFrame {
         return panel;
     }
 
-
     private JPanel creaPanelRedondo(ArtistaDTO artista) {
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -1128,9 +1145,9 @@ public class FrmInicio extends javax.swing.JFrame {
             if (!isUpdatingComboBox) { // Solo permitir la selección si no está actualizando
                 String seleccionado = (String) comboResultados.getSelectedItem();
                 if (seleccionado != null && !seleccionado.isEmpty()) {
-                     llenaPanelArtistas(this.artistasBuscados);
-                     llenarPanelAlbum(this.albumesBuscados);
-                     actualizarPanelCanciones(this.cancionesBuscadas);
+                    llenaPanelArtistas(this.artistasBuscados);
+                    llenarPanelAlbum(this.albumesBuscados);
+                    actualizarPanelCanciones(this.cancionesBuscadas);
                 }
             }
         });
@@ -1235,7 +1252,7 @@ public class FrmInicio extends javax.swing.JFrame {
                         .filter(artista -> !generosNoDeseados.contains(artista.getGenero()))
                         .forEach(artista -> coincidencias.add("Artista: " + artista.getNombre()));
                 this.artistasBuscados = artistas;
-               
+
             }
 
             // Buscar en Álbumes
@@ -1253,7 +1270,7 @@ public class FrmInicio extends javax.swing.JFrame {
                         })
                         .forEach(album -> coincidencias.add("Álbum: " + album.getNombre()));
                 this.albumesBuscados = albumes;
-                
+
             }
 
             /// Buscar en Canciones
@@ -1282,7 +1299,6 @@ public class FrmInicio extends javax.swing.JFrame {
                         });
 
                 this.cancionesBuscadas = cancionesEncontradas; // Actualiza la lista global de canciones encontradas
-               
 
             }
 

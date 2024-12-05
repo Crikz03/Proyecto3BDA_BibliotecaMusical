@@ -12,6 +12,7 @@ import excepciones.NegocioException;
 import interfaces.IAlbumBO;
 import interfaces.IArtistaBO;
 import interfaces.IFavoritoBO;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -33,6 +34,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.LineBorder;
 import negocio.AlbumBO;
 import negocio.ArtistaBO;
@@ -66,16 +68,41 @@ public class FrmDetallesArtistas extends javax.swing.JFrame {
         this.configuraFrame();
     }
 
+   
     private void configuraFrame() {
-        setSize(1830, 1000);
-        this.SetImageLabel(jLabel1, "images/logo.png");
+        // Maximiza el frame al tamaño de la pantalla
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
+
+        // Crea un JScrollPane alrededor de jPanel1
+        JScrollPane scrollPane = new JScrollPane(jPanel1);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+
+        // Configura el layout del contenido principal
+        getContentPane().setLayout(new BorderLayout());
+        getContentPane().add(scrollPane, BorderLayout.CENTER);
+
+        // Configuraciones adicionales del frame
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
+        this.SetImageLabel(jLabel1, "images/logo.png");
+
+        // Lógica personalizada
+           
+        
+        
         this.obtieneAlbumes();
         this.cargaDatosArtista();
         this.cargarDatosUsuario();
         this.configuraBotonFav();
+        
+
+        // Revalida y repinta
+        jPanel1.revalidate();
+        jPanel1.repaint();
     }
+
+    
 
     private void SetImageLabel(JLabel labelname, String root) {
         ImageIcon image = new ImageIcon(root);
