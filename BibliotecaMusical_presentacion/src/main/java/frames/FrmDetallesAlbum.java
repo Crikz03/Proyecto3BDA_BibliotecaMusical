@@ -7,12 +7,15 @@ package frames;
 import dto.AlbumDTO;
 import dto.ArtistaDTO;
 import dto.DetallesCancionDTO;
+import dto.FavoritoDTO;
 import dto.UsuarioDTO;
 import excepciones.NegocioException;
 import interfaces.IAlbumBO;
 import interfaces.IArtistaBO;
+import interfaces.IFavoritoBO;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -29,13 +32,16 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 import negocio.AlbumBO;
 import negocio.ArtistaBO;
+import negocio.FavoritoBO;
 import recursos.Forms;
 import recursos.GestorImagenesMongo;
+import recursos.tipoFavoritos;
 
 /**
  *
@@ -48,6 +54,7 @@ public class FrmDetallesAlbum extends javax.swing.JFrame {
     private IArtistaBO artistabo;
     private ArtistaDTO artista;
     private AlbumDTO album;
+    private IFavoritoBO favbo;
 
     /**
      * Creates new form FrmDetallesAlbum
@@ -58,6 +65,7 @@ public class FrmDetallesAlbum extends javax.swing.JFrame {
         this.usuarioLoggeado = usuarioLoggeado;
         this.album = album;
         this.artistabo = new ArtistaBO();
+        this.favbo = new FavoritoBO();
 
         this.configuraFrame();
     }
@@ -554,16 +562,29 @@ public class FrmDetallesAlbum extends javax.swing.JFrame {
         panel.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.DARK_GRAY)); // Línea divisoria
 
         // Crear imagen del álbum
-        JLabel lblImagen = new JLabel();
-        lblImagen.setPreferredSize(new Dimension(70, 70));
-        lblImagen.setHorizontalAlignment(SwingConstants.CENTER);
+        JButton btnFoto = new JButton(); // Cambiado a JButton
+        btnFoto.setPreferredSize(new Dimension(70, 70));
+        btnFoto.setOpaque(true);
+        btnFoto.setContentAreaFilled(false); // Elimina el fondo por defecto
+        btnFoto.setBorder(new LineBorder(new Color(18, 18, 18), 5, true));
+        btnFoto.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        // Usa GestorImagenesMongo para convertir la imagen
         if (cancion.getFotoAlbum() != null) {
             ImageIcon icon = GestorImagenesMongo.getImageIcon(cancion.getFotoAlbum(), GestorImagenesMongo.SizeImage.SMALL);
-            lblImagen.setIcon(icon);
+            if (icon != null) {
+                btnFoto.setIcon(icon); // Asigna la imagen como icono
+            } else {
+                btnFoto.setBackground(Color.RED); // Indicador de error en la imagen
+            }
         } else {
-            lblImagen.setOpaque(true);
-            lblImagen.setBackground(Color.BLUE); // Fondo azul si no hay imagen
+            btnFoto.setBackground(Color.BLUE); // Fondo si no hay imagen
         }
+
+        // Añadir un ActionListener al botón para manejar clics
+        btnFoto.addActionListener(e -> {
+            Forms.cargarForm(new FrmDetallesCanción(usuarioLoggeado, cancion), this);
+        });
 
         // Información principal de la canción
         JPanel infoPanel = new JPanel();
@@ -597,14 +618,23 @@ public class FrmDetallesAlbum extends javax.swing.JFrame {
         btnFavorito.setText("❤"); // Usa esto si no deseas cargar un ícono
 
         btnFavorito.addActionListener(e -> {
-            // Lógica para agregar a favoritos
+            FavoritoDTO favorito = new FavoritoDTO();
+            favorito.setTipo(tipoFavoritos.Cancion);
+            favorito.setTitulo(cancion.getTitulo());
+
+            try {
+                favbo.agregarFavorito(usuarioLoggeado.getId(), favorito);
+                JOptionPane.showMessageDialog(this, "¡Agregado a tus favoritos!", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            } catch (NegocioException ex) {
+                JOptionPane.showMessageDialog(this, "¡Ya lo tienes en tus favoritos!", "Error", JOptionPane.ERROR_MESSAGE);
+            }
         });
 
         panelTiempoFavorito.add(lblDuracion);
         panelTiempoFavorito.add(btnFavorito);
 
         // Añadir componentes al panel principal
-        panel.add(lblImagen, BorderLayout.WEST);
+        panel.add(btnFoto, BorderLayout.WEST);
         panel.add(infoPanel, BorderLayout.CENTER);
         panel.add(panelTiempoFavorito, BorderLayout.EAST);
 
@@ -637,7 +667,17 @@ public class FrmDetallesAlbum extends javax.swing.JFrame {
         bFav.setText("❤"); // Usa esto si no deseas cargar un ícono
 
         bFav.addActionListener(e -> {
-            // Lógica para agregar a favoritos
+            FavoritoDTO favorito = new FavoritoDTO();
+            favorito.setIdReferencia(album.getId());
+            favorito.setTipo(tipoFavoritos.Album);
+            favorito.setTitulo(album.getNombre());
+
+            try {
+                favbo.agregarFavorito(usuarioLoggeado.getId(), favorito);
+                JOptionPane.showMessageDialog(this, "¡Agregado a tus favoritos!", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            } catch (NegocioException ex) {
+                JOptionPane.showMessageDialog(this, "¡Ya lo tienes en tus favoritos!", "Error", JOptionPane.ERROR_MESSAGE);
+            }
         });
     }
 

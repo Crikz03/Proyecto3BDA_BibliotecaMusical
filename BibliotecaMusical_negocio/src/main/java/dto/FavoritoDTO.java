@@ -6,6 +6,7 @@ package dto;
 
 import java.util.Date;
 import org.bson.types.ObjectId;
+import recursos.tipoFavoritos;
 
 /**
  *
@@ -14,15 +15,17 @@ import org.bson.types.ObjectId;
 public class FavoritoDTO {
 
     private ObjectId idReferencia; // Referencia al ID del artista, álbum o canción
-    private String tipo;           // Tipo de favorito (Artista, Álbum, Canción)
+    private tipoFavoritos tipo;           // Tipo de favorito (Artista, Álbum, Canción)
     private String titulo;         // Título del favorito (nombre del artista, álbum o canción)
     private Date fechaAgregado;    // Fecha en la que se agregó a favoritos
     private boolean activo;        // Estado del favorito (activo/inactivo)
 
     public FavoritoDTO() {
+        this.fechaAgregado = new Date();
+        this.activo = true;
     }
 
-    public FavoritoDTO(ObjectId idReferencia, String tipo, String titulo, Date fechaAgregado, boolean activo) {
+    public FavoritoDTO(ObjectId idReferencia, tipoFavoritos tipo, String titulo, Date fechaAgregado, boolean activo) {
         this.idReferencia = idReferencia;
         this.tipo = tipo;
         this.titulo = titulo;
@@ -39,11 +42,11 @@ public class FavoritoDTO {
         this.idReferencia = idReferencia;
     }
 
-    public String getTipo() {
+    public tipoFavoritos getTipo() {
         return tipo;
     }
 
-    public void setTipo(String tipo) {
+    public void setTipo(tipoFavoritos tipo) {
         this.tipo = tipo;
     }
 
@@ -73,12 +76,12 @@ public class FavoritoDTO {
 
     @Override
     public String toString() {
-        return "FavoritoDTO{" +
-                "idReferencia=" + idReferencia +
-                ", tipo='" + tipo + '\'' +
-                ", titulo='" + titulo + '\'' +
-                ", fechaAgregado=" + fechaAgregado +
-                ", activo=" + activo +
-                '}';
+        return "FavoritoDTO{"
+                + "idReferencia=" + idReferencia
+                + ", tipo='" + tipo + '\''
+                + ", titulo='" + titulo + '\''
+                + ", fechaAgregado=" + fechaAgregado
+                + ", activo=" + activo
+                + '}';
     }
 }

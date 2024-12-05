@@ -4,9 +4,7 @@
  */
 package frames;
 
-import dto.AlbumDTO;
 import dto.ArtistaDTO;
-import dto.DetallesCancionDTO;
 import dto.UsuarioDTO;
 import excepciones.NegocioException;
 import interfaces.IArtistaBO;
@@ -40,7 +38,6 @@ import javax.swing.event.DocumentListener;
 import negocio.ArtistaBO;
 import recursos.Forms;
 import recursos.GestorImagenesMongo;
-import recursos.Imagen;
 
 /**
  *
@@ -51,7 +48,8 @@ public class FrmPestañaArtistas extends javax.swing.JFrame {
     private IArtistaBO abo;
     private UsuarioDTO usuarioLoggeado;
     private List<ArtistaDTO> artistasBuscados;
-     private boolean isUpdatingComboBox = false;
+    private boolean isUpdatingComboBox = false;
+
     /**
      * Creates new form FrmPestañaArtistas
      *
@@ -64,13 +62,15 @@ public class FrmPestañaArtistas extends javax.swing.JFrame {
 
         this.configuraFrame();
     }
-     public FrmPestañaArtistas(UsuarioDTO usuarioLoggeado,List<ArtistaDTO> artistasBuscados) {
+
+    public FrmPestañaArtistas(UsuarioDTO usuarioLoggeado, List<ArtistaDTO> artistasBuscados) {
         initComponents();
         this.abo = new ArtistaBO();
         this.usuarioLoggeado = usuarioLoggeado;
-        this.artistasBuscados=artistasBuscados;
+        this.artistasBuscados = artistasBuscados;
         this.configuraFrame();
     }
+
     private void configuraFrame() {
         setSize(1830, 1000);
         this.SetImageLabel(jLabel1, "images/logo.png");
@@ -87,6 +87,7 @@ public class FrmPestañaArtistas extends javax.swing.JFrame {
         labelname.setIcon(icon);
         this.repaint();
     }
+
     private void inicializarBuscador() {
 
         // ComboBox para mostrar los resultados
@@ -141,6 +142,7 @@ public class FrmPestañaArtistas extends javax.swing.JFrame {
         });
 
     }
+
     private void actualizarComboResultados() {
         String termino = txtBuscar4.getText().trim().toLowerCase();
 
@@ -165,8 +167,6 @@ public class FrmPestañaArtistas extends javax.swing.JFrame {
                 this.artistasBuscados = artistas;
             }
 
-            
-
             // Actualizar el comboResultados
             comboResultados4.removeAllItems();
             if (!coincidencias.isEmpty()) {
@@ -184,6 +184,7 @@ public class FrmPestañaArtistas extends javax.swing.JFrame {
 
         isUpdatingComboBox = false; // Reactivar el evento de selección
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -555,9 +556,9 @@ public class FrmPestañaArtistas extends javax.swing.JFrame {
             // Buscar en Artistas
             if (checkNombre.isSelected() || (!checkGenero.isSelected())) {
                 List<ArtistaDTO> artistas = abo.buscarArtistasPorNombre(termino);
-               List<ArtistaDTO> artistasFiltrados = artistas.stream()
-                    .filter(artista -> !generosNoDeseados.contains(artista.getGenero()))
-                    .collect(Collectors.toList());
+                List<ArtistaDTO> artistasFiltrados = artistas.stream()
+                        .filter(artista -> !generosNoDeseados.contains(artista.getGenero()))
+                        .collect(Collectors.toList());
                 this.artistasBuscados = artistasFiltrados;
                 llenarArtistaPanel(this.artistasBuscados);
             }
@@ -565,7 +566,7 @@ public class FrmPestañaArtistas extends javax.swing.JFrame {
         } catch (NegocioException e) {
             e.printStackTrace();
         }
-       
+
     }//GEN-LAST:event_btnBuscar4ActionPerformed
 
     private void cargarDatosUsuario() {
@@ -588,27 +589,20 @@ public class FrmPestañaArtistas extends javax.swing.JFrame {
 
             // Obtener la lista de artistas
             List<ArtistaDTO> artistas;
-            if(this.artistasBuscados!=null){
-                if(this.artistasBuscados.size()>0){
-                    artistas=this.artistasBuscados;
-                }else{
-                     artistas= this.abo.obtenerArtistas();
+            if (this.artistasBuscados != null) {
+                if (this.artistasBuscados.size() > 0) {
+                    artistas = this.artistasBuscados;
+                } else {
+                    artistas = this.abo.obtenerArtistas();
                 }
-            }else{
-                artistas= this.abo.obtenerArtistas();
+            } else {
+                artistas = this.abo.obtenerArtistas();
             }
-             
 
             // Filtrar artistas cuyo género no esté en la lista de géneros no deseados
             List<ArtistaDTO> artistasFiltrados = artistas.stream()
                     .filter(artista -> !generosNoDeseados.contains(artista.getGenero()))
                     .collect(Collectors.toList());
-
-            // Imprimir los artistas que se van a mostrar
-            System.out.println("Artistas que se mostrarán:");
-            artistasFiltrados.forEach(artista
-                    -> System.out.println("Nombre: " + artista.getNombre() + ", Género: " + artista.getGenero())
-            );
 
             // Mezclar y limitar a 28 artistas (7 columnas x 4 filas)
             Collections.shuffle(artistasFiltrados);
@@ -617,25 +611,26 @@ public class FrmPestañaArtistas extends javax.swing.JFrame {
                     ? artistasFiltrados.subList(0, maxArtistas)
                     : artistasFiltrados;
             llenarArtistaPanel(artistasLimitados);
-           
+
         } catch (NegocioException e) {
             e.printStackTrace();
         }
     }
-    private void llenarArtistaPanel( List<ArtistaDTO> artistasLimitados){
+
+    private void llenarArtistaPanel(List<ArtistaDTO> artistasLimitados) {
         panelArtistas.removeAll();
-         // Configurar el layout con 4 filas y 7 columnas
-            panelArtistas.setLayout(new GridLayout(4, 7, 20, 20));
-            panelArtistas.setBackground(new Color(18, 18, 18));
+        // Configurar el layout con 4 filas y 7 columnas
+        panelArtistas.setLayout(new GridLayout(4, 7, 20, 20));
+        panelArtistas.setBackground(new Color(18, 18, 18));
 
-            // Crear los paneles redondos para los artistas
-            for (ArtistaDTO artista : artistasLimitados) {
-                JPanel panelArtista = creaPanelRedondo(artista);
-                panelArtistas.add(panelArtista);
-            }
+        // Crear los paneles redondos para los artistas
+        for (ArtistaDTO artista : artistasLimitados) {
+            JPanel panelArtista = creaPanelRedondo(artista);
+            panelArtistas.add(panelArtista);
+        }
 
-            panelArtistas.revalidate();
-            panelArtistas.repaint();
+        panelArtistas.revalidate();
+        panelArtistas.repaint();
     }
 
     private JPanel creaPanelRedondo(ArtistaDTO artista) {

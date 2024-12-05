@@ -57,11 +57,11 @@ public final class GestorImagenesMongo {
     /**
      * Ancho para imagen grande.
      */
-    private static final int LARGE_WIDTH = 600;
+    private static final int LARGE_WIDTH = 550;
     /**
      * Largo para imagen grande.
      */
-    private static final int LARGE_HEIGHT = 600;
+    private static final int LARGE_HEIGHT = 487;
 
     private GestorImagenesMongo() {
         throw new IllegalStateException("Utility class");

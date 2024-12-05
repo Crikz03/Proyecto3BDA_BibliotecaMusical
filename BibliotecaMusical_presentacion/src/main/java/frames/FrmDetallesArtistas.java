@@ -6,10 +6,12 @@ package frames;
 
 import dto.AlbumDTO;
 import dto.ArtistaDTO;
+import dto.FavoritoDTO;
 import dto.UsuarioDTO;
 import excepciones.NegocioException;
 import interfaces.IAlbumBO;
 import interfaces.IArtistaBO;
+import interfaces.IFavoritoBO;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -29,12 +31,15 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 import negocio.AlbumBO;
 import negocio.ArtistaBO;
+import negocio.FavoritoBO;
 import recursos.Forms;
 import recursos.GestorImagenesMongo;
+import recursos.tipoFavoritos;
 
 /**
  *
@@ -46,7 +51,8 @@ public class FrmDetallesArtistas extends javax.swing.JFrame {
     private UsuarioDTO usuarioLoggeado;
     private IArtistaBO artistabo;
     private ArtistaDTO artista;
-
+    private IFavoritoBO favbo;
+    
     /**
      * Creates new form FrmDetallesArtistas
      */
@@ -56,6 +62,7 @@ public class FrmDetallesArtistas extends javax.swing.JFrame {
         this.usuarioLoggeado = usuarioLoggeado;
         this.artistabo = new ArtistaBO();
         this.artista = artista;
+        this.favbo = new FavoritoBO();
         this.configuraFrame();
     }
 
@@ -546,7 +553,18 @@ public class FrmDetallesArtistas extends javax.swing.JFrame {
         bFav.setText("❤"); // Usa esto si no deseas cargar un ícono
 
         bFav.addActionListener(e -> {
-            // Lógica para agregar a favoritos
+            FavoritoDTO favorito = new FavoritoDTO();
+            favorito.setIdReferencia(artista.getId());
+            favorito.setTipo(tipoFavoritos.Artista);
+            favorito.setTitulo(artista.getNombre());
+
+            try {
+                favbo.agregarFavorito(usuarioLoggeado.getId(), favorito);
+                JOptionPane.showMessageDialog(this, "¡Agregado a tus favoritos!", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                this.revalidate();
+            } catch (NegocioException ex) {
+                JOptionPane.showMessageDialog(this, "¡Ya lo tienes en tus favoritos!", "Error", JOptionPane.ERROR_MESSAGE);
+            }
         });
     }
 

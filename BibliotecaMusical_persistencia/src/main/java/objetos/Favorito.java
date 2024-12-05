@@ -20,9 +20,22 @@ public class Favorito {
     private Date fechaAgregado;
     private boolean activo;
 
+    public Favorito() {
+        this.fechaAgregado = new Date();
+        this.activo = true;
+    }
+
     public Favorito(ObjectId IdReferecnia, tipoFavoritos tipo) {
         this.IdReferecnia = IdReferecnia;
         this.tipo = tipo;
+        this.fechaAgregado = new Date();
+        this.activo = true;
+    }
+
+    public Favorito(ObjectId IdReferecnia, tipoFavoritos tipo, String titulo) {
+        this.IdReferecnia = IdReferecnia;
+        this.tipo = tipo;
+        this.titulo = titulo;
         this.fechaAgregado = new Date();
         this.activo = true;
     }
