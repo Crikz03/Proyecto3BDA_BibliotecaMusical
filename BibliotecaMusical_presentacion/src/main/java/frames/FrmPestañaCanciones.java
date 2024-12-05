@@ -4,6 +4,7 @@
  */
 package frames;
 
+import dto.AlbumDTO;
 import dto.ArtistaDTO;
 import dto.DetallesCancionDTO;
 import dto.UsuarioDTO;
@@ -16,6 +17,8 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
@@ -27,8 +30,11 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import negocio.AlbumBO;
 import negocio.ArtistaBO;
 import objetos.Artistas;
@@ -44,12 +50,25 @@ public class FrmPestañaCanciones extends javax.swing.JFrame {
     private IAlbumBO albumbo;
     private UsuarioDTO usuarioLoggeado;
     private IArtistaBO artistabo;
-
+    List<DetallesCancionDTO> cancionesGlobal;
+    private IArtistaBO abo;
+private boolean isUpdatingComboBox = false;
     /**
      * Creates new form FrmPestañaCanciones
      */
-    public FrmPestañaCanciones(UsuarioDTO usuarioLoggeado) {
+    public FrmPestañaCanciones(UsuarioDTO usuarioLoggeado,List<DetallesCancionDTO> cancionesGlobal) {
         initComponents();
+        this.albumbo = new AlbumBO();
+        this.abo = new ArtistaBO();
+        this.usuarioLoggeado = usuarioLoggeado;
+        this.artistabo = new ArtistaBO();
+        this.cancionesGlobal=cancionesGlobal;
+
+        this.configuraFrame();
+    }
+     public FrmPestañaCanciones(UsuarioDTO usuarioLoggeado) {
+        initComponents();
+        this.abo = new ArtistaBO();
         this.albumbo = new AlbumBO();
         this.usuarioLoggeado = usuarioLoggeado;
         this.artistabo = new ArtistaBO();
@@ -62,6 +81,7 @@ public class FrmPestañaCanciones extends javax.swing.JFrame {
         this.SetImageLabel(jLabel1, "images/logo.png");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
+        inicializarBuscador();
         this.obtieneCanciones();
         this.cargarDatosUsuario();
     }
@@ -84,6 +104,124 @@ public class FrmPestañaCanciones extends javax.swing.JFrame {
                             );
             lblFoto.setIcon(imageIcon);
         }
+    }
+    private void inicializarBuscador() {
+
+        // ComboBox para mostrar los resultados
+        comboResultados1.setEditable(false); // No editable
+        comboResultados1.setVisible(false); // Oculto al inicio
+
+        txtBuscar1.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (txtBuscar1.getText().equals("Buscar por canciones, álbumes, artistas...")) {
+                    txtBuscar1.setText(""); // Limpiar el texto
+                    txtBuscar1.setForeground(Color.WHITE); // Cambiar el color a texto normal
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (txtBuscar1.getText().trim().isEmpty()) {
+                    txtBuscar1.setText("Buscar por canciones, álbumes, artistas..."); // Restaurar el placeholder
+                    txtBuscar1.setForeground(Color.WHITE); // Cambiar el color a gris
+                }
+            }
+        });
+
+        // Eventos
+        // Eventos para buscar dinámicamente
+        txtBuscar1.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                actualizarComboResultados();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                actualizarComboResultados();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                actualizarComboResultados();
+            }
+        });
+
+        // Evento de selección del JComboBox
+        comboResultados1.addActionListener(e -> {
+            if (!isUpdatingComboBox) { // Solo permitir la selección si no está actualizando
+                String seleccionado = (String) comboResultados1.getSelectedItem();
+                if (seleccionado != null && !seleccionado.isEmpty()) {
+                    llenarCancionesPanel(this.cancionesGlobal);
+                }
+            }
+        });
+
+        // Evento para el botón "Buscar"
+    }
+    private void actualizarComboResultados() {
+        String termino = txtBuscar1.getText().trim().toLowerCase();
+
+        if (termino.isEmpty()) {
+            comboResultados1.setVisible(false); // Ocultar si no hay término
+            comboResultados1.setPopupVisible(false); // Ocultar el desplegable
+            return;
+        }
+
+        isUpdatingComboBox = true; // Desactivar temporalmente el evento de selección
+
+        List<String> coincidencias = new ArrayList<>();
+        try {
+            List<String> generosNoDeseados = usuarioLoggeado.getGenerosNoDeseados();
+
+            
+            /// Buscar en Canciones
+          
+                List<AlbumDTO> albumes = albumbo.obtenerAlbumes(); // Obtén todos los álbumes
+                List<DetallesCancionDTO> cancionesEncontradas = new ArrayList<>();
+                albumes.stream()
+                        .filter(album -> {
+                            try {
+                                ArtistaDTO artista = abo.obtenerArtistaPorId(album.getArtistaId());
+                                return !generosNoDeseados.contains(artista.getGenero()); // Filtra álbumes basados en el género del artista
+                            } catch (NegocioException e) {
+                                e.printStackTrace();
+                                return false;
+                            }
+                        })
+                        .forEach(album -> {
+                            if (album.getCanciones() != null) { // Asegúrate de que el álbum tiene canciones
+                                album.getCanciones().stream()
+                                        .filter(cancion -> cancion.getTitulo() != null && cancion.getTitulo().toLowerCase().contains(termino)) // Filtra canciones por el término de búsqueda
+                                        .forEach(cancion -> {
+                                            coincidencias.add("Canción: " + cancion.getTitulo());
+                                            cancionesEncontradas.add(cancion); // Agrega la canción a la lista
+                                        });
+                            }
+                        });
+
+                this.cancionesGlobal = cancionesEncontradas; // Actualiza la lista global de canciones encontradas
+               
+
+            
+
+            // Actualizar el comboResultados
+            comboResultados1.removeAllItems();
+            if (!coincidencias.isEmpty()) {
+                coincidencias.forEach(comboResultados1::addItem);
+                comboResultados1.setVisible(true); // Mostrar si hay resultados
+                comboResultados1.setPopupVisible(true); // Desplegar automáticamente
+            } else {
+                comboResultados1.setVisible(false); // Ocultar si no hay resultados
+                comboResultados1.setPopupVisible(false); // Ocultar el desplegable
+            }
+
+        } catch (NegocioException e) {
+            e.printStackTrace();
+        }
+
+        isUpdatingComboBox = false; // Reactivar el evento de selección
     }
 
     /**
@@ -110,6 +248,11 @@ public class FrmPestañaCanciones extends javax.swing.JFrame {
         lblNameUser = new javax.swing.JLabel();
         lblFoto = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
+        btnBuscar1 = new javax.swing.JButton();
+        comboResultados1 = new javax.swing.JComboBox<>();
+        txtBuscar1 = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -238,7 +381,7 @@ public class FrmPestañaCanciones extends javax.swing.JFrame {
                 .addComponent(bAlbumes4)
                 .addGap(18, 18, 18)
                 .addComponent(bCerrarSesion)
-                .addContainerGap(340, Short.MAX_VALUE))
+                .addContainerGap(382, Short.MAX_VALUE))
         );
 
         panelCanciones.setBorder(new javax.swing.border.MatteBorder(null));
@@ -290,6 +433,59 @@ public class FrmPestañaCanciones extends javax.swing.JFrame {
         jLabel6.setText("jLabel6");
         jLabel6.setOpaque(true);
 
+        jPanel5.setBackground(new java.awt.Color(0, 0, 0));
+
+        btnBuscar1.setBackground(new java.awt.Color(255, 0, 153));
+        btnBuscar1.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        btnBuscar1.setForeground(new java.awt.Color(255, 255, 255));
+        btnBuscar1.setText("Buscar");
+        btnBuscar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscar1ActionPerformed(evt);
+            }
+        });
+
+        comboResultados1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        txtBuscar1.setBackground(new java.awt.Color(51, 51, 51));
+        txtBuscar1.setForeground(new java.awt.Color(255, 255, 255));
+        txtBuscar1.setText("Buscar por canciones, álbumes, artistas...");
+
+        jLabel7.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("Buscar");
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtBuscar1, javax.swing.GroupLayout.PREFERRED_SIZE, 467, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(comboResultados1, javax.swing.GroupLayout.PREFERRED_SIZE, 467, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 344, Short.MAX_VALUE)
+                        .addComponent(btnBuscar1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(39, 39, 39))))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addComponent(jLabel7)
+                .addGap(12, 12, 12)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnBuscar1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(comboResultados1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtBuscar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(19, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -298,14 +494,18 @@ public class FrmPestañaCanciones extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(panelCanciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 736, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(panelCanciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap())))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -314,6 +514,8 @@ public class FrmPestañaCanciones extends javax.swing.JFrame {
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 3, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(panelCanciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31))
@@ -361,6 +563,31 @@ public class FrmPestañaCanciones extends javax.swing.JFrame {
         Forms.cargarForm(new FrmInicioSesion(), this);
     }//GEN-LAST:event_bCerrarSesionActionPerformed
 
+    private void btnBuscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar1ActionPerformed
+
+        String termino = txtBuscar1.getText().trim();
+
+        if (termino.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor, ingresa un término de búsqueda.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        // Inicializar las listas de resultados
+        this.cancionesGlobal = new ArrayList<>();
+       
+        try {
+            // Buscar canciones relacionadas
+            // 1. Canciones por nombre
+            List<DetallesCancionDTO> cancionesPorNombre = albumbo.buscarCancionesPorNombre(termino);
+            cancionesGlobal.addAll(cancionesPorNombre);
+
+            llenarCancionesPanel(this.cancionesGlobal);
+        } catch (NegocioException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Ocurrió un error durante la búsqueda.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnBuscar1ActionPerformed
+
     private void obtieneCanciones() {
         /*try {
             List<DetallesCancionDTO> canciones = this.albumbo.obtenerCancionesDeAlbumes();
@@ -390,7 +617,19 @@ public class FrmPestañaCanciones extends javax.swing.JFrame {
             List<String> generosNoDeseados = usuarioLoggeado.getGenerosNoDeseados();
 
             // Obtener todas las canciones
-            List<DetallesCancionDTO> canciones = this.albumbo.obtenerCancionesDeAlbumes2();
+            List<DetallesCancionDTO> canciones ;
+            
+            if(this.cancionesGlobal!=null){
+                if(this.cancionesGlobal.size()>0){
+                    canciones=this.cancionesGlobal;
+                }else{
+                    canciones = this.albumbo.obtenerCancionesDeAlbumes2();
+                }
+            }else{
+                canciones = this.albumbo.obtenerCancionesDeAlbumes2();
+            }
+            
+           
 
             // Filtrar canciones basándose en los géneros de los artistas
             List<DetallesCancionDTO> cancionesFiltradas = canciones.stream()
@@ -423,29 +662,33 @@ public class FrmPestañaCanciones extends javax.swing.JFrame {
 
             // Limitar las canciones a mostrar a 9
             List<DetallesCancionDTO> cancionesAMostrar = cancionesSinDuplicados.subList(0, Math.min(9, cancionesSinDuplicados.size()));
-
-            // Configurar el layout del panel
-            panelCanciones.setLayout(new GridLayout(0, 1, 0, 10));
-            panelCanciones.setBackground(new Color(18, 18, 18));
-
-            // Crear paneles para las canciones
-            for (DetallesCancionDTO cancion : cancionesAMostrar) {
-                JPanel panelCancion = creaPanelCancion(cancion);
-                panelCanciones.add(panelCancion);
-            }
-
-            // Imprimir las canciones que se van a mostrar
-            System.out.println("Canciones que se mostrarán (después de limitar):");
-            cancionesAMostrar.forEach(cancion
-                    -> System.out.println("Título: " + cancion.getTitulo() + ", Artista: " + cancion.getNombreArtista())
-            );
-
-            panelCanciones.revalidate();
-            panelCanciones.repaint();
+            llenarCancionesPanel(cancionesAMostrar);
+           
         } catch (NegocioException e) {
             e.printStackTrace();
         }
 
+    }
+    private void llenarCancionesPanel(List<DetallesCancionDTO> cancionesAMostrar ){
+         panelCanciones.removeAll();
+         // Configurar el layout del panel
+        panelCanciones.setLayout(new GridLayout(0, 1, 0, 10));
+        panelCanciones.setBackground(new Color(18, 18, 18));
+
+        // Crear paneles para las canciones
+        for (DetallesCancionDTO cancion : cancionesAMostrar) {
+            JPanel panelCancion = creaPanelCancion(cancion);
+            panelCanciones.add(panelCancion);
+        }
+
+        // Imprimir las canciones que se van a mostrar
+        System.out.println("Canciones que se mostrarán (después de limitar):");
+        cancionesAMostrar.forEach(cancion
+                -> System.out.println("Título: " + cancion.getTitulo() + ", Artista: " + cancion.getNombreArtista())
+        );
+
+        panelCanciones.revalidate();
+        panelCanciones.repaint();
     }
 
     private JPanel creaPanelCancion(DetallesCancionDTO cancion) {
@@ -507,13 +750,26 @@ public class FrmPestañaCanciones extends javax.swing.JFrame {
     private javax.swing.JButton bAlbumes4;
     private javax.swing.JButton bCerrarSesion;
     private javax.swing.JButton bHome;
+    private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnBuscar1;
+    private javax.swing.JCheckBox checkAlbumes;
+    private javax.swing.JCheckBox checkArtistas;
+    private javax.swing.JCheckBox checkCanciones;
+    private javax.swing.JComboBox<String> comboResultados;
+    private javax.swing.JComboBox<String> comboResultados1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JLabel lblFoto;
     private javax.swing.JLabel lblNameUser;
     private javax.swing.JPanel panelCanciones;
+    private javax.swing.JTextField txtBuscar;
+    private javax.swing.JTextField txtBuscar1;
     // End of variables declaration//GEN-END:variables
 }

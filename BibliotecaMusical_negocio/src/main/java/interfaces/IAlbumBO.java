@@ -99,4 +99,10 @@ public interface IAlbumBO {
 
     List<DetallesCancionDTO> buscarCancionesPorNombre(String nombre) throws NegocioException;
 
+    List<DetallesCancionDTO> buscarCancionesPorArtista(ObjectId idArtista) throws NegocioException;
+
+    List<AlbumDTO> buscarPorNombreArtista(String nombreArtista) throws NegocioException;
+
+    List<AlbumDTO> buscarAlbumesPorNombreDeCancion(String nombreCancion) throws NegocioException;
+
 }

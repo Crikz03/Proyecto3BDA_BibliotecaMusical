@@ -5,6 +5,7 @@
 package datos;
 
 import com.mongodb.MongoException;
+import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.result.DeleteResult;
@@ -21,9 +22,12 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 import objetos.Albumes;
 import objetos.Artistas;
 import objetos.DetallesCancion;
+import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
 import recursos.GestorImagenesMongo;
 import recursos.Imagen;
@@ -35,9 +39,11 @@ import recursos.Imagen;
 public class AlbumDAO implements IAlbumDAO {
 
     private final MongoCollection<Albumes> coleccionAlbumes;
+    private final MongoCollection<Artistas> coleccionArtistas;
 
     public AlbumDAO() {
         this.coleccionAlbumes = ConexionBD.crearConexion().getCollection("albumes", Albumes.class);
+        this.coleccionArtistas = ConexionBD.crearConexion().getCollection("artistas", Artistas.class);
     }
 
     /**
@@ -114,11 +120,39 @@ public class AlbumDAO implements IAlbumDAO {
      * @throws PersistenciaException
      */
     @Override
-    public List<Albumes> buscarPorArtista(ObjectId artistaId) throws PersistenciaException {
+    /* public List<Albumes> buscarPorArtista(ObjectId artistaId) throws PersistenciaException {
         try {
             return coleccionAlbumes.find(Filters.eq("artistaId", artistaId)).into(new ArrayList<>());
         } catch (MongoException e) {
             throw new PersistenciaException("Error al buscar álbumes por artista: " + e.getMessage());
+        }
+    }*/
+    public List<Albumes> buscarPorArtista(ObjectId idArtista) throws PersistenciaException {
+        try {
+            Bson filtro = Filters.eq("artistaId", idArtista);
+            FindIterable<Albumes> resultados = coleccionAlbumes.find(filtro);
+            return StreamSupport.stream(resultados.spliterator(), false)
+                    .collect(Collectors.toList());
+        } catch (MongoException e) {
+            throw new PersistenciaException("Error al buscar álbumes por artista: " + e.getMessage());
+        }
+    }
+
+    public List<Albumes> buscarAlbumesPorNombreDeCancion(String nombreCancion) throws PersistenciaException {
+        try {
+            // Filtro para buscar álbumes que contengan canciones con el nombre dado
+            Bson filtro = Filters.elemMatch("detallesCanciones", Filters.eq("titulo", nombreCancion));
+            // Obtener los resultados de la colección
+            FindIterable<Albumes> resultados = coleccionAlbumes.find(filtro);
+
+            List<Albumes> albumesRelacionados = new ArrayList<>();
+            for (Albumes album : resultados) {
+                albumesRelacionados.add(album);
+            }
+
+            return albumesRelacionados;
+        } catch (MongoException e) {
+            throw new PersistenciaException("Error al buscar álbumes por nombre de canción: " + e.getMessage());
         }
     }
 
@@ -219,6 +253,8 @@ public class AlbumDAO implements IAlbumDAO {
             for (Albumes album : albumes) {
                 for (DetallesCancion cancion : album.getDetallesCanciones()) {
                     if (cancion.getTitulo().toLowerCase().contains(nombre.toLowerCase())) {
+                        cancion.setIdReferenciaAlbum(album.getId());
+                        cancion.setIdArtista(album.getArtistaId());
                         cancionesEncontradas.add(cancion);
                     }
                 }
@@ -227,6 +263,30 @@ public class AlbumDAO implements IAlbumDAO {
             return cancionesEncontradas;
         } catch (Exception e) {
             throw new PersistenciaException("Error al buscar canciones por nombre: " + e.getMessage());
+        }
+    }
+
+    public List<Artistas> buscarArtistasPorNombre(String nombreArtista) throws PersistenciaException {
+        try {
+            if (nombreArtista == null || nombreArtista.trim().isEmpty()) {
+                throw new PersistenciaException("El nombre del artista no puede ser nulo o vacío.");
+            }
+
+            // Filtro para buscar artistas por nombre (insensible a mayúsculas/minúsculas)
+            Bson filtro = Filters.regex("nombre", Pattern.compile(nombreArtista, Pattern.CASE_INSENSITIVE));
+
+            // Ejecutar la consulta en la colección de artistas
+            FindIterable<Artistas> resultados = coleccionArtistas.find(filtro);
+
+            List<Artistas> artistas = new ArrayList<>();
+            for (Artistas artista : resultados) {
+                artistas.add(artista);
+            }
+
+            return artistas;
+
+        } catch (MongoException e) {
+            throw new PersistenciaException("Error al buscar artistas por nombre: " + e.getMessage());
         }
     }
 

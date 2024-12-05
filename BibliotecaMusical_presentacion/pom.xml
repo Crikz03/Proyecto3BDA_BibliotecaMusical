@@ -8,12 +8,12 @@
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>BibliotecaMusical_persistencia</artifactId>
+            <artifactId>BibliotecaMusical_negocio</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>BibliotecaMusical_negocio</artifactId>
+            <artifactId>BibliotecaMusical_persistencia</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>

@@ -17,6 +17,15 @@ public class DetallesCancion {
     private String titulo;
     private Imagen fotoAlbum;
     private Integer duracion;
+    private ObjectId idArtista;
+
+    public ObjectId getIdArtista() {
+        return idArtista;
+    }
+
+    public void setIdArtista(ObjectId idArtista) {
+        this.idArtista = idArtista;
+    }
 
     public DetallesCancion() {
     }
@@ -26,6 +35,13 @@ public class DetallesCancion {
         this.titulo = titulo;
         this.fotoAlbum = fotoAlbum;
         this.duracion = duracion;
+    }
+     public DetallesCancion(ObjectId idReferenciaAlbum, String titulo, Imagen fotoAlbum, Integer duracion,ObjectId idArtista) {
+        this.idReferenciaAlbum = idReferenciaAlbum;
+        this.titulo = titulo;
+        this.fotoAlbum = fotoAlbum;
+        this.duracion = duracion;
+        this.idArtista=idArtista;
     }
 
     public ObjectId getIdReferenciaAlbum() {

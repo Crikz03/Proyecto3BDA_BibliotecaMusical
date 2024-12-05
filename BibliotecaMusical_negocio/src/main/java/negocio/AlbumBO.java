@@ -18,6 +18,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 import objetos.Albumes;
+import objetos.Artistas;
 import objetos.DetallesCancion;
 import org.bson.types.ObjectId;
 
@@ -66,8 +67,12 @@ public class AlbumBO implements IAlbumBO {
     @Override
     public List<AlbumDTO> buscarPorNombre(String nombre) throws NegocioException {
         try {
-            List<Albumes> albumes = albumDAO.buscarPorNombre(nombre);
-            return ConvertidorGeneral.convertidoraListaDTO(albumes, AlbumDTO.class);
+            List<Albumes> albumesRelacionados = albumDAO.buscarPorNombre(nombre);
+            List<AlbumDTO> albumes=new ArrayList<>();
+            for (Albumes album : albumesRelacionados) {
+                albumes.add(convertirAlbum(album));
+            }
+            return albumes;
         } catch (PersistenciaException e) {
             throw new NegocioException("Error al buscar álbumes por nombre: " + e.getMessage(), e);
         }
@@ -83,8 +88,12 @@ public class AlbumBO implements IAlbumBO {
     @Override
     public List<AlbumDTO> buscarPorGenero(String genero) throws NegocioException {
         try {
-            List<Albumes> albumes = albumDAO.buscarPorGenero(genero);
-            return ConvertidorGeneral.convertidoraListaDTO(albumes, AlbumDTO.class);
+            List<Albumes> albumesRelacionados = albumDAO.buscarPorGenero(genero);
+            List<AlbumDTO> albumes=new ArrayList<>();
+            for (Albumes album : albumesRelacionados) {
+                albumes.add(convertirAlbum(album));
+            }
+            return albumes;
         } catch (PersistenciaException e) {
             throw new NegocioException("Error al buscar álbumes por género: " + e.getMessage(), e);
         }
@@ -105,8 +114,13 @@ public class AlbumBO implements IAlbumBO {
                 throw new NegocioException("Las fechas de inicio y fin no pueden ser nulas.");
             }
 
-            List<Albumes> albumes = albumDAO.buscarPorFechaLanzamiento(fechaInicio, fechaFin);
-            return ConvertidorGeneral.convertidoraListaDTO(albumes, AlbumDTO.class);
+            List<Albumes> albumesRelacionados = albumDAO.buscarPorFechaLanzamiento(fechaInicio, fechaFin);
+            
+            List<AlbumDTO> albumes=new ArrayList<>();
+            for (Albumes album : albumesRelacionados) {
+                albumes.add(convertirAlbum(album));
+            }
+            return albumes;
         } catch (PersistenciaException e) {
             throw new NegocioException("Error al buscar álbumes por rango de fechas: " + e.getMessage(), e);
         }
@@ -123,7 +137,11 @@ public class AlbumBO implements IAlbumBO {
     public List<AlbumDTO> buscarPorArtista(ObjectId idArtista) throws NegocioException {
         try {
             List<Albumes> albumes = albumDAO.buscarPorArtista(idArtista);
-            return ConvertidorGeneral.convertidoraListaDTO(albumes, AlbumDTO.class);
+            List<AlbumDTO> albumesDTO=new ArrayList<>();
+            for (Albumes album : albumes) {
+                albumesDTO.add(convertirAlbum(album));
+            }
+            return albumesDTO;
         } catch (PersistenciaException e) {
             throw new NegocioException("Error al buscar álbumes por artista: " + e.getMessage(), e);
         }
@@ -172,9 +190,9 @@ public class AlbumBO implements IAlbumBO {
     public List<AlbumDTO> obtenerAlbumes() throws NegocioException {
         try {
             List<Albumes> albumes = albumDAO.obtenerAlbumes();
-             return albumes.stream()
-                .map(this::convertirAlbum) // Usa el método convertirAlbum definido en esta clase
-                .collect(Collectors.toList());
+            return albumes.stream()
+                    .map(this::convertirAlbum) // Usa el método convertirAlbum definido en esta clase
+                    .collect(Collectors.toList());
         } catch (PersistenciaException e) {
             throw new NegocioException("Error al obtener los álbumes: " + e.getMessage(), e);
         }
@@ -229,11 +247,12 @@ public class AlbumBO implements IAlbumBO {
             List<DetallesCancion> canciones = albumDAO.buscarCancionesPorNombre(nombre);
 
             // Convertir las canciones a DTO
-            return ConvertidorGeneral.convertidoraListaDTO(canciones, DetallesCancionDTO.class);
+            return convertirAListaDTO(canciones);
         } catch (PersistenciaException e) {
             throw new NegocioException("Error al buscar canciones por nombre: " + e.getMessage(), e);
         }
     }
+
     private AlbumDTO convertirAlbum(Albumes album) {
         AlbumDTO albumDTO = new AlbumDTO();
 
@@ -245,15 +264,22 @@ public class AlbumBO implements IAlbumBO {
         albumDTO.setImagenPortada(album.getImagenPortada());
         albumDTO.setArtistaId(album.getArtistaId());
 
+         List<DetallesCancionDTO> canciones = new ArrayList<>();
         // Mapea las canciones
         if (album.getDetallesCanciones() != null) {
-            List<DetallesCancionDTO> canciones = album.getDetallesCanciones().stream()
-                    .map(this::convertirCancion) // Convierte cada canción
-                    .collect(Collectors.toList());
+            for (DetallesCancion detalles : album.getDetallesCanciones()) {
+                DetallesCancionDTO cancionDTO = new DetallesCancionDTO();
+                cancionDTO.setTitulo(detalles.getTitulo());
+                cancionDTO.setDuracion(detalles.getDuracion());
+                cancionDTO.setIdArtista(album.getArtistaId()); // Asociar el ObjectId del artista
+                cancionDTO.setFotoAlbum(detalles.getFotoAlbum());
+                canciones.add(cancionDTO);
+            }
             albumDTO.setCanciones(canciones);
         } else {
             albumDTO.setCanciones(new ArrayList<>());
         }
+        
 
         return albumDTO;
     }
@@ -266,8 +292,94 @@ public class AlbumBO implements IAlbumBO {
         cancionDTO.setTitulo(cancion.getTitulo());
         cancionDTO.setDuracion(cancion.getDuracion());
         cancionDTO.setFotoAlbum(cancion.getFotoAlbum());
-       // cancionDTO.setIdArtista(cancion.getIdArtista()); // Si está disponible
+        // cancionDTO.setIdArtista(cancion.getIdArtista()); // Si está disponible
 
         return cancionDTO;
+    }
+
+    public List<DetallesCancionDTO> buscarCancionesPorArtista(ObjectId idArtista) throws NegocioException {
+        try {
+            List<Albumes> albumesDelArtistaa = albumDAO.buscarPorArtista(idArtista);
+            List<DetallesCancionDTO> canciones = new ArrayList<>();
+
+            // Iterar sobre los álbumes para extraer las canciones
+            for (Albumes album : albumesDelArtistaa) {
+                ObjectId artistaId = album.getArtistaId(); // Dejar como ObjectId
+                for (DetallesCancion detalles : album.getDetallesCanciones()) {
+                    DetallesCancionDTO cancionDTO = new DetallesCancionDTO();
+                    cancionDTO.setTitulo(detalles.getTitulo());
+                    cancionDTO.setDuracion(detalles.getDuracion());
+                    cancionDTO.setIdArtista(artistaId); // Asociar el ObjectId del artista
+                    cancionDTO.setFotoAlbum(detalles.getFotoAlbum());
+                    canciones.add(cancionDTO);
+                }
+            }
+
+            return canciones;
+        } catch (PersistenciaException e) {
+            throw new NegocioException("Error al buscar canciones por artista: " + e.getMessage(), e);
+        }
+    }
+
+    public List<AlbumDTO> buscarAlbumesPorNombreDeCancion(String nombreCancion) throws NegocioException {
+        try {
+            List<Albumes> albumesRelacionados = albumDAO.buscarAlbumesPorNombreDeCancion(nombreCancion);
+            List<AlbumDTO> albumes=new ArrayList<>();
+            for (Albumes album : albumesRelacionados) {
+                albumes.add(convertirAlbum(album));
+            }
+            return albumes;
+        } catch (PersistenciaException e) {
+            throw new NegocioException("Error al buscar álbumes por nombre de canción: " + e.getMessage(), e);
+        }
+    }
+
+    public List<AlbumDTO> buscarPorNombreArtista(String nombreArtista) throws NegocioException {
+        try {
+            if (nombreArtista == null || nombreArtista.trim().isEmpty()) {
+                throw new NegocioException("El nombre del artista no puede ser nulo o vacío.");
+            }
+
+            // Buscar artistas que coincidan con el nombre
+            List<Artistas> artistasRelacionados = albumDAO.buscarArtistasPorNombre(nombreArtista);
+
+            if (artistasRelacionados.isEmpty()) {
+                throw new NegocioException("No se encontró ningún artista con el nombre: " + nombreArtista);
+            }
+
+            List<AlbumDTO> albumesRelacionados = new ArrayList<>();
+
+            // Buscar álbumes de cada artista relacionado
+            for (Artistas artista : artistasRelacionados) {
+                if (artista.getId() != null) {
+                    List<Albumes> albumesDelArtista = albumDAO.buscarPorArtista(artista.getId());
+                    albumesRelacionados.addAll(ConvertidorGeneral.convertidoraListaDTO(albumesDelArtista, AlbumDTO.class));
+                } else {
+                    System.out.println("Artista sin ID: " + artista.getNombre());
+                }
+            }
+
+            return albumesRelacionados;
+
+        } catch (PersistenciaException e) {
+            throw new NegocioException("Error al buscar álbumes por nombre del artista: " + e.getMessage(), e);
+        }
+    }
+    public static List<DetallesCancionDTO> convertirAListaDTO(List<DetallesCancion> canciones) {
+        List<DetallesCancionDTO> cancionesDTO = new ArrayList<>();
+
+        for (DetallesCancion cancion : canciones) {
+            DetallesCancionDTO dto = new DetallesCancionDTO();
+            dto.setTitulo(cancion.getTitulo());
+            dto.setDuracion(cancion.getDuracion());
+            dto.setIdArtista(cancion.getIdArtista());
+            dto.setIdReferenciaAlbum(cancion.getIdReferenciaAlbum());
+            dto.setFotoAlbum(cancion.getFotoAlbum());
+            // El nombre del artista no está en DetallesCancion, deberá asignarse posteriormente si es necesario
+            dto.setNombreArtista(null); 
+            cancionesDTO.add(dto);
+        }
+
+        return cancionesDTO;
     }
 }
